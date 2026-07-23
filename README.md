@@ -1,4 +1,6 @@
-# ♟️ Gambito · Ajedrez
+# ♟️ botAgedrez · Ajedrez
+
+> En producción: **https://botagedrez.codezun.com**
 
 Un juego de ajedrez web **premium**, construido desde cero: motor propio, IA con
 minimax + poda alfa-beta corriendo en un Web Worker, sistema de ELO, logros,

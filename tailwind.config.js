@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand identity — "Gambito": deep royal + warm amber
+        // Brand identity — "botAgedrez": deep royal + warm amber
         brand: {
           50: '#f2f6ff',
           100: '#e3ecff',

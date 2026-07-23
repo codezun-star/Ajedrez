@@ -53,7 +53,7 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
             <PieceGlyph type="n" color="w" className="h-full w-full" />
           </motion.div>
           <h1 className="font-display text-5xl font-extrabold tracking-tight">
-            Gam<span className="text-brand-400">bito</span>
+            bot<span className="text-brand-400">Agedrez</span>
           </h1>
         </div>
         <p className="max-w-md text-slate-400">

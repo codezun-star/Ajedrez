@@ -30,7 +30,7 @@ export function GameScreen() {
       <header className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="font-display text-xl font-extrabold">
-            Gam<span className="text-brand-400">bito</span>
+            bot<span className="text-brand-400">Agedrez</span>
           </span>
         </div>
         <div className="flex gap-2">

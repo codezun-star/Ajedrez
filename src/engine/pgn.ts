@@ -36,8 +36,8 @@ export function exportPgn(
   ).padStart(2, '0')}`;
 
   const roster: PgnTags = {
-    Event: 'Gambito Partida',
-    Site: 'Gambito Chess',
+    Event: 'botAgedrez Partida',
+    Site: 'botagedrez.codezun.com',
     Date: dateStr,
     Round: '1',
     White: 'Blancas',

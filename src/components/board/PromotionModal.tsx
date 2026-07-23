@@ -25,6 +25,8 @@ export function PromotionModal() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onPointerDown={(e) => {
+        // Keep the board underneath from also handling this pointer event.
+        e.stopPropagation();
         // Click outside the picker cancels.
         if (e.target === e.currentTarget) cancelPromotion();
       }}

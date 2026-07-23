@@ -94,7 +94,10 @@ export function Board() {
   // ── Pointer interaction ─────────────────────────────────────────────────────
   const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
-      if (viewingHistory) return;
+      // While the promotion picker is open it owns all input — ignore the board
+      // so a click on a promotion piece isn't intercepted here (which would
+      // clear the pending move and make the choice a no-op).
+      if (viewingHistory || promotion) return;
       const sq = squareFromPoint(e.clientX, e.clientY);
       if (sq === null) return;
 
@@ -117,7 +120,7 @@ export function Board() {
         }
       }
     },
-    [squareFromPoint, selectSquare, pieces, viewingHistory],
+    [squareFromPoint, selectSquare, pieces, viewingHistory, promotion],
   );
 
   // Global move/up listeners while dragging.

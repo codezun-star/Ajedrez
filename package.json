@@ -1,9 +1,9 @@
 {
-  "name": "gambito-chess",
+  "name": "botagedrez",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Gambito — a premium web chess game with a from-scratch engine and AI",
+  "description": "botAgedrez — a premium web chess game with a from-scratch engine and AI",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

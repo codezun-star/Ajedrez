@@ -9,7 +9,7 @@ import { Difficulty } from '@/ai/difficulty';
 import { GameResult } from '@/engine/types';
 import { STARTING_ELO } from './elo';
 
-const STORAGE_PREFIX = 'gambito.v1.';
+const STORAGE_PREFIX = 'botagedrez.v1.';
 const PROFILE_KEY = `${STORAGE_PREFIX}profile`;
 const HISTORY_KEY = `${STORAGE_PREFIX}history`;
 const SETTINGS_KEY = `${STORAGE_PREFIX}settings`;
@@ -55,7 +55,7 @@ const DEFAULT_PROFILE: PlayerProfile = {
 };
 
 const DEFAULT_SETTINGS: AppSettings = {
-  theme: 'dark',
+  theme: 'light',
   muted: false,
   boardOrientationLock: false,
 };
