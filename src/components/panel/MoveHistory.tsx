@@ -63,7 +63,7 @@ export function MoveHistory() {
 
       <div
         ref={scrollRef}
-        className="scroll-slim min-h-[8rem] flex-1 overflow-y-auto rounded-xl bg-black/20 p-1 text-sm"
+        className="scroll-slim min-h-[6rem] max-h-[40vh] flex-1 overflow-y-auto rounded-xl bg-black/20 p-1 text-sm lg:max-h-none"
       >
         {moves.length === 0 ? (
           <p className="px-2 py-3 text-center text-xs text-slate-500">

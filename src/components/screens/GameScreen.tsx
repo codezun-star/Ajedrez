@@ -25,9 +25,9 @@ export function GameScreen() {
   const bottomColor = orientation;
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-3 py-4 sm:px-6">
+    <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-3 py-4 sm:px-6 lg:h-screen lg:min-h-0 lg:overflow-hidden">
       {/* Header */}
-      <header className="mb-4 flex items-center justify-between">
+      <header className="mb-4 flex shrink-0 items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="font-display text-xl font-extrabold">
             bot<span className="text-brand-400">Agedrez</span>
@@ -44,16 +44,16 @@ export function GameScreen() {
       </header>
 
       {/* Main grid */}
-      <div className="grid flex-1 gap-5 lg:grid-cols-[minmax(0,1fr)_22rem]">
+      <div className="grid flex-1 gap-5 lg:min-h-0 lg:grid-rows-1 lg:grid-cols-[minmax(0,1fr)_22rem]">
         {/* Board column */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="flex flex-col gap-2"
+          className="flex min-h-0 flex-col gap-2"
         >
           <PlayerStrip color={topColor} />
-          <div className="mx-auto w-full max-w-[min(78vh,100%)]">
+          <div className="mx-auto w-full max-w-[min(80vh,100%)] lg:max-w-[min(66vh,100%)]">
             <Board />
           </div>
           <PlayerStrip color={bottomColor} />

@@ -24,12 +24,14 @@ export default {
           500: '#f5a623',
           600: '#d98613',
         },
-        // Board palette — walnut & ivory
+        // Board palette — classic black & white (neutral grayscale). Dark
+        // squares stay a charcoal grey rather than pure black so the black
+        // pieces (which carry white outlines) remain perfectly legible.
         board: {
-          light: '#ecdbc0',
-          'light-active': '#f4e9d4',
-          dark: '#a5763f',
-          'dark-active': '#c2955b',
+          light: '#eaeaea',
+          'light-active': '#f6f6f6',
+          dark: '#4d4d4d',
+          'dark-active': '#6a6a6a',
         },
         // Dark surface tones
         surface: {
