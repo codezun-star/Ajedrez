@@ -1,0 +1,21 @@
+Chess piece SVGs — "Cburnett" standard set
+===========================================
+
+These 12 SVG files (wk, wq, wr, wb, wn, wp, bk, bq, br, bb, bn, bp) are the
+standard chess pieces from Wikimedia Commons:
+https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces/Standard
+
+License: Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+https://creativecommons.org/licenses/by-sa/3.0/
+
+Authors:
+  - User:Cburnett   — https://en.wikipedia.org/wiki/User:Cburnett
+  - User:Rfc1394    — https://en.wikipedia.org/wiki/User:Rfc1394
+
+The individual files were extracted from the "standard" sprite bundled with
+cm-chessboard (MIT, © Stefan Haack, https://github.com/shaack/cm-chessboard),
+which itself adapted the Wikimedia Commons originals. No visual changes were
+made beyond splitting the sprite into per-piece files.
+
+As required by CC BY-SA 3.0, this attribution is retained and any modified
+versions of these images are distributed under the same license.

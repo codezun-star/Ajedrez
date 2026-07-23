@@ -26,3 +26,6 @@ dist-ssr
 # Build / test output
 coverage
 .eslintcache
+
+# TypeScript build info
+*.tsbuildinfo

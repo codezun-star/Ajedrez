@@ -94,6 +94,13 @@ son correctos.
 npm run test
 ```
 
+## 🎨 Créditos
+
+Las piezas son el set estándar **"Cburnett"** de Wikimedia Commons, con licencia
+**CC BY-SA 3.0** (autores: User:Cburnett y User:Rfc1394). Ver
+`src/assets/pieces/LICENSE.txt`. Todo lo demás (motor, IA, UI, tablero) es
+original de este proyecto.
+
 ---
 
 Hecho con cariño por el ajedrez. ¡Que disfrutes la partida!
