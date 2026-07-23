@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-surface-950 text-slate-100 font-sans antialiased;
+  margin: 0;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Light theme surface overrides. Tailwind's `dark` class drives component
+   styling; these variables cover the app-shell backgrounds. */
+:root:not(.dark) body {
+  @apply bg-slate-100 text-slate-900;
+  color-scheme: light;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: 'Poppins', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Ambient background: soft radial glows behind the whole app. */
+  .app-aura {
+    background-image:
+      radial-gradient(60rem 60rem at 15% -10%, rgba(67, 97, 255, 0.18), transparent 60%),
+      radial-gradient(50rem 50rem at 110% 10%, rgba(245, 166, 35, 0.12), transparent 55%),
+      radial-gradient(40rem 40rem at 50% 120%, rgba(67, 97, 255, 0.1), transparent 60%);
+  }
+
+  :root:not(.dark) .app-aura {
+    background-image:
+      radial-gradient(60rem 60rem at 15% -10%, rgba(67, 97, 255, 0.12), transparent 60%),
+      radial-gradient(50rem 50rem at 110% 10%, rgba(245, 166, 35, 0.1), transparent 55%);
+  }
+
+  .glass {
+    @apply bg-surface-900/70 backdrop-blur-xl border border-white/5;
+  }
+
+  :root:not(.dark) .glass {
+    @apply bg-white/70 border-slate-900/5;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-semibold
+           transition-all duration-200 select-none disabled:opacity-40 disabled:cursor-not-allowed
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-500 text-white shadow-glow hover:bg-brand-400 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn bg-white/5 text-slate-200 hover:bg-white/10 active:scale-[0.98];
+  }
+
+  :root:not(.dark) .btn-ghost {
+    @apply bg-slate-900/5 text-slate-700 hover:bg-slate-900/10;
+  }
+
+  .card {
+    @apply glass rounded-2xl shadow-xl;
+  }
+}
+
+/* The board must never trigger the browser's own touch scrolling/zooming while
+   dragging pieces. */
+.board-surface {
+  touch-action: none;
+}
+
+/* Thin, unobtrusive scrollbars for the move list. */
+.scroll-slim::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Reduce motion for users who ask for it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Light-theme remapping.
+ *
+ * The whole UI is authored dark-first (foreground text in slate-100…400 on
+ * dark, translucent-white raised surfaces). Rather than sprinkle `dark:`
+ * variants across every component, we remap those specific utilities when the
+ * app is NOT in dark mode. These rules are intentionally *unlayered*, so they
+ * win over Tailwind's layered utilities without needing !important.
+ */
+:root:not(.dark) .text-white {
+  color: #0f172a;
+}
+:root:not(.dark) .text-slate-100 {
+  color: #0f172a;
+}
+:root:not(.dark) .text-slate-200 {
+  color: #1e293b;
+}
+:root:not(.dark) .text-slate-300 {
+  color: #334155;
+}
+:root:not(.dark) .text-slate-400 {
+  color: #475569;
+}
+:root:not(.dark) .text-slate-500 {
+  color: #64748b;
+}
+:root:not(.dark) .text-brand-200,
+:root:not(.dark) .text-brand-300 {
+  color: #2431b4;
+}
+
+/* Raised translucent surfaces → subtle dark tints on light. */
+:root:not(.dark) .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.05);
+}
+:root:not(.dark) .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.08);
+}
+:root:not(.dark) .bg-black\/20 {
+  background-color: rgba(15, 23, 42, 0.05);
+}
+
+/* Hairline borders / rings. */
+:root:not(.dark) .ring-white\/5 {
+  --tw-ring-color: rgba(15, 23, 42, 0.06);
+}
+:root:not(.dark) .ring-white\/10 {
+  --tw-ring-color: rgba(15, 23, 42, 0.12);
+}
+:root:not(.dark) .divide-white\/5 > * + * {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+:root:not(.dark) .border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.08);
+}
