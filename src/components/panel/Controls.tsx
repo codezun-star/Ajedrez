@@ -64,8 +64,8 @@ export function Controls() {
   const copyLabel = copyState === 'ok' ? t('controls.copied') : copyState === 'fail' ? t('controls.error') : t('controls.copyPgn');
 
   return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-4 gap-2">
+    <div className="min-w-0 shrink-0 space-y-2 sm:space-y-3">
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
         <ControlButton label={t('controls.undo')} onClick={undo} disabled={!canUndo} icon={<UndoIcon className="h-5 w-5" />} />
         <ControlButton label={t('controls.flip')} onClick={flipBoard} icon={<FlipIcon className="h-5 w-5" />} />
         <ControlButton
@@ -136,8 +136,11 @@ function ControlButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`flex flex-col items-center gap-1 rounded-xl px-1 py-2.5 text-[0.7rem] font-medium
-                  transition-all duration-200 active:scale-95 disabled:opacity-30 ${
+      aria-label={label}
+      title={label}
+      className={`flex min-w-0 flex-col items-center gap-1 rounded-xl px-0.5 py-2 text-[0.65rem] font-medium
+                  leading-tight transition-all duration-200 active:scale-95 disabled:opacity-30
+                  sm:px-1 sm:py-2.5 sm:text-[0.7rem] ${
                     danger
                       ? 'bg-red-500/20 text-red-300 ring-1 ring-red-400/40'
                       : highlight
@@ -146,7 +149,10 @@ function ControlButton({
                   }`}
     >
       <IconButtonInner>{icon}</IconButtonInner>
-      <span>{label}</span>
+      {/* Translated labels vary a lot in length — keep them inside the cell.
+          On a small phone the icons speak for themselves (the accessible name
+          stays on the button) and the row gives its height back to the panel. */}
+      <span className="w-full truncate text-center cramped:hidden">{label}</span>
     </button>
   );
 }

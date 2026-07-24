@@ -22,7 +22,10 @@ export function SidePanel() {
   const [tab, setTab] = useState<Tab>('moves');
 
   return (
-    <aside className="card flex h-full min-h-0 flex-col gap-3 p-3 sm:p-4">
+    // `overflow-hidden` is a guarantee, not decoration: when the panel is very
+    // short the tab region collapses to zero and its content would otherwise
+    // spill out over the controls below.
+    <aside className="card flex h-full min-h-0 min-w-0 flex-col gap-2 overflow-hidden p-2.5 sm:gap-3 sm:p-4">
       {/* Tabs */}
       <div className="flex shrink-0 gap-1 rounded-xl bg-black/20 p-1">
         <TabButton active={tab === 'moves'} onClick={() => setTab('moves')}>
@@ -34,15 +37,17 @@ export function SidePanel() {
       </div>
 
       {/* Tab content */}
-      <div className="flex min-h-0 flex-1 flex-col">
+      {/* Flex can squeeze this region to zero on a short screen. Without the
+          clip its content would paint straight over the controls below. */}
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
         {tab === 'moves' ? <MoveHistory /> : <PieceGuide />}
       </div>
 
       <Controls />
 
-      <button onClick={goToSetup} className="btn-ghost w-full shrink-0 text-sm">
-        <RefreshIcon className="h-4 w-4" />
-        {t('game.newGame')}
+      <button onClick={goToSetup} className="btn-ghost w-full shrink-0 py-2 text-sm">
+        <RefreshIcon className="h-4 w-4 shrink-0" />
+        <span className="truncate">{t('game.newGame')}</span>
       </button>
     </aside>
   );
@@ -60,7 +65,7 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-semibold transition-colors ${
+      className={`min-w-0 flex-1 truncate rounded-lg px-2 py-1.5 text-sm font-semibold transition-colors sm:px-3 ${
         active ? 'bg-brand-500/30 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'
       }`}
     >

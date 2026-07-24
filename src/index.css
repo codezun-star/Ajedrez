@@ -16,11 +16,25 @@ body,
   height: 100%;
 }
 
+/* Nothing may scroll the page sideways. Root causes are fixed per-component;
+   this is the backstop so a stray wide child can never produce the horizontal
+   drag that plagues mobile. `clip` (not `hidden`) is deliberate: it does not
+   turn these into scroll containers, so the sticky site header keeps working. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   @apply bg-surface-950 text-slate-100 font-sans antialiased;
   margin: 0;
-  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
   -webkit-tap-highlight-color: transparent;
+  /* Long unbroken strings (URLs, SAN chains, compound German words) wrap
+     instead of forcing the layout wider than the screen. */
+  overflow-wrap: break-word;
 }
 
 /* Light theme surface overrides. Tailwind's `dark` class drives component
@@ -80,9 +94,12 @@ body {
     border-color: rgba(15, 23, 42, 0.08);
   }
 
+  /* `max-w-full` + `min-w-0` keep a button inside its column even when a
+     translated label is much longer than the English one. */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-semibold
-           transition-all duration-200 select-none disabled:opacity-40 disabled:cursor-not-allowed
+    @apply inline-flex max-w-full min-w-0 items-center justify-center gap-2 rounded-xl px-4 py-2.5
+           text-center font-semibold transition-all duration-200 select-none
+           disabled:opacity-40 disabled:cursor-not-allowed
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60;
   }
 
@@ -144,6 +161,15 @@ body {
 }
 .article code {
   @apply rounded bg-white/10 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-200;
+  overflow-wrap: break-word;
+}
+/* Wide article content scrolls inside itself rather than widening the page. */
+.article pre,
+.article table {
+  @apply my-4 block max-w-full overflow-x-auto;
+}
+.article img {
+  @apply h-auto max-w-full rounded-xl;
 }
 .article hr {
   @apply my-8 border-white/10;

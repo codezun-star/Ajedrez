@@ -37,14 +37,15 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
   );
 
   return (
-    <div className="mx-auto min-h-screen w-full max-w-5xl px-4 py-8">
-      <div className="mb-6 flex items-center justify-between">
-        <button onClick={onBack} className="btn-ghost text-sm">
-          <ChevronLeft className="h-4 w-4" />
-          {t('stats.back')}
+    <div className="mx-auto min-h-screen w-full max-w-5xl px-4 py-6 sm:py-8">
+      <div className="mb-6 flex items-center justify-between gap-3">
+        <button onClick={onBack} className="btn-ghost shrink-0 text-sm">
+          <ChevronLeft className="h-4 w-4 shrink-0" />
+          <span className="truncate">{t('stats.back')}</span>
         </button>
-        <h1 className="font-display text-2xl font-bold">{t('stats.title')}</h1>
-        <div className="w-20" />
+        <h1 className="min-w-0 truncate font-display text-xl font-bold sm:text-2xl">{t('stats.title')}</h1>
+        {/* Balances the back button so the title stays centred on wide screens. */}
+        <div className="hidden w-20 shrink-0 sm:block" />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -52,12 +53,12 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="card flex flex-col justify-between gap-4 p-5 lg:col-span-1"
+          className="card flex flex-col justify-between gap-4 p-4 sm:p-5 lg:col-span-1"
         >
-          <div>
+          <div className="min-w-0">
             <div className="text-sm text-slate-400">{t('stats.eloNow')}</div>
-            <div className="font-mono text-5xl font-extrabold text-white">{profile.elo}</div>
-            <div className="text-sm text-brand-300">{t(`ranks.${eloRankKey(profile.elo)}`)}</div>
+            <div className="font-mono text-4xl font-extrabold text-white sm:text-5xl">{profile.elo}</div>
+            <div className="truncate text-sm text-brand-300">{t(`ranks.${eloRankKey(profile.elo)}`)}</div>
           </div>
           <div className="grid grid-cols-3 gap-2 text-center">
             <MiniStat label={t('stats.peak')} value={peakElo} />
@@ -79,7 +80,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="card p-5 lg:col-span-2"
+          className="card p-4 sm:p-5 lg:col-span-2"
         >
           <h2 className="mb-3 text-sm font-semibold text-slate-300">{t('stats.progression')}</h2>
           <EloChart data={profile.eloHistory} emptyMessage={t('stats.needGames')} />
@@ -90,7 +91,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="card grid grid-cols-2 gap-4 p-5 sm:grid-cols-4 lg:col-span-3"
+          className="card grid grid-cols-2 gap-4 p-4 sm:grid-cols-4 sm:p-5 lg:col-span-3"
         >
           <BigStat label={t('stats.played')} value={stats.played} />
           <BigStat label={t('stats.wins')} value={stats.wins} accent="text-emerald-300" />
@@ -103,7 +104,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.12 }}
-          className="card p-5 lg:col-span-3"
+          className="card p-4 sm:p-5 lg:col-span-3"
         >
           <h2 className="mb-3 text-sm font-semibold text-slate-300">{t('stats.byDifficulty')}</h2>
           <div className="space-y-3">
@@ -111,11 +112,11 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
               const diff = DIFFICULTIES[id as keyof typeof DIFFICULTIES];
               const rate = bucket.played ? Math.round((bucket.wins / bucket.played) * 100) : 0;
               return (
-                <div key={id} className="flex items-center gap-3">
-                  <span className="w-16 text-sm font-medium" style={{ color: diff.accent }}>
+                <div key={id} className="flex items-center gap-2 sm:gap-3">
+                  <span className="w-14 shrink-0 truncate text-xs font-medium sm:w-16 sm:text-sm" style={{ color: diff.accent }}>
                     {t(`difficulty.${id}`)}
                   </span>
-                  <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-white/5">
+                  <div className="h-2.5 min-w-0 flex-1 overflow-hidden rounded-full bg-white/5">
                     <motion.div
                       className="h-full rounded-full"
                       style={{ backgroundColor: diff.accent }}
@@ -124,7 +125,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
                       transition={{ duration: 0.6, ease: 'easeOut' }}
                     />
                   </div>
-                  <span className="w-24 text-right text-xs text-slate-400">
+                  <span className="w-20 shrink-0 text-right text-[0.7rem] text-slate-400 sm:w-24 sm:text-xs">
                     {bucket.wins}/{bucket.played} · {rate}%
                   </span>
                 </div>
@@ -138,7 +139,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.14 }}
-          className="card p-5 lg:col-span-3"
+          className="card p-4 sm:p-5 lg:col-span-3"
         >
           <h2 className="mb-4 text-sm font-semibold text-slate-300">
             {t('stats.achievements')}{' '}
@@ -154,7 +155,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.16 }}
-          className="card p-5 lg:col-span-3"
+          className="card p-4 sm:p-5 lg:col-span-3"
         >
           <h2 className="mb-3 text-sm font-semibold text-slate-300">{t('stats.recent')}</h2>
           {recent.length === 0 ? (
@@ -164,29 +165,31 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
               {recent.map((g) => {
                 const o = OUTCOME_STYLE[g.outcome];
                 return (
-                  <div key={g.id} className="flex items-center gap-3 py-2.5 text-sm">
-                    <span className={`flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold ${o.className}`}>
+                  <div key={g.id} className="flex items-center gap-2 py-2.5 text-sm sm:gap-3">
+                    <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${o.className}`}>
                       {o.label}
                     </span>
-                    <span className="w-20 text-slate-300">{t(`difficulty.${g.difficulty}`)}</span>
-                    <span className="flex items-center gap-1.5 text-slate-500">
+                    <span className="min-w-0 flex-1 truncate text-slate-300">{t(`difficulty.${g.difficulty}`)}</span>
+                    <span className="flex shrink-0 items-center gap-1.5 text-slate-500">
                       <span className="inline-flex h-4 w-4">
                         <PieceGlyph type="k" color={g.playerColor} className="h-full w-full" />
                       </span>
-                      {g.playerColor === 'w' ? t('stats.whiteShort') : t('stats.blackShort')}
+                      <span className="hidden xs:inline">
+                        {g.playerColor === 'w' ? t('stats.whiteShort') : t('stats.blackShort')}
+                      </span>
                     </span>
-                    <span className="ml-auto text-xs text-slate-500">
+                    <span className="shrink-0 text-xs text-slate-500">
                       {g.moves} {t('stats.movesShort')}
                     </span>
                     <span
-                      className={`w-12 text-right font-mono text-xs ${
+                      className={`w-10 shrink-0 text-right font-mono text-xs sm:w-12 ${
                         g.eloAfter >= g.eloBefore ? 'text-emerald-300' : 'text-red-300'
                       }`}
                     >
                       {g.eloAfter >= g.eloBefore ? '+' : ''}
                       {g.eloAfter - g.eloBefore}
                     </span>
-                    <span className="hidden w-24 text-right text-xs text-slate-500 sm:block">
+                    <span className="hidden w-24 shrink-0 text-right text-xs text-slate-500 sm:block">
                       {formatDate(g.date, locale)}
                     </span>
                   </div>
@@ -202,18 +205,18 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
 
 function MiniStat({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="rounded-lg bg-white/5 py-2">
+    <div className="min-w-0 rounded-lg bg-white/5 px-1 py-2">
       <div className="font-mono text-lg font-bold text-white">{value}</div>
-      <div className="text-[0.65rem] text-slate-400">{label}</div>
+      <div className="truncate text-[0.65rem] text-slate-400">{label}</div>
     </div>
   );
 }
 
 function BigStat({ label, value, accent }: { label: string; value: string | number; accent?: string }) {
   return (
-    <div className="text-center">
-      <div className={`font-mono text-3xl font-extrabold ${accent ?? 'text-white'}`}>{value}</div>
-      <div className="mt-1 text-xs text-slate-400">{label}</div>
+    <div className="min-w-0 text-center">
+      <div className={`font-mono text-2xl font-extrabold sm:text-3xl ${accent ?? 'text-white'}`}>{value}</div>
+      <div className="mt-1 text-[0.7rem] text-slate-400 sm:text-xs">{label}</div>
     </div>
   );
 }

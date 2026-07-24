@@ -64,28 +64,28 @@ export function HomeScreen() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-24">
+      <section className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:py-24">
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/15 px-3 py-1 text-xs font-semibold text-brand-300 ring-1 ring-brand-400/20">
             ♟ botAgedrez
           </span>
-          <h1 className="mt-4 font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight xs:text-4xl sm:text-5xl lg:text-6xl">
             bot<span className="text-brand-400">Agedrez</span>
           </h1>
-          <p className="mt-4 max-w-lg text-lg text-slate-300">{t('home.subtitle')}</p>
+          <p className="mt-4 max-w-lg text-base text-slate-300 sm:text-lg">{t('home.subtitle')}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/jugar" className="btn-primary px-6 py-3 text-base">
-              <PlayIcon className="h-5 w-5" />
-              {t('home.ctaPlay')}
+            <Link to="/jugar" className="btn-primary px-5 py-3 text-base sm:px-6">
+              <PlayIcon className="h-5 w-5 shrink-0" />
+              <span className="truncate">{t('home.ctaPlay')}</span>
             </Link>
-            <Link to="/blog" className="btn-ghost px-6 py-3 text-base">
-              {t('home.ctaBlog')}
-              <ArrowRightIcon className="h-4 w-4" />
+            <Link to="/blog" className="btn-ghost px-5 py-3 text-base sm:px-6">
+              <span className="truncate">{t('home.ctaBlog')}</span>
+              <ArrowRightIcon className="h-4 w-4 shrink-0" />
             </Link>
           </div>
-          <div className="mt-10 flex gap-8">
+          <div className="mt-10 flex flex-wrap gap-6 sm:gap-8">
             {stats.map((s) => (
-              <div key={s.label}>
+              <div key={s.label} className="min-w-0">
                 <div className="font-display text-2xl font-extrabold text-white">{s.value}</div>
                 <div className="text-xs text-slate-400">{s.label}</div>
               </div>
@@ -106,9 +106,9 @@ export function HomeScreen() {
       </section>
 
       {/* Features */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
+      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl font-bold">{t('home.featuresTitle')}</h2>
+          <h2 className="font-display text-2xl font-bold sm:text-3xl">{t('home.featuresTitle')}</h2>
           <p className="mt-3 text-slate-400">{t('home.featuresSubtitle')}</p>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -131,8 +131,8 @@ export function HomeScreen() {
       </section>
 
       {/* How it works */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="text-center font-display text-3xl font-bold">{t('home.howTitle')}</h2>
+      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+        <h2 className="text-center font-display text-2xl font-bold sm:text-3xl">{t('home.howTitle')}</h2>
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
           {steps.map((s, i) => (
             <div key={s.title} className="relative rounded-2xl bg-white/5 p-6 text-center">
@@ -150,15 +150,15 @@ export function HomeScreen() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-        <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-8 text-center shadow-glow sm:p-12">
-          <h2 className="font-display text-3xl font-extrabold text-[#ffffff] sm:text-4xl">
+      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+        <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 text-center shadow-glow sm:p-12">
+          <h2 className="font-display text-2xl font-extrabold text-[#ffffff] xs:text-3xl sm:text-4xl">
             {t('home.ctaTitle')}
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[#fdecec]">{t('home.ctaDesc')}</p>
           <Link
             to="/jugar"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 text-lg font-semibold text-brand-700 shadow-lg transition-transform hover:-translate-y-0.5"
+            className="mt-6 inline-flex max-w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-semibold text-brand-700 shadow-lg transition-transform hover:-translate-y-0.5 sm:px-8 sm:text-lg"
           >
             <PlayIcon className="h-5 w-5" />
             {t('home.ctaButton')}

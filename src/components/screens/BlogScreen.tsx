@@ -38,8 +38,8 @@ export function BlogListScreen() {
   return (
     <div className="app-aura min-h-screen">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6">
-        <h1 className="font-display text-4xl font-extrabold">{t('blog.title')}</h1>
+      <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
+        <h1 className="font-display text-3xl font-extrabold sm:text-4xl">{t('blog.title')}</h1>
         <p className="mt-2 text-slate-400">{t('blog.subtitle')}</p>
 
         <div className="mt-8 grid gap-4">
@@ -54,9 +54,9 @@ export function BlogListScreen() {
               >
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="card block p-5 transition-transform hover:-translate-y-0.5"
+                  className="card block p-4 transition-transform hover:-translate-y-0.5 sm:p-5"
                 >
-                  <div className="flex items-center gap-2 text-xs text-slate-400">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400">
                     <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2 py-0.5">
                       {lm?.flag} {lm?.name}
                     </span>
@@ -69,7 +69,7 @@ export function BlogListScreen() {
                       {post.readingMinutes} {t('blog.minRead')}
                     </span>
                   </div>
-                  <h2 className="mt-2 font-display text-xl font-bold text-white">{post.title}</h2>
+                  <h2 className="mt-2 font-display text-lg font-bold text-white sm:text-xl">{post.title}</h2>
                   <p className="mt-1.5 text-sm text-slate-400">{post.description}</p>
                   <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-300">
                     {t('blog.read')}
@@ -123,13 +123,13 @@ export function BlogPostScreen() {
   return (
     <div className="app-aura min-h-screen">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6">
+      <main className="mx-auto w-full max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <Link to="/blog" className="btn-ghost mb-6 text-sm">
           <ArrowLeftIcon className="h-4 w-4" />
           {t('blog.back')}
         </Link>
 
-        <div className="flex items-center gap-2 text-xs text-slate-400">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400">
           <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2 py-0.5">
             {lm?.flag} {lm?.name}
           </span>
@@ -149,11 +149,11 @@ export function BlogPostScreen() {
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
 
-        <div className="mt-10 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 text-center shadow-glow">
+        <div className="mt-10 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-5 text-center shadow-glow sm:p-6">
           <p className="text-lg font-semibold text-[#ffffff]">{t('home.ctaTitle')}</p>
           <Link
             to="/jugar"
-            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-brand-700 shadow-lg transition-transform hover:-translate-y-0.5"
+            className="mt-4 inline-flex max-w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-brand-700 shadow-lg transition-transform hover:-translate-y-0.5"
           >
             {t('home.ctaPlay')}
           </Link>

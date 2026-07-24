@@ -19,19 +19,19 @@ interface CapturedPiecesProps {
 export function CapturedPieces({ pieces, capturedColor, advantage }: CapturedPiecesProps) {
   const adv = formatAdvantage(advantage);
   return (
-    <div className="flex min-h-[1.25rem] items-center gap-1">
-      <div className="flex items-center">
+    <div className="flex min-h-[1.25rem] min-w-0 items-center gap-1">
+      {/* A full tray is ~16 glyphs; let it clip rather than widen the strip. */}
+      <div className="flex min-w-0 items-center overflow-hidden">
         {pieces.map((type, i) => (
           <span
             key={`${type}-${i}`}
-            className="-ml-1.5 first:ml-0"
-            style={{ width: '1.1rem', height: '1.1rem' }}
+            className="-ml-1.5 h-3.5 w-3.5 shrink-0 first:ml-0 sm:h-[1.1rem] sm:w-[1.1rem]"
           >
             <PieceGlyph type={type} color={capturedColor} className="h-full w-full opacity-90" />
           </span>
         ))}
       </div>
-      {adv && <span className="text-xs font-semibold text-slate-400">{adv}</span>}
+      {adv && <span className="shrink-0 text-[0.7rem] font-semibold text-slate-400 sm:text-xs">{adv}</span>}
     </div>
   );
 }

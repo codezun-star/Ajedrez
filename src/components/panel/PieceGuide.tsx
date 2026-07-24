@@ -26,7 +26,7 @@ export function PieceGuide() {
   ];
 
   return (
-    <div className="scroll-slim h-full min-h-0 overflow-y-auto pr-1">
+    <div className="scroll-slim h-full min-h-0 min-w-0 flex-1 overflow-y-auto pr-1">
       <p className="mb-3 text-xs text-slate-400">{t('guide.intro')}</p>
       <ul className="space-y-2">
         {entries.map((p) => (

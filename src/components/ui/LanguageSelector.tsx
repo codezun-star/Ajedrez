@@ -8,7 +8,18 @@ import { GlobeIcon, CheckIcon } from 'lucide-react';
 import { useI18n } from '@/i18n';
 import { LOCALES } from '@/i18n/locales';
 
-export function LanguageSelector({ compact = false }: { compact?: boolean }) {
+interface LanguageSelectorProps {
+  /** Icon-only trigger (no language name) — for tight toolbars. */
+  compact?: boolean;
+  /**
+   * Which edge the dropdown is anchored to. Default `end` (right) suits a
+   * button sitting at the right of a bar; use `start` when the trigger is on
+   * the left, so the panel opens inward instead of off-screen.
+   */
+  align?: 'start' | 'end';
+}
+
+export function LanguageSelector({ compact = false, align = 'end' }: LanguageSelectorProps) {
   const { locale, setLocale, t } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -33,14 +44,17 @@ export function LanguageSelector({ compact = false }: { compact?: boolean }) {
                    text-slate-300 transition-colors hover:bg-white/10 hover:text-white
                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60"
       >
-        <GlobeIcon className="h-4 w-4" />
+        <GlobeIcon className="h-4 w-4 shrink-0" />
         <span className="text-base leading-none">{current.flag}</span>
-        {!compact && <span className="hidden sm:inline">{current.name}</span>}
+        {!compact && <span className="truncate">{current.name}</span>}
       </button>
 
       {open && (
         <div
-          className="glass absolute right-0 z-50 mt-2 max-h-[70vh] w-48 overflow-y-auto rounded-xl p-1 shadow-xl"
+          className={`glass absolute z-50 mt-2 max-h-[70vh] w-48 max-w-[calc(100vw-2rem)]
+                      overflow-y-auto rounded-xl p-1 shadow-xl ${
+                        align === 'start' ? 'left-0' : 'right-0'
+                      }`}
           role="listbox"
         >
           {LOCALES.map((l) => (

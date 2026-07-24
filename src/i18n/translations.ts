@@ -9,7 +9,7 @@
 import { Locale } from './locales';
 
 const en = {
-  nav: { play: 'Play', blog: 'Blog', home: 'Home' },
+  nav: { play: 'Play', blog: 'Blog', home: 'Home', menu: 'Menu' },
   home: {
     subtitle:
       'Premium web chess with its own engine and AI. Challenge the machine across 4 levels and climb your Elo.',
@@ -87,6 +87,7 @@ const en = {
     tabGuide: 'Piece guide',
     noMoves: 'No moves yet. Make the first one!',
     newGame: 'New game',
+    promote: 'Promote your pawn',
   },
   controls: {
     undo: 'Undo',
@@ -186,7 +187,7 @@ const en = {
 export type Messages = typeof en;
 
 const es: Messages = {
-  nav: { play: 'Jugar', blog: 'Blog', home: 'Inicio' },
+  nav: { play: 'Jugar', blog: 'Blog', home: 'Inicio', menu: 'Menú' },
   home: {
     subtitle:
       'Ajedrez web premium con motor propio e inteligencia artificial. Reta a la máquina en 4 niveles y escala tu ELO.',
@@ -264,6 +265,7 @@ const es: Messages = {
     tabGuide: 'Guía de piezas',
     noMoves: 'Aún no hay movimientos. ¡Haz el primero!',
     newGame: 'Nueva partida',
+    promote: 'Corona tu peón',
   },
   controls: {
     undo: 'Deshacer',
@@ -361,7 +363,7 @@ const es: Messages = {
 };
 
 const pt: Messages = {
-  nav: { play: 'Jogar', blog: 'Blog', home: 'Início' },
+  nav: { play: 'Jogar', blog: 'Blog', home: 'Início', menu: 'Menu' },
   home: {
     subtitle:
       'Xadrez web premium com motor próprio e inteligência artificial. Desafie a máquina em 4 níveis e suba o seu Elo.',
@@ -439,6 +441,7 @@ const pt: Messages = {
     tabGuide: 'Guia de peças',
     noMoves: 'Ainda não há lances. Faça o primeiro!',
     newGame: 'Nova partida',
+    promote: 'Promova seu peão',
   },
   controls: {
     undo: 'Desfazer',
@@ -536,7 +539,7 @@ const pt: Messages = {
 };
 
 const fr: Messages = {
-  nav: { play: 'Jouer', blog: 'Blog', home: 'Accueil' },
+  nav: { play: 'Jouer', blog: 'Blog', home: 'Accueil', menu: 'Menu' },
   home: {
     subtitle:
       "Échecs web premium avec moteur maison et intelligence artificielle. Défiez la machine sur 4 niveaux et faites grimper votre Elo.",
@@ -614,6 +617,7 @@ const fr: Messages = {
     tabGuide: 'Guide des pièces',
     noMoves: 'Aucun coup pour l’instant. Jouez le premier !',
     newGame: 'Nouvelle partie',
+    promote: 'Promouvez votre pion',
   },
   controls: {
     undo: 'Annuler',
@@ -711,7 +715,7 @@ const fr: Messages = {
 };
 
 const de: Messages = {
-  nav: { play: 'Spielen', blog: 'Blog', home: 'Start' },
+  nav: { play: 'Spielen', blog: 'Blog', home: 'Start', menu: 'Menü' },
   home: {
     subtitle:
       'Premium-Web-Schach mit eigener Engine und KI. Fordere die Maschine in 4 Stufen heraus und steigere deine Elo.',
@@ -789,6 +793,7 @@ const de: Messages = {
     tabGuide: 'Figuren-Guide',
     noMoves: 'Noch keine Züge. Mach den ersten!',
     newGame: 'Neue Partie',
+    promote: 'Bauer umwandeln',
   },
   controls: {
     undo: 'Zurück',
@@ -886,7 +891,7 @@ const de: Messages = {
 };
 
 const ru: Messages = {
-  nav: { play: 'Играть', blog: 'Блог', home: 'Главная' },
+  nav: { play: 'Играть', blog: 'Блог', home: 'Главная', menu: 'Меню' },
   home: {
     subtitle:
       'Премиум веб-шахматы с собственным движком и ИИ. Бросьте вызов машине на 4 уровнях и повышайте рейтинг Эло.',
@@ -964,6 +969,7 @@ const ru: Messages = {
     tabGuide: 'Гид по фигурам',
     noMoves: 'Ходов пока нет. Сделайте первый!',
     newGame: 'Новая партия',
+    promote: 'Превратите пешку',
   },
   controls: {
     undo: 'Отменить',
@@ -1061,7 +1067,7 @@ const ru: Messages = {
 };
 
 const hi: Messages = {
-  nav: { play: 'खेलें', blog: 'ब्लॉग', home: 'होम' },
+  nav: { play: 'खेलें', blog: 'ब्लॉग', home: 'होम', menu: 'मेन्यू' },
   home: {
     subtitle:
       'अपने इंजन और एआई वाला प्रीमियम वेब शतरंज। 4 स्तरों पर मशीन को चुनौती दें और अपनी एलो बढ़ाएँ।',
@@ -1139,6 +1145,7 @@ const hi: Messages = {
     tabGuide: 'मोहरा गाइड',
     noMoves: 'अभी कोई चाल नहीं। पहली चाल चलें!',
     newGame: 'नई बाज़ी',
+    promote: 'अपने प्यादे को बढ़ाएँ',
   },
   controls: {
     undo: 'पूर्ववत',
@@ -1236,7 +1243,7 @@ const hi: Messages = {
 };
 
 const zh: Messages = {
-  nav: { play: '开始', blog: '博客', home: '首页' },
+  nav: { play: '开始', blog: '博客', home: '首页', menu: '菜单' },
   home: {
     subtitle: '拥有自研引擎和 AI 的高级网页国际象棋。在 4 个难度挑战机器，提升你的 Elo。',
     ctaPlay: '立即开始',
@@ -1313,6 +1320,7 @@ const zh: Messages = {
     tabGuide: '棋子指南',
     noMoves: '还没有着法。走第一步吧！',
     newGame: '新对局',
+    promote: '升变你的兵',
   },
   controls: {
     undo: '悔棋',
@@ -1410,7 +1418,7 @@ const zh: Messages = {
 };
 
 const ja: Messages = {
-  nav: { play: 'プレイ', blog: 'ブログ', home: 'ホーム' },
+  nav: { play: 'プレイ', blog: 'ブログ', home: 'ホーム', menu: 'メニュー' },
   home: {
     subtitle: '独自エンジンとAIを備えたプレミアムなWebチェスClient。4段階でマシンに挑み、Eloを上げよう。',
     ctaPlay: '今すぐプレイ',
@@ -1487,6 +1495,7 @@ const ja: Messages = {
     tabGuide: '駒ガイド',
     noMoves: 'まだ手がありません。最初の一手を！',
     newGame: '新しい対局',
+    promote: 'ポーンを昇格',
   },
   controls: {
     undo: '待った',
@@ -1584,7 +1593,7 @@ const ja: Messages = {
 };
 
 const ar: Messages = {
-  nav: { play: 'العب', blog: 'المدونة', home: 'الرئيسية' },
+  nav: { play: 'العب', blog: 'المدونة', home: 'الرئيسية', menu: 'القائمة' },
   home: {
     subtitle: 'شطرنج ويب مميّز بمحرّك خاص وذكاء اصطناعي. تحدَّ الآلة عبر 4 مستويات وارفع تصنيف الإيلو.',
     ctaPlay: 'العب الآن',
@@ -1661,6 +1670,7 @@ const ar: Messages = {
     tabGuide: 'دليل القطع',
     noMoves: 'لا نقلات بعد. قم بالأولى!',
     newGame: 'مباراة جديدة',
+    promote: 'رقِّ بيدقك',
   },
   controls: {
     undo: 'تراجع',

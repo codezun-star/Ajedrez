@@ -3,6 +3,24 @@ export default {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    // Declared in full (rather than via `extend`) so `xs` is emitted before the
+    // other breakpoints — extended screens are appended last, which would let
+    // `xs:` utilities win over `sm:` on large viewports.
+    screens: {
+      xs: '400px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+      // Height-based, for a phone held in landscape. Keep in sync with
+      // SHORT_VIEWPORT in `hooks/useIsWide.ts`.
+      short: { raw: '(max-height: 560px)' },
+      // Small phone (either orientation) where the side panel cannot fit its
+      // own chrome at full size. Width-bounded so a short desktop window — which
+      // has plenty of panel height — never gets the compacted treatment.
+      cramped: { raw: '(max-height: 720px) and (max-width: 1023px)' },
+    },
     extend: {
       colors: {
         // Brand identity — "botAgedrez": monochromatic red palette.

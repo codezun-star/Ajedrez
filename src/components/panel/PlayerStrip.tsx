@@ -48,13 +48,14 @@ export function PlayerStrip({ color }: PlayerStripProps) {
 
   return (
     <div
-      className={`flex shrink-0 items-center justify-between gap-3 rounded-xl px-2.5 py-1.5 transition-colors sm:px-3 sm:py-2 ${
+      className={`flex min-w-0 shrink-0 items-center gap-2 rounded-xl px-2 py-1.5 transition-colors sm:gap-3 sm:px-3 sm:py-2 ${
         isActive ? 'bg-white/5 ring-1 ring-brand-400/30' : 'bg-transparent'
       }`}
     >
-      <div className="flex items-center gap-3">
+      {/* Identity — shrinks and truncates before anything can overflow. */}
+      <div className="flex min-w-0 items-center gap-2 sm:gap-3">
         <div
-          className={`flex h-8 w-8 items-center justify-center rounded-xl shadow-inner sm:h-10 sm:w-10 ${
+          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl shadow-inner sm:h-10 sm:w-10 ${
             color === 'w'
               ? 'bg-gradient-to-br from-amber-400 to-amber-600 text-surface-950'
               : 'bg-gradient-to-br from-surface-700 to-surface-900 text-white ring-1 ring-white/10'
@@ -66,40 +67,43 @@ export function PlayerStrip({ color }: PlayerStripProps) {
             <BotIcon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.2} />
           )}
         </div>
-        <div className="leading-tight">
-          <div className="flex items-center gap-2 font-semibold">
-            {name}
+        <div className="min-w-0 leading-tight">
+          <div className="flex min-w-0 items-center gap-1.5 text-sm font-semibold sm:gap-2 sm:text-base">
+            <span className="truncate">{name}</span>
             {!isPlayer && aiThinking && isActive && (
-              <span className="flex items-center gap-1 text-xs font-normal text-brand-300">
+              <span className="flex shrink-0 items-center gap-1 text-[0.7rem] font-normal text-brand-300 sm:text-xs">
                 <motion.span
                   className="inline-block h-1.5 w-1.5 rounded-full bg-brand-400"
                   animate={{ opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 />
-                {t('game.thinking')}
+                <span className="hidden xs:inline">{t('game.thinking')}</span>
               </span>
             )}
           </div>
-          <div className="text-xs text-slate-400">{subtitle}</div>
+          {/* Dropped on a landscape phone — those pixels belong to the board. */}
+          <div className="truncate text-[0.7rem] text-slate-400 short:hidden sm:text-xs">{subtitle}</div>
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      {/* Captured tray takes whatever room is left and clips instead of pushing. */}
+      <div className="flex min-w-0 flex-1 justify-end overflow-hidden">
         <CapturedPieces pieces={myCaptures} capturedColor={color === 'w' ? 'b' : 'w'} advantage={advantage} />
-        {timed && (
-          <div
-            className={`min-w-[4.5rem] rounded-lg px-3 py-1.5 text-right font-mono text-lg font-bold tabular-nums transition-colors ${
-              isActive
-                ? lowTime
-                  ? 'bg-red-500/20 text-red-300'
-                  : 'bg-brand-500/20 text-brand-200'
-                : 'bg-white/5 text-slate-400'
-            }`}
-          >
-            {formatClock(clockMs)}
-          </div>
-        )}
       </div>
+
+      {timed && (
+        <div
+          className={`shrink-0 rounded-lg px-2 py-1 text-right font-mono text-base font-bold tabular-nums transition-colors sm:px-3 sm:py-1.5 sm:text-lg ${
+            isActive
+              ? lowTime
+                ? 'bg-red-500/20 text-red-300'
+                : 'bg-brand-500/20 text-brand-200'
+              : 'bg-white/5 text-slate-400'
+          }`}
+        >
+          {formatClock(clockMs)}
+        </div>
+      )}
     </div>
   );
 }

@@ -44,7 +44,7 @@ export function GameOverModal() {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-surface-950/80 p-4 backdrop-blur-md"
+        className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-surface-950/80 p-4 backdrop-blur-md"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -61,7 +61,7 @@ export function GameOverModal() {
         >
           {/* Banner */}
           <div
-            className={`relative flex flex-col items-center gap-1 px-6 py-8 ${
+            className={`relative flex flex-col items-center gap-1 px-4 py-6 text-center sm:px-6 sm:py-8 ${
               outcome === 'win'
                 ? 'bg-gradient-to-b from-emerald-500/20 to-transparent'
                 : outcome === 'loss'
@@ -83,7 +83,7 @@ export function GameOverModal() {
                 <HeartCrackIcon className="h-12 w-12" strokeWidth={1.8} />
               )}
             </motion.div>
-            <h2 className={`font-display text-3xl font-extrabold ${accent}`}>{outcomeTitle}</h2>
+            <h2 className={`font-display text-2xl font-extrabold sm:text-3xl ${accent}`}>{outcomeTitle}</h2>
             <p className="text-sm text-slate-400">
               {status.winner
                 ? status.winner === 'w'
@@ -95,7 +95,7 @@ export function GameOverModal() {
           </div>
 
           {/* Elo change */}
-          <div className="px-6 pb-2">
+          <div className="px-4 pb-2 sm:px-6">
             <EloDelta before={elo.before} after={elo.after} delta={elo.delta} />
             <p className="mt-1 flex items-center justify-center gap-1 text-center text-xs text-slate-500">
               {t(`ranks.${eloRankKey(profile.elo)}`)} · {t('result.streakNow')} {profile.currentStreak}
@@ -131,13 +131,13 @@ export function GameOverModal() {
           )}
 
           {/* Actions */}
-          <div className="flex gap-3 p-6 pt-4">
+          <div className="flex gap-2 p-4 pt-4 sm:gap-3 sm:p-6">
             <button onClick={goToSetup} className="btn-ghost flex-1">
-              {t('result.menu')}
+              <span className="truncate">{t('result.menu')}</span>
             </button>
             <button onClick={rematch} className="btn-primary flex-1">
-              <RefreshIcon className="h-4 w-4" />
-              {t('result.rematch')}
+              <RefreshIcon className="h-4 w-4 shrink-0" />
+              <span className="truncate">{t('result.rematch')}</span>
             </button>
           </div>
         </motion.div>

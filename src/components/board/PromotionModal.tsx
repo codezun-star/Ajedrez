@@ -7,11 +7,13 @@
 import { motion } from 'framer-motion';
 import { PieceType } from '@/engine/types';
 import { useGameStore } from '@/store/gameStore';
+import { useI18n } from '@/i18n';
 import { PieceGlyph } from './PieceGlyph';
 
 const CHOICES: PieceType[] = ['q', 'r', 'b', 'n'];
 
 export function PromotionModal() {
+  const { t } = useI18n();
   const promotion = useGameStore((s) => s.promotion);
   const choosePromotion = useGameStore((s) => s.choosePromotion);
   const cancelPromotion = useGameStore((s) => s.cancelPromotion);
@@ -31,23 +33,28 @@ export function PromotionModal() {
         if (e.target === e.currentTarget) cancelPromotion();
       }}
     >
+      {/* The picker lives inside the board's `overflow-hidden` box, so it has to
+          fit the board itself — four 64px tiles are wider than a phone board. */}
       <motion.div
-        className="card flex flex-col items-center gap-3 p-5"
+        className="card mx-2 flex max-w-full flex-col items-center gap-2 p-3 sm:gap-3 sm:p-5"
         initial={{ scale: 0.9, y: 10 }}
         animate={{ scale: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 300, damping: 22 }}
       >
-        <p className="text-sm font-semibold text-slate-300">Corona tu peón</p>
-        <div className="flex gap-2">
+        <p className="text-center text-xs font-semibold text-slate-300 sm:text-sm">
+          {t('game.promote')}
+        </p>
+        <div className="flex gap-1.5 sm:gap-2">
           {CHOICES.map((type) => (
             <motion.button
               key={type}
               whileHover={{ scale: 1.1, y: -4 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => choosePromotion(type)}
-              className="flex h-16 w-16 items-center justify-center rounded-xl bg-white/5 p-1.5
-                         ring-1 ring-white/10 hover:bg-brand-500/20 hover:ring-brand-400/50"
-              aria-label={`Coronar a ${type}`}
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/5 p-1
+                         ring-1 ring-white/10 hover:bg-brand-500/20 hover:ring-brand-400/50
+                         sm:h-16 sm:w-16 sm:p-1.5"
+              aria-label={t('game.promote')}
             >
               <PieceGlyph type={type} color={promotion.color} className="h-full w-full" />
             </motion.button>

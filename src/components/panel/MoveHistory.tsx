@@ -44,8 +44,11 @@ export function MoveHistory() {
   });
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
-      <div className="mb-2 flex items-center justify-end">
+    <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+      {/* Fixed-height row: only the move list below may absorb a squeeze. On a
+          small phone there is no room for it, so it steps aside entirely and
+          the list keeps those pixels (moves stay clickable in the list). */}
+      <div className="mb-2 flex shrink-0 items-center justify-end cramped:hidden">
         <div className="flex gap-1">
           <IconButton label="Primero" onClick={navFirst} disabled={moves.length === 0} className="h-8 w-8">
             <ChevronsLeft className="h-4 w-4" />
