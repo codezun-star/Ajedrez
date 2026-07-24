@@ -43,8 +43,7 @@ export function MoveHistory() {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <div className="mb-2 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-300">Movimientos</h3>
+      <div className="mb-2 flex items-center justify-end">
         <div className="flex gap-1">
           <IconButton label="Primero" onClick={navFirst} disabled={moves.length === 0} className="h-8 w-8">
             <ChevronsLeft className="h-4 w-4" />
@@ -63,7 +62,7 @@ export function MoveHistory() {
 
       <div
         ref={scrollRef}
-        className="scroll-slim min-h-[6rem] max-h-[40vh] flex-1 overflow-y-auto rounded-xl bg-black/20 p-1 text-sm lg:max-h-none"
+        className="scroll-slim min-h-0 flex-1 overflow-y-auto rounded-xl bg-black/20 p-1 text-sm"
       >
         {moves.length === 0 ? (
           <p className="px-2 py-3 text-center text-xs text-slate-500">

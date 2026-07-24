@@ -43,13 +43,13 @@ export function PlayerStrip({ color }: PlayerStripProps) {
 
   return (
     <div
-      className={`flex items-center justify-between gap-3 rounded-xl px-3 py-2 transition-colors ${
+      className={`flex shrink-0 items-center justify-between gap-3 rounded-xl px-2.5 py-1.5 transition-colors sm:px-3 sm:py-2 ${
         isActive ? 'bg-white/5 ring-1 ring-brand-400/30' : 'bg-transparent'
       }`}
     >
       <div className="flex items-center gap-3">
         <div
-          className={`flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold shadow-inner ${
+          className={`flex h-8 w-8 items-center justify-center rounded-xl text-base font-bold shadow-inner sm:h-10 sm:w-10 sm:text-lg ${
             color === 'w'
               ? 'bg-gradient-to-br from-amber-400 to-amber-600 text-surface-950'
               : 'bg-gradient-to-br from-surface-700 to-surface-900 text-white ring-1 ring-white/10'
