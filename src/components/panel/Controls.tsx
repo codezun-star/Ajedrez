@@ -4,10 +4,37 @@
  */
 
 import { useState } from 'react';
+import { CheckIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { exportPgn } from '@/engine/pgn';
 import { UndoIcon, FlipIcon, FlagIcon, CopyIcon } from '@/components/ui/Icons';
 import { formatAdvantage } from '@/utils/format';
+
+/** Copy text to the clipboard, with a legacy fallback for blocked contexts. */
+async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {
+    /* fall through to the legacy method */
+  }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch {
+    return false;
+  }
+}
 
 export function Controls() {
   const undo = useGameStore((s) => s.undo);
@@ -20,27 +47,33 @@ export function Controls() {
   const status = useGameStore((s) => s.status);
 
   const [confirmResign, setConfirmResign] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<'idle' | 'ok' | 'fail'>('idle');
 
   const canUndo = moves.length > 0 && !aiThinking && !isOver;
 
   const handleCopyPgn = async () => {
+    if (moves.length === 0) return;
     const pgn = exportPgn(moves, status.result);
-    try {
-      await navigator.clipboard.writeText(pgn);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* clipboard blocked — ignore */
-    }
+    const ok = await copyToClipboard(pgn);
+    setCopyState(ok ? 'ok' : 'fail');
+    setTimeout(() => setCopyState('idle'), 1800);
   };
+
+  const copyLabel = copyState === 'ok' ? '¡Copiado!' : copyState === 'fail' ? 'Error' : 'Copiar PGN';
 
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-4 gap-2">
         <ControlButton label="Deshacer" onClick={undo} disabled={!canUndo} icon={<UndoIcon className="h-5 w-5" />} />
         <ControlButton label="Voltear" onClick={flipBoard} icon={<FlipIcon className="h-5 w-5" />} />
-        <ControlButton label="Copiar PGN" onClick={handleCopyPgn} disabled={moves.length === 0} icon={<CopyIcon className="h-5 w-5" />} highlight={copied} />
+        <ControlButton
+          label={copyLabel}
+          onClick={handleCopyPgn}
+          disabled={moves.length === 0}
+          icon={copyState === 'ok' ? <CheckIcon className="h-5 w-5" /> : <CopyIcon className="h-5 w-5" />}
+          highlight={copyState === 'ok'}
+          danger={copyState === 'fail'}
+        />
         <ControlButton
           label={confirmResign ? '¿Seguro?' : 'Rendirse'}
           onClick={() => {
@@ -50,7 +83,7 @@ export function Controls() {
               setConfirmResign(false);
             } else {
               setConfirmResign(true);
-              setTimeout(() => setConfirmResign(false), 2500);
+              setTimeout(() => setConfirmResign(false), 3000);
             }
           }}
           disabled={isOver}
@@ -58,6 +91,11 @@ export function Controls() {
           danger={confirmResign}
         />
       </div>
+      {confirmResign && (
+        <p className="-mt-1 text-center text-[0.7rem] text-red-300">
+          Pulsa otra vez para confirmar la rendición
+        </p>
+      )}
 
       {aiInfo && (
         <div className="hidden items-center justify-between rounded-lg bg-black/20 px-3 py-2 text-xs text-slate-400 sm:flex">
