@@ -49,14 +49,14 @@ export function EloChart({ data, emptyMessage }: EloChartProps) {
     <svg viewBox={`0 0 ${width} ${height}`} className="h-auto w-full" preserveAspectRatio="none">
       <defs>
         <linearGradient id="eloArea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4361ff" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#4361ff" stopOpacity="0" />
+          <stop offset="0%" stopColor="#e74445" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="#e74445" stopOpacity="0" />
         </linearGradient>
       </defs>
       <path d={area} fill="url(#eloArea)" />
-      <path d={path} fill="none" stroke="#6a8dff" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+      <path d={path} fill="none" stroke="#e74445" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
       {points.map((p, i) => (
-        <circle key={i} cx={p.x} cy={p.y} r={i === points.length - 1 ? 3.5 : 2} fill={i === points.length - 1 ? '#ffc857' : '#9db9ff'} />
+        <circle key={i} cx={p.x} cy={p.y} r={i === points.length - 1 ? 3.5 : 2} fill={i === points.length - 1 ? '#c5191a' : '#f08888'} />
       ))}
     </svg>
   );

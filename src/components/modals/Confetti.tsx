@@ -7,7 +7,7 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
-const COLORS = ['#f5a623', '#4361ff', '#34d399', '#f87171', '#ffc857', '#a78bfa'];
+const COLORS = ['#e74445', '#f08888', '#f8cccc', '#c5191a', '#ffc857', '#f5a623'];
 
 interface Shard {
   id: number;

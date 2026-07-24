@@ -11,6 +11,7 @@ import { useGameStore } from '@/store/gameStore';
 import { getAchievement } from '@/utils/achievements';
 import { eloRankKey } from '@/utils/elo';
 import { useI18n } from '@/i18n';
+import { achievementText } from '@/i18n/achievementsI18n';
 import { Confetti } from './Confetti';
 import { CrownIcon, RefreshIcon } from '@/components/ui/Icons';
 
@@ -25,7 +26,7 @@ const REASON_KEY: Record<string, string> = {
 };
 
 export function GameOverModal() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const showGameOver = useGameStore((s) => s.showGameOver);
   const gameOver = useGameStore((s) => s.gameOver);
   const rematch = useGameStore((s) => s.rematch);
@@ -121,7 +122,7 @@ export function GameOverModal() {
                       className="flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1.5 text-sm ring-1 ring-amber-400/30"
                     >
                       <a.icon className="h-4 w-4 text-amber-300" strokeWidth={2.2} />
-                      <span className="font-medium text-amber-100">{a.name}</span>
+                      <span className="font-medium text-amber-100">{achievementText(locale, a.id).name}</span>
                     </motion.div>
                   );
                 })}

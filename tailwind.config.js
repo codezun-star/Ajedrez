@@ -5,19 +5,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand identity — "botAgedrez": deep royal + warm amber
+        // Brand identity — "botAgedrez": monochromatic red palette.
         brand: {
-          50: '#f2f6ff',
-          100: '#e3ecff',
-          200: '#c6d8ff',
-          300: '#9db9ff',
-          400: '#6a8dff',
-          500: '#4361ff',
-          600: '#2c3fe6',
-          700: '#2431b4',
-          800: '#232d8f',
-          900: '#212a72',
-          950: '#151843',
+          50: '#fceded',
+          100: '#fadada',
+          200: '#f8cccc',
+          300: '#f08888',
+          400: '#ec6465',
+          500: '#e74445',
+          600: '#d62f30',
+          700: '#c5191a',
+          800: '#a11515',
+          900: '#811111',
+          950: '#4c0a0a',
         },
         amber: {
           400: '#ffc857',
@@ -51,7 +51,7 @@ export default {
       boxShadow: {
         board: '0 30px 60px -15px rgba(0, 0, 0, 0.55)',
         piece: '0 6px 10px rgba(0, 0, 0, 0.35)',
-        glow: '0 0 40px -5px rgba(67, 97, 255, 0.55)',
+        glow: '0 0 40px -5px rgba(231, 68, 69, 0.55)',
         'glow-amber': '0 0 40px -5px rgba(245, 166, 35, 0.55)',
       },
       keyframes: {

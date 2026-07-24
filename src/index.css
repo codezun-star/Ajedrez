@@ -44,15 +44,15 @@ body {
   /* Ambient background: soft radial glows behind the whole app. */
   .app-aura {
     background-image:
-      radial-gradient(60rem 60rem at 15% -10%, rgba(67, 97, 255, 0.18), transparent 60%),
-      radial-gradient(50rem 50rem at 110% 10%, rgba(245, 166, 35, 0.12), transparent 55%),
-      radial-gradient(40rem 40rem at 50% 120%, rgba(67, 97, 255, 0.1), transparent 60%);
+      radial-gradient(60rem 60rem at 15% -10%, rgba(231, 68, 69, 0.18), transparent 60%),
+      radial-gradient(50rem 50rem at 110% 10%, rgba(240, 136, 136, 0.14), transparent 55%),
+      radial-gradient(40rem 40rem at 50% 120%, rgba(197, 25, 26, 0.1), transparent 60%);
   }
 
   :root:not(.dark) .app-aura {
     background-image:
-      radial-gradient(60rem 60rem at 15% -10%, rgba(67, 97, 255, 0.12), transparent 60%),
-      radial-gradient(50rem 50rem at 110% 10%, rgba(245, 166, 35, 0.1), transparent 55%);
+      radial-gradient(60rem 60rem at 15% -10%, rgba(231, 68, 69, 0.12), transparent 60%),
+      radial-gradient(50rem 50rem at 110% 10%, rgba(240, 136, 136, 0.12), transparent 55%);
   }
 
   .glass {
@@ -203,7 +203,7 @@ body {
 }
 :root:not(.dark) [class~='text-brand-200'],
 :root:not(.dark) [class~='text-brand-300'] {
-  color: #2431b4;
+  color: #c5191a;
 }
 
 /* Raised translucent surfaces → subtle dark tints on light. */
