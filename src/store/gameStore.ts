@@ -27,6 +27,7 @@ import { evaluateAchievements } from '@/utils/achievements';
 import {
   AppSettings,
   GameRecord,
+  PieceStyle,
   PlayerProfile,
   appendGame,
   loadHistory,
@@ -128,6 +129,7 @@ interface StoreState {
   dismissGameOver: () => void;
   toggleTheme: () => void;
   toggleMute: () => void;
+  setPieceStyle: (style: PieceStyle) => void;
 }
 
 /** Build the reactive snapshot fields from a game controller. */
@@ -455,6 +457,12 @@ export const useGameStore = create<StoreState>((set, get) => {
 
     toggleMute: () => {
       const settings = { ...get().settings, muted: !get().settings.muted };
+      saveSettings(settings);
+      set({ settings });
+    },
+
+    setPieceStyle: (style) => {
+      const settings = { ...get().settings, pieceStyle: style };
       saveSettings(settings);
       set({ settings });
     },

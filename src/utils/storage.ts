@@ -39,11 +39,15 @@ export interface PlayerProfile {
   unlockedAchievements: string[];
 }
 
+/** Available visual styles for the pieces. */
+export type PieceStyle = 'classic' | 'modern';
+
 /** User settings persisted across sessions. */
 export interface AppSettings {
   theme: 'dark' | 'light';
   muted: boolean;
   boardOrientationLock: boolean;
+  pieceStyle: PieceStyle;
 }
 
 const DEFAULT_PROFILE: PlayerProfile = {
@@ -58,6 +62,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   theme: 'light',
   muted: false,
   boardOrientationLock: false,
+  pieceStyle: 'classic',
 };
 
 function safeParse<T>(raw: string | null, fallback: T): T {

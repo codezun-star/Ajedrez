@@ -96,10 +96,16 @@ npm run test
 
 ## 🎨 Créditos
 
-Las piezas son el set estándar **"Cburnett"** de Wikimedia Commons, con licencia
-**CC BY-SA 3.0** (autores: User:Cburnett y User:Rfc1394). Ver
-`src/assets/pieces/LICENSE.txt`. Todo lo demás (motor, IA, UI, tablero) es
-original de este proyecto.
+Hay dos estilos de piezas seleccionables:
+
+- **Clásico** — set **"Cburnett"** de Wikimedia Commons, **CC BY-SA 3.0**
+  (User:Cburnett, User:Rfc1394). Es el estilo por defecto. Ver
+  `src/assets/pieces/LICENSE.txt`.
+- **Moderno** — set **"Staunty"** de Lichess (sadsnake1), **CC BY-NC-SA 4.0**
+  (uso **no comercial**). Opcional. Ver `src/assets/pieces-staunty/LICENSE.txt`.
+
+Los iconos de interfaz son de **lucide** (MIT). Todo lo demás (motor, IA, UI,
+tablero) es original de este proyecto.
 
 ---
 

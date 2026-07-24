@@ -1,33 +1,46 @@
 /**
  * PieceGlyph — the visual representation of a chess piece.
  *
- * Renders the classic "Cburnett" chess pieces (the Wikipedia / Lichess standard
- * set), bundled locally as individual SVGs under `src/assets/pieces`. They are
- * loaded as fingerprinted URLs at build time via `import.meta.glob`, so there
- * are no runtime network requests and caching is optimal.
+ * Two piece sets are bundled and selectable via the "piece style" setting:
+ *   - classic → "Cburnett" (Wikipedia/Lichess standard, CC BY-SA 3.0)
+ *   - modern  → "Staunty" (Lichess, CC BY-NC-SA 4.0 — non-commercial)
  *
- * Pieces are licensed CC BY-SA 3.0 (Cburnett / Rfc1394) — see
- * `src/assets/pieces/LICENSE.txt`. The white pieces are white with a black
- * outline and the black pieces black with a white outline, so both read
- * clearly on either board color and in light or dark UI.
+ * Both are loaded as fingerprinted URLs at build time via `import.meta.glob`
+ * (small SVGs get inlined as data URIs, so there are no runtime requests).
+ * See the LICENSE.txt in each set's asset folder for attribution. Because this
+ * component subscribes to the store, switching the style updates every piece
+ * instantly, even inside memoized parents.
  */
 
 import { memo } from 'react';
 import { Color, PieceType } from '@/engine/types';
+import { useGameStore } from '@/store/gameStore';
+import type { PieceStyle } from '@/utils/storage';
 
-// Eagerly resolve every piece SVG to its final URL. Keys look like
-// "../../assets/pieces/wn.svg"; we index them by the "wn" id.
-const modules = import.meta.glob('../../assets/pieces/*.svg', {
+const classicModules = import.meta.glob('../../assets/pieces/*.svg', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+const modernModules = import.meta.glob('../../assets/pieces-staunty/*.svg', {
   eager: true,
   query: '?url',
   import: 'default',
 });
 
-const PIECE_URL: Record<string, string> = {};
-for (const path in modules) {
-  const id = path.slice(path.lastIndexOf('/') + 1).replace('.svg', '');
-  PIECE_URL[id] = modules[path] as string;
+function indexById(modules: Record<string, unknown>): Record<string, string> {
+  const map: Record<string, string> = {};
+  for (const path in modules) {
+    const id = path.slice(path.lastIndexOf('/') + 1).replace('.svg', '');
+    map[id] = modules[path] as string;
+  }
+  return map;
 }
+
+const SETS: Record<PieceStyle, Record<string, string>> = {
+  classic: indexById(classicModules),
+  modern: indexById(modernModules),
+};
 
 const NAMES: Record<PieceType, string> = {
   p: 'peón',
@@ -42,10 +55,20 @@ interface PieceGlyphProps {
   type: PieceType;
   color: Color;
   className?: string;
+  /** Force a specific style (e.g. in the style-picker previews). */
+  styleOverride?: PieceStyle;
 }
 
-export const PieceGlyph = memo(function PieceGlyph({ type, color, className }: PieceGlyphProps) {
-  const src = PIECE_URL[`${color}${type}`];
+export const PieceGlyph = memo(function PieceGlyph({
+  type,
+  color,
+  className,
+  styleOverride,
+}: PieceGlyphProps) {
+  const settingStyle = useGameStore((s) => s.settings.pieceStyle);
+  const style = styleOverride ?? settingStyle;
+  const src = SETS[style][`${color}${type}`];
+
   return (
     <img
       src={src}
@@ -55,7 +78,6 @@ export const PieceGlyph = memo(function PieceGlyph({ type, color, className }: P
       style={{
         display: 'block',
         objectFit: 'contain',
-        // A soft grounded shadow so pieces sit on the board.
         filter: 'drop-shadow(0 3px 2px rgba(0, 0, 0, 0.32))',
         WebkitUserSelect: 'none',
         userSelect: 'none',

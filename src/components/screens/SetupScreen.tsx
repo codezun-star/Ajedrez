@@ -25,6 +25,9 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
   const profile = useGameStore((s) => s.profile);
   const savedConfig = useGameStore((s) => s.config);
 
+  const pieceStyle = useGameStore((s) => s.settings.pieceStyle);
+  const setPieceStyle = useGameStore((s) => s.setPieceStyle);
+
   const [color, setColor] = useState<Color | 'random'>(savedConfig.playerColor);
   const [difficulty, setDifficulty] = useState<Difficulty>(savedConfig.difficulty);
   const [timeControl, setTimeControl] = useState<TimeControlId>(savedConfig.timeControl);
@@ -126,6 +129,40 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
                 </button>
               );
             })}
+          </div>
+        </Section>
+
+        {/* Piece style */}
+        <Section title="Estilo de piezas">
+          <div className="grid grid-cols-2 gap-3">
+            {(['classic', 'modern'] as const).map((style) => (
+              <button
+                key={style}
+                onClick={() => setPieceStyle(style)}
+                className={`flex items-center gap-3 rounded-xl p-3 text-left transition-all duration-200 ${
+                  pieceStyle === style
+                    ? 'bg-brand-500/20 ring-2 ring-brand-400/60'
+                    : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
+                }`}
+              >
+                <div className="flex gap-0.5">
+                  <span className="h-9 w-9">
+                    <PieceGlyph type="n" color="w" className="h-full w-full" styleOverride={style} />
+                  </span>
+                  <span className="h-9 w-9">
+                    <PieceGlyph type="n" color="b" className="h-full w-full" styleOverride={style} />
+                  </span>
+                </div>
+                <div>
+                  <div className="text-sm font-semibold">
+                    {style === 'classic' ? 'Clásico' : 'Moderno'}
+                  </div>
+                  <div className="text-[0.65rem] text-slate-400">
+                    {style === 'classic' ? 'Cburnett' : 'Staunty'}
+                  </div>
+                </div>
+              </button>
+            ))}
           </div>
         </Section>
 

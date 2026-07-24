@@ -1,0 +1,22 @@
+Chess piece SVGs — "Staunty" set
+=================================
+
+These 12 SVG files are the "Staunty" chess piece set from the Lichess project
+(lila): https://github.com/lichess-org/lila/tree/master/public/piece/staunty
+
+Author: sadsnake1
+License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+         (CC BY-NC-SA 4.0)
+         https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+See also: https://github.com/lichess-org/lila/blob/master/COPYING.md
+
+IMPORTANT: This set is licensed for NON-COMMERCIAL use only. It is provided here
+as an optional "Modern" piece style. The application's default style is the
+"Classic" (Cburnett) set, which is licensed CC BY-SA 3.0 and has no such
+restriction. If this project is ever used commercially, either remove this set
+or replace it with a set whose license permits commercial use.
+
+The files were extracted from the "staunty" sprite bundled with cm-chessboard
+(MIT, © Stefan Haack), which adapted the Lichess originals. No visual changes
+were made beyond splitting the sprite into per-piece files.
