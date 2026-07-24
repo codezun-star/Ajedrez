@@ -13,6 +13,13 @@ const TIER_RING: Record<Achievement['tier'], string> = {
   platinum: 'ring-brand-300/60 shadow-[0_0_24px_-6px_rgba(120,150,255,0.8)]',
 };
 
+const TIER_TEXT: Record<Achievement['tier'], string> = {
+  bronze: 'text-amber-600',
+  silver: 'text-slate-300',
+  gold: 'text-amber-400',
+  platinum: 'text-brand-300',
+};
+
 export function AchievementsGrid({ unlocked }: { unlocked: string[] }) {
   const unlockedSet = new Set(unlocked);
 
@@ -32,7 +39,10 @@ export function AchievementsGrid({ unlocked }: { unlocked: string[] }) {
                 : 'bg-white/[0.03] ring-1 ring-white/5 grayscale'
             }`}
           >
-            <div className={`text-2xl ${isUnlocked ? '' : 'opacity-30'}`}>{a.icon}</div>
+            <a.icon
+              className={`h-6 w-6 shrink-0 ${isUnlocked ? TIER_TEXT[a.tier] : 'text-slate-500 opacity-40'}`}
+              strokeWidth={2}
+            />
             <div className="min-w-0">
               <div className={`truncate text-sm font-semibold ${isUnlocked ? 'text-white' : 'text-slate-500'}`}>
                 {a.name}

@@ -7,6 +7,21 @@
  * can celebrate them.
  */
 
+import {
+  type LucideIcon,
+  TargetIcon,
+  SwordsIcon,
+  FlameIcon,
+  ZapIcon,
+  SkullIcon,
+  DumbbellIcon,
+  MedalIcon,
+  LandmarkIcon,
+  TrendingUpIcon,
+  CrownIcon,
+  RocketIcon,
+  HeartIcon,
+} from 'lucide-react';
 import { GameRecord, PlayerProfile } from './storage';
 import { Difficulty } from '@/ai/difficulty';
 
@@ -14,7 +29,7 @@ export interface Achievement {
   id: string;
   name: string;
   description: string;
-  icon: string; // emoji
+  icon: LucideIcon;
   tier: 'bronze' | 'silver' | 'gold' | 'platinum';
 }
 
@@ -37,7 +52,7 @@ const DEFS: AchievementDef[] = [
     id: 'first-blood',
     name: 'Primera Sangre',
     description: 'Gana tu primera partida.',
-    icon: '🎯',
+    icon: TargetIcon,
     tier: 'bronze',
     test: ({ history }) => wins(history).length >= 1,
   },
@@ -45,7 +60,7 @@ const DEFS: AchievementDef[] = [
     id: 'checkmate-artist',
     name: 'Artista del Mate',
     description: 'Gana por jaque mate.',
-    icon: '♛',
+    icon: SwordsIcon,
     tier: 'bronze',
     test: ({ lastGame }) => lastGame.outcome === 'win' && lastGame.reason === 'checkmate',
   },
@@ -53,7 +68,7 @@ const DEFS: AchievementDef[] = [
     id: 'streak-3',
     name: 'En Racha',
     description: 'Consigue una racha de 3 victorias.',
-    icon: '🔥',
+    icon: FlameIcon,
     tier: 'silver',
     test: ({ profile }) => profile.bestStreak >= 3,
   },
@@ -61,7 +76,7 @@ const DEFS: AchievementDef[] = [
     id: 'streak-5',
     name: 'Imparable',
     description: 'Consigue una racha de 5 victorias.',
-    icon: '⚡',
+    icon: ZapIcon,
     tier: 'gold',
     test: ({ profile }) => profile.bestStreak >= 5,
   },
@@ -69,7 +84,7 @@ const DEFS: AchievementDef[] = [
     id: 'giant-slayer',
     name: 'Mata Gigantes',
     description: 'Vence a la IA en nivel Experto.',
-    icon: '🐉',
+    icon: SkullIcon,
     tier: 'platinum',
     test: ({ history }) => winsAt(history, 'expert').length >= 1,
   },
@@ -77,7 +92,7 @@ const DEFS: AchievementDef[] = [
     id: 'hard-won',
     name: 'A Pulso',
     description: 'Vence a la IA en nivel Difícil.',
-    icon: '💪',
+    icon: DumbbellIcon,
     tier: 'gold',
     test: ({ history }) => winsAt(history, 'hard').length >= 1,
   },
@@ -85,7 +100,7 @@ const DEFS: AchievementDef[] = [
     id: 'veteran',
     name: 'Veterano',
     description: 'Juega 10 partidas.',
-    icon: '🎖️',
+    icon: MedalIcon,
     tier: 'silver',
     test: ({ history }) => history.length >= 10,
   },
@@ -93,7 +108,7 @@ const DEFS: AchievementDef[] = [
     id: 'centurion',
     name: 'Centurión',
     description: 'Juega 50 partidas.',
-    icon: '🏛️',
+    icon: LandmarkIcon,
     tier: 'gold',
     test: ({ history }) => history.length >= 50,
   },
@@ -101,7 +116,7 @@ const DEFS: AchievementDef[] = [
     id: 'elo-1400',
     name: 'Escalando',
     description: 'Alcanza 1400 de ELO.',
-    icon: '📈',
+    icon: TrendingUpIcon,
     tier: 'silver',
     test: ({ profile }) => profile.elo >= 1400,
   },
@@ -109,7 +124,7 @@ const DEFS: AchievementDef[] = [
     id: 'elo-1800',
     name: 'Sala de Expertos',
     description: 'Alcanza 1800 de ELO.',
-    icon: '👑',
+    icon: CrownIcon,
     tier: 'platinum',
     test: ({ profile }) => profile.elo >= 1800,
   },
@@ -117,7 +132,7 @@ const DEFS: AchievementDef[] = [
     id: 'quick-mate',
     name: 'Mate Relámpago',
     description: 'Gana en 20 jugadas o menos.',
-    icon: '💥',
+    icon: RocketIcon,
     tier: 'gold',
     test: ({ lastGame }) => lastGame.outcome === 'win' && lastGame.moves <= 20,
   },
@@ -125,7 +140,7 @@ const DEFS: AchievementDef[] = [
     id: 'comeback',
     name: 'Remontada',
     description: 'Gana como negras.',
-    icon: '🖤',
+    icon: HeartIcon,
     tier: 'silver',
     test: ({ lastGame }) => lastGame.outcome === 'win' && lastGame.playerColor === 'b',
   },

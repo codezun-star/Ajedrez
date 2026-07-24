@@ -5,6 +5,7 @@
  */
 
 import { motion } from 'framer-motion';
+import { BotIcon, UserRoundIcon } from 'lucide-react';
 import { Color } from '@/engine/types';
 import { useGameStore } from '@/store/gameStore';
 import { DIFFICULTIES } from '@/ai/difficulty';
@@ -49,13 +50,17 @@ export function PlayerStrip({ color }: PlayerStripProps) {
     >
       <div className="flex items-center gap-3">
         <div
-          className={`flex h-8 w-8 items-center justify-center rounded-xl text-base font-bold shadow-inner sm:h-10 sm:w-10 sm:text-lg ${
+          className={`flex h-8 w-8 items-center justify-center rounded-xl shadow-inner sm:h-10 sm:w-10 ${
             color === 'w'
               ? 'bg-gradient-to-br from-amber-400 to-amber-600 text-surface-950'
               : 'bg-gradient-to-br from-surface-700 to-surface-900 text-white ring-1 ring-white/10'
           }`}
         >
-          {isPlayer ? '♟' : '🤖'}
+          {isPlayer ? (
+            <UserRoundIcon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.2} />
+          ) : (
+            <BotIcon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.2} />
+          )}
         </div>
         <div className="leading-tight">
           <div className="flex items-center gap-2 font-semibold">

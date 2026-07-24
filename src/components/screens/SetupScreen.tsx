@@ -10,6 +10,7 @@ import { Color } from '@/engine/types';
 import { useGameStore, GameConfig } from '@/store/gameStore';
 import { DIFFICULTY_LIST, Difficulty } from '@/ai/difficulty';
 import { TIME_CONTROL_LIST, TimeControlId } from '@/constants/timeControls';
+import { DicesIcon } from 'lucide-react';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { eloTitle } from '@/utils/elo';
 import { ChartIcon } from '@/components/ui/Icons';
@@ -107,21 +108,24 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
         {/* Time control */}
         <Section title="Ritmo de juego">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {TIME_CONTROL_LIST.map((tc) => (
-              <button
-                key={tc.id}
-                onClick={() => setTimeControl(tc.id)}
-                className={`flex flex-col items-center gap-1 rounded-xl p-3 transition-all duration-200 ${
-                  timeControl === tc.id
-                    ? 'bg-brand-500/20 ring-2 ring-brand-400/60'
-                    : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
-                }`}
-              >
-                <span className="text-xl">{tc.icon}</span>
-                <span className="text-sm font-semibold">{tc.label}</span>
-                <span className="text-[0.65rem] text-slate-400">{tc.detail}</span>
-              </button>
-            ))}
+            {TIME_CONTROL_LIST.map((tc) => {
+              const Icon = tc.icon;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setTimeControl(tc.id)}
+                  className={`flex flex-col items-center gap-1.5 rounded-xl p-3 transition-all duration-200 ${
+                    timeControl === tc.id
+                      ? 'bg-brand-500/20 ring-2 ring-brand-400/60'
+                      : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  <Icon className="h-5 w-5 text-brand-300" strokeWidth={2} />
+                  <span className="text-sm font-semibold">{tc.label}</span>
+                  <span className="text-[0.65rem] text-slate-400">{tc.detail}</span>
+                </button>
+              );
+            })}
           </div>
         </Section>
 
@@ -179,9 +183,9 @@ function ColorOption({
         active ? 'bg-brand-500/20 ring-2 ring-brand-400/60' : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
       }`}
     >
-      <div className="h-9 w-9">
+      <div className="flex h-9 w-9 items-center justify-center">
         {value === 'random' ? (
-          <div className="flex h-full w-full items-center justify-center text-2xl">🎲</div>
+          <DicesIcon className="h-7 w-7 text-brand-300" strokeWidth={2} />
         ) : (
           <PieceGlyph type="k" color={value} className="h-full w-full" />
         )}

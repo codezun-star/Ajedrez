@@ -6,11 +6,13 @@
 
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { FlameIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { computeStats } from '@/utils/stats';
 import { eloTitle } from '@/utils/elo';
 import { formatDate } from '@/utils/format';
 import { DIFFICULTIES } from '@/ai/difficulty';
+import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { EloChart } from '@/components/stats/EloChart';
 import { AchievementsGrid } from '@/components/stats/AchievementsGrid';
 import { ChevronLeft } from '@/components/ui/Icons';
@@ -57,8 +59,16 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           </div>
           <div className="grid grid-cols-3 gap-2 text-center">
             <MiniStat label="Pico" value={peakElo} />
-            <MiniStat label="Racha" value={`${profile.currentStreak}🔥`} />
-            <MiniStat label="Mejor" value={`${profile.bestStreak}`} />
+            <MiniStat
+              label="Racha"
+              value={
+                <span className="inline-flex items-center gap-1">
+                  {profile.currentStreak}
+                  <FlameIcon className="h-4 w-4 text-orange-400" />
+                </span>
+              }
+            />
+            <MiniStat label="Mejor" value={profile.bestStreak} />
           </div>
         </motion.div>
 
@@ -157,7 +167,12 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
                       {o.label}
                     </span>
                     <span className="w-20 text-slate-300">{DIFFICULTIES[g.difficulty].label}</span>
-                    <span className="text-slate-500">{g.playerColor === 'w' ? '♔ Blancas' : '♚ Negras'}</span>
+                    <span className="flex items-center gap-1.5 text-slate-500">
+                      <span className="inline-flex h-4 w-4">
+                        <PieceGlyph type="k" color={g.playerColor} className="h-full w-full" />
+                      </span>
+                      {g.playerColor === 'w' ? 'Blancas' : 'Negras'}
+                    </span>
                     <span className="ml-auto text-xs text-slate-500">{g.moves} jugadas</span>
                     <span
                       className={`w-12 text-right font-mono text-xs ${
@@ -181,7 +196,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
   );
 }
 
-function MiniStat({ label, value }: { label: string; value: string | number }) {
+function MiniStat({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="rounded-lg bg-white/5 py-2">
       <div className="font-mono text-lg font-bold text-white">{value}</div>

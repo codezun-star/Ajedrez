@@ -6,6 +6,7 @@
 
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { HandshakeIcon, HeartCrackIcon, FlameIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { getAchievement } from '@/utils/achievements';
 import { eloTitle } from '@/utils/elo';
@@ -78,8 +79,10 @@ export function GameOverModal() {
             >
               {outcome === 'win' ? (
                 <CrownIcon className="h-14 w-14" />
+              ) : outcome === 'draw' ? (
+                <HandshakeIcon className="h-12 w-12" strokeWidth={1.8} />
               ) : (
-                <span className="text-5xl">{outcome === 'draw' ? '🤝' : '💔'}</span>
+                <HeartCrackIcon className="h-12 w-12" strokeWidth={1.8} />
               )}
             </motion.div>
             <h2 className={`font-display text-3xl font-extrabold ${accent}`}>{OUTCOME_TITLE[outcome]}</h2>
@@ -94,8 +97,9 @@ export function GameOverModal() {
           {/* Elo change */}
           <div className="px-6 pb-2">
             <EloDelta before={elo.before} after={elo.after} delta={elo.delta} />
-            <p className="mt-1 text-center text-xs text-slate-500">
-              {eloTitle(profile.elo)} · racha actual {profile.currentStreak} 🔥
+            <p className="mt-1 flex items-center justify-center gap-1 text-center text-xs text-slate-500">
+              {eloTitle(profile.elo)} · racha actual {profile.currentStreak}
+              <FlameIcon className="h-3.5 w-3.5 text-orange-400" />
             </p>
           </div>
 
@@ -117,7 +121,7 @@ export function GameOverModal() {
                       transition={{ delay: 0.3 + i * 0.12, type: 'spring', stiffness: 300 }}
                       className="flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1.5 text-sm ring-1 ring-amber-400/30"
                     >
-                      <span className="text-lg">{a.icon}</span>
+                      <a.icon className="h-4 w-4 text-amber-300" strokeWidth={2.2} />
                       <span className="font-medium text-amber-100">{a.name}</span>
                     </motion.div>
                   );

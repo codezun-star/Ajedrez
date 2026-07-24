@@ -1,5 +1,7 @@
 /** Time-control presets. `initialMs === 0` means an untimed game. */
 
+import { InfinityIcon, ZapIcon, TimerIcon, HourglassIcon, type LucideIcon } from 'lucide-react';
+
 export type TimeControlId = 'unlimited' | 'blitz' | 'rapid' | 'classical';
 
 export interface TimeControl {
@@ -8,7 +10,7 @@ export interface TimeControl {
   detail: string;
   initialMs: number;
   incrementMs: number;
-  icon: string;
+  icon: LucideIcon;
 }
 
 export const TIME_CONTROLS: Record<TimeControlId, TimeControl> = {
@@ -18,7 +20,7 @@ export const TIME_CONTROLS: Record<TimeControlId, TimeControl> = {
     detail: 'Sin límite de tiempo',
     initialMs: 0,
     incrementMs: 0,
-    icon: '∞',
+    icon: InfinityIcon,
   },
   blitz: {
     id: 'blitz',
@@ -26,7 +28,7 @@ export const TIME_CONTROLS: Record<TimeControlId, TimeControl> = {
     detail: '5 min + 3 s',
     initialMs: 5 * 60 * 1000,
     incrementMs: 3 * 1000,
-    icon: '⚡',
+    icon: ZapIcon,
   },
   rapid: {
     id: 'rapid',
@@ -34,7 +36,7 @@ export const TIME_CONTROLS: Record<TimeControlId, TimeControl> = {
     detail: '10 min + 5 s',
     initialMs: 10 * 60 * 1000,
     incrementMs: 5 * 1000,
-    icon: '🏃',
+    icon: TimerIcon,
   },
   classical: {
     id: 'classical',
@@ -42,7 +44,7 @@ export const TIME_CONTROLS: Record<TimeControlId, TimeControl> = {
     detail: '30 min',
     initialMs: 30 * 60 * 1000,
     incrementMs: 0,
-    icon: '♟️',
+    icon: HourglassIcon,
   },
 };
 
