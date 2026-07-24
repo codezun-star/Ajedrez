@@ -1,19 +1,22 @@
 /**
  * SetupScreen — the pre-game configuration: choose your color, the AI's
  * difficulty and a time control, then start. Also the entry point to the stats
- * screen. Everything animates in with a gentle stagger.
+ * screen. Everything animates in with a gentle stagger and is fully translated.
  */
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { DicesIcon, HomeIcon } from 'lucide-react';
 import { Color } from '@/engine/types';
 import { useGameStore, GameConfig } from '@/store/gameStore';
 import { DIFFICULTY_LIST, Difficulty } from '@/ai/difficulty';
 import { TIME_CONTROL_LIST, TimeControlId } from '@/constants/timeControls';
-import { DicesIcon } from 'lucide-react';
+import { useI18n } from '@/i18n';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
-import { eloTitle } from '@/utils/elo';
+import { eloRankKey } from '@/utils/elo';
 import { ChartIcon } from '@/components/ui/Icons';
+import { LanguageSelector } from '@/components/ui/LanguageSelector';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -21,6 +24,7 @@ const fadeUp = {
 };
 
 export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
+  const { t } = useI18n();
   const startGame = useGameStore((s) => s.startGame);
   const profile = useGameStore((s) => s.profile);
   const savedConfig = useGameStore((s) => s.config);
@@ -39,15 +43,18 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
   };
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center gap-8 px-4 py-10">
+    <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-8 px-4 py-6">
+      {/* Top bar */}
+      <div className="flex items-center justify-between">
+        <Link to="/" className="btn-ghost text-sm">
+          <HomeIcon className="h-4 w-4" />
+          {t('nav.home')}
+        </Link>
+        <LanguageSelector compact />
+      </div>
+
       {/* Hero */}
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        animate="show"
-        custom={0}
-        className="flex flex-col items-center text-center"
-      >
+      <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0} className="flex flex-col items-center text-center">
         <div className="mb-3 flex items-center gap-3">
           <motion.div
             animate={{ y: [0, -6, 0] }}
@@ -60,48 +67,36 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
             bot<span className="text-brand-400">Agedrez</span>
           </h1>
         </div>
-        <p className="max-w-md text-slate-400">
-          Ajedrez premium con motor propio e inteligencia artificial. Reta a la máquina y escala tu ELO.
-        </p>
+        <p className="max-w-md text-slate-400">{t('home.subtitle')}</p>
       </motion.div>
 
       {/* Config card */}
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        animate="show"
-        custom={1}
-        className="card w-full space-y-6 p-6 sm:p-8"
-      >
+      <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="card w-full space-y-6 p-6 sm:p-8">
         {/* Color */}
-        <Section title="Elige tu color">
+        <Section title={t('setup.chooseColor')}>
           <div className="grid grid-cols-3 gap-3">
-            <ColorOption label="Blancas" value="w" active={color === 'w'} onClick={() => setColor('w')} />
-            <ColorOption label="Aleatorio" value="random" active={color === 'random'} onClick={() => setColor('random')} />
-            <ColorOption label="Negras" value="b" active={color === 'b'} onClick={() => setColor('b')} />
+            <ColorOption label={t('setup.white')} value="w" active={color === 'w'} onClick={() => setColor('w')} />
+            <ColorOption label={t('setup.random')} value="random" active={color === 'random'} onClick={() => setColor('random')} />
+            <ColorOption label={t('setup.black')} value="b" active={color === 'b'} onClick={() => setColor('b')} />
           </div>
         </Section>
 
         {/* Difficulty */}
-        <Section title="Dificultad de la IA">
+        <Section title={t('setup.difficulty')}>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {DIFFICULTY_LIST.map((d) => (
               <button
                 key={d.id}
                 onClick={() => setDifficulty(d.id)}
                 className={`group relative overflow-hidden rounded-xl p-3 text-left transition-all duration-200 ${
-                  difficulty === d.id
-                    ? 'bg-white/10 ring-2'
-                    : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
+                  difficulty === d.id ? 'bg-white/10 ring-2' : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
                 }`}
                 style={difficulty === d.id ? ({ '--tw-ring-color': d.accent } as React.CSSProperties) : undefined}
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold" style={{ color: d.accent }}>
-                    {d.label}
-                  </span>
-                </div>
-                <div className="mt-1 text-[0.7rem] leading-tight text-slate-400">{d.description}</div>
+                <span className="font-semibold" style={{ color: d.accent }}>
+                  {t(`difficulty.${d.id}`)}
+                </span>
+                <div className="mt-1 text-[0.7rem] leading-tight text-slate-400">{t(`difficulty.${d.id}Desc`)}</div>
                 <div className="mt-2 text-[0.65rem] font-medium text-slate-500">~{d.elo} ELO</div>
               </button>
             ))}
@@ -109,7 +104,7 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
         </Section>
 
         {/* Time control */}
-        <Section title="Ritmo de juego">
+        <Section title={t('setup.tempo')}>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {TIME_CONTROL_LIST.map((tc) => {
               const Icon = tc.icon;
@@ -118,14 +113,12 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
                   key={tc.id}
                   onClick={() => setTimeControl(tc.id)}
                   className={`flex flex-col items-center gap-1.5 rounded-xl p-3 transition-all duration-200 ${
-                    timeControl === tc.id
-                      ? 'bg-brand-500/20 ring-2 ring-brand-400/60'
-                      : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
+                    timeControl === tc.id ? 'bg-brand-500/20 ring-2 ring-brand-400/60' : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
                   }`}
                 >
                   <Icon className="h-5 w-5 text-brand-300" strokeWidth={2} />
-                  <span className="text-sm font-semibold">{tc.label}</span>
-                  <span className="text-[0.65rem] text-slate-400">{tc.detail}</span>
+                  <span className="text-sm font-semibold">{t(`tempo.${tc.id}`)}</span>
+                  <span className="text-[0.65rem] text-slate-400">{t(`tempo.${tc.id}Detail`)}</span>
                 </button>
               );
             })}
@@ -133,16 +126,14 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
         </Section>
 
         {/* Piece style */}
-        <Section title="Estilo de piezas">
+        <Section title={t('setup.pieceStyle')}>
           <div className="grid grid-cols-2 gap-3">
             {(['classic', 'modern'] as const).map((style) => (
               <button
                 key={style}
                 onClick={() => setPieceStyle(style)}
                 className={`flex items-center gap-3 rounded-xl p-3 text-left transition-all duration-200 ${
-                  pieceStyle === style
-                    ? 'bg-brand-500/20 ring-2 ring-brand-400/60'
-                    : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
+                  pieceStyle === style ? 'bg-brand-500/20 ring-2 ring-brand-400/60' : 'bg-white/5 ring-1 ring-white/5 hover:bg-white/10'
                 }`}
               >
                 <div className="flex gap-0.5">
@@ -154,12 +145,8 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
                   </span>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">
-                    {style === 'classic' ? 'Clásico' : 'Moderno'}
-                  </div>
-                  <div className="text-[0.65rem] text-slate-400">
-                    {style === 'classic' ? 'Cburnett' : 'Staunty'}
-                  </div>
+                  <div className="text-sm font-semibold">{t(`setup.${style}`)}</div>
+                  <div className="text-[0.65rem] text-slate-400">{style === 'classic' ? 'Cburnett' : 'Staunty'}</div>
                 </div>
               </button>
             ))}
@@ -167,26 +154,19 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
         </Section>
 
         <button onClick={handleStart} className="btn-primary w-full py-3.5 text-lg">
-          Jugar
+          {t('setup.play')}
         </button>
       </motion.div>
 
       {/* Footer: profile + stats */}
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        animate="show"
-        custom={2}
-        className="flex w-full items-center justify-between rounded-xl px-2 text-sm"
-      >
+      <motion.div variants={fadeUp} initial="hidden" animate="show" custom={2} className="flex w-full items-center justify-between rounded-xl px-2 text-sm">
         <div className="text-slate-400">
-          Tu ELO:{' '}
-          <span className="font-mono font-bold text-white">{profile.elo}</span>{' '}
-          <span className="text-slate-500">· {eloTitle(profile.elo)}</span>
+          {t('setup.yourElo')}: <span className="font-mono font-bold text-white">{profile.elo}</span>{' '}
+          <span className="text-slate-500">· {t(`ranks.${eloRankKey(profile.elo)}`)}</span>
         </div>
         <button onClick={onOpenStats} className="btn-ghost text-sm">
           <ChartIcon className="h-4 w-4" />
-          Estadísticas y logros
+          {t('setup.statsBtn')}
         </button>
       </motion.div>
     </div>

@@ -6,6 +6,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useGameStore } from '@/store/gameStore';
+import { useI18n } from '@/i18n';
 import { IconButton } from '@/components/ui/IconButton';
 import {
   ChevronLeft,
@@ -15,6 +16,7 @@ import {
 } from '@/components/ui/Icons';
 
 export function MoveHistory() {
+  const { t } = useI18n();
   const moves = useGameStore((s) => s.moves);
   const viewPly = useGameStore((s) => s.viewPly);
   const navigate = useGameStore((s) => s.navigate);
@@ -65,9 +67,7 @@ export function MoveHistory() {
         className="scroll-slim min-h-0 flex-1 overflow-y-auto rounded-xl bg-black/20 p-1 text-sm"
       >
         {moves.length === 0 ? (
-          <p className="px-2 py-3 text-center text-xs text-slate-500">
-            Aún no hay movimientos. ¡Haz el primero!
-          </p>
+          <p className="px-2 py-3 text-center text-xs text-slate-500">{t('game.noMoves')}</p>
         ) : (
           <ol className="font-mono">
             {rows.map((row) => (

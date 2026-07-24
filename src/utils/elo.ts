@@ -57,15 +57,26 @@ export function updateElo(
   };
 }
 
-/** A friendly rank name for a given rating, for a bit of flavour. */
-export function eloTitle(elo: number): string {
-  if (elo < 800) return 'Aprendiz';
-  if (elo < 1000) return 'Novato';
-  if (elo < 1200) return 'Aficionado';
-  if (elo < 1400) return 'Club';
-  if (elo < 1600) return 'Avanzado';
-  if (elo < 1800) return 'Experto';
-  if (elo < 2000) return 'Candidato a Maestro';
-  if (elo < 2200) return 'Maestro';
-  return 'Gran Maestro';
+/** Translation key (under `ranks.*`) for the rank of a given rating. */
+export type RankKey =
+  | 'learner'
+  | 'novice'
+  | 'amateur'
+  | 'club'
+  | 'advanced'
+  | 'expert'
+  | 'candidate'
+  | 'master'
+  | 'grandmaster';
+
+export function eloRankKey(elo: number): RankKey {
+  if (elo < 800) return 'learner';
+  if (elo < 1000) return 'novice';
+  if (elo < 1200) return 'amateur';
+  if (elo < 1400) return 'club';
+  if (elo < 1600) return 'advanced';
+  if (elo < 1800) return 'expert';
+  if (elo < 2000) return 'candidate';
+  if (elo < 2200) return 'master';
+  return 'grandmaster';
 }

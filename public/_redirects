@@ -1,0 +1,3 @@
+# Cloudflare Pages: serve the SPA for every path so client-side routes
+# (/, /jugar, /blog, /blog/:slug) deep-link correctly.
+/*    /index.html   200

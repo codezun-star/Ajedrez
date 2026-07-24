@@ -8,9 +8,10 @@ import { useMemo } from 'react';
 
 interface EloChartProps {
   data: { date: number; elo: number }[];
+  emptyMessage?: string;
 }
 
-export function EloChart({ data }: EloChartProps) {
+export function EloChart({ data, emptyMessage }: EloChartProps) {
   const { path, area, points, width, height } = useMemo(() => {
     const width = 320;
     const height = 120;
@@ -38,8 +39,8 @@ export function EloChart({ data }: EloChartProps) {
 
   if (data.length < 2) {
     return (
-      <div className="flex h-[120px] items-center justify-center text-sm text-slate-500">
-        Juega algunas partidas para ver tu progreso de ELO.
+      <div className="flex h-[120px] items-center justify-center px-4 text-center text-sm text-slate-500">
+        {emptyMessage ?? 'Juega algunas partidas para ver tu progreso de ELO.'}
       </div>
     );
   }

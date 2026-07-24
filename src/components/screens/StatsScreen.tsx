@@ -9,9 +9,10 @@ import { motion } from 'framer-motion';
 import { FlameIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { computeStats } from '@/utils/stats';
-import { eloTitle } from '@/utils/elo';
+import { eloRankKey } from '@/utils/elo';
 import { formatDate } from '@/utils/format';
 import { DIFFICULTIES } from '@/ai/difficulty';
+import { useI18n } from '@/i18n';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { EloChart } from '@/components/stats/EloChart';
 import { AchievementsGrid } from '@/components/stats/AchievementsGrid';
@@ -24,6 +25,7 @@ const OUTCOME_STYLE = {
 };
 
 export function StatsScreen({ onBack }: { onBack: () => void }) {
+  const { t, locale } = useI18n();
   const profile = useGameStore((s) => s.profile);
   const savedGames = useGameStore((s) => s.savedGames);
 
@@ -39,9 +41,9 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
       <div className="mb-6 flex items-center justify-between">
         <button onClick={onBack} className="btn-ghost text-sm">
           <ChevronLeft className="h-4 w-4" />
-          Volver
+          {t('stats.back')}
         </button>
-        <h1 className="font-display text-2xl font-bold">Tu perfil</h1>
+        <h1 className="font-display text-2xl font-bold">{t('stats.title')}</h1>
         <div className="w-20" />
       </div>
 
@@ -53,14 +55,14 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           className="card flex flex-col justify-between gap-4 p-5 lg:col-span-1"
         >
           <div>
-            <div className="text-sm text-slate-400">ELO actual</div>
+            <div className="text-sm text-slate-400">{t('stats.eloNow')}</div>
             <div className="font-mono text-5xl font-extrabold text-white">{profile.elo}</div>
-            <div className="text-sm text-brand-300">{eloTitle(profile.elo)}</div>
+            <div className="text-sm text-brand-300">{t(`ranks.${eloRankKey(profile.elo)}`)}</div>
           </div>
           <div className="grid grid-cols-3 gap-2 text-center">
-            <MiniStat label="Pico" value={peakElo} />
+            <MiniStat label={t('stats.peak')} value={peakElo} />
             <MiniStat
-              label="Racha"
+              label={t('stats.streak')}
               value={
                 <span className="inline-flex items-center gap-1">
                   {profile.currentStreak}
@@ -68,7 +70,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
                 </span>
               }
             />
-            <MiniStat label="Mejor" value={profile.bestStreak} />
+            <MiniStat label={t('stats.best')} value={profile.bestStreak} />
           </div>
         </motion.div>
 
@@ -79,8 +81,8 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           transition={{ delay: 0.05 }}
           className="card p-5 lg:col-span-2"
         >
-          <h2 className="mb-3 text-sm font-semibold text-slate-300">Progresión de ELO</h2>
-          <EloChart data={profile.eloHistory} />
+          <h2 className="mb-3 text-sm font-semibold text-slate-300">{t('stats.progression')}</h2>
+          <EloChart data={profile.eloHistory} emptyMessage={t('stats.needGames')} />
         </motion.div>
 
         {/* Aggregate */}
@@ -90,10 +92,10 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           transition={{ delay: 0.1 }}
           className="card grid grid-cols-2 gap-4 p-5 sm:grid-cols-4 lg:col-span-3"
         >
-          <BigStat label="Partidas" value={stats.played} />
-          <BigStat label="Victorias" value={stats.wins} accent="text-emerald-300" />
-          <BigStat label="% Victorias" value={`${stats.winRate}%`} accent="text-brand-300" />
-          <BigStat label="Jugadas/partida" value={stats.averageMoves} />
+          <BigStat label={t('stats.played')} value={stats.played} />
+          <BigStat label={t('stats.wins')} value={stats.wins} accent="text-emerald-300" />
+          <BigStat label={t('stats.winRate')} value={`${stats.winRate}%`} accent="text-brand-300" />
+          <BigStat label={t('stats.avgMoves')} value={stats.averageMoves} />
         </motion.div>
 
         {/* Win rate by difficulty */}
@@ -103,7 +105,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           transition={{ delay: 0.12 }}
           className="card p-5 lg:col-span-3"
         >
-          <h2 className="mb-3 text-sm font-semibold text-slate-300">Rendimiento por dificultad</h2>
+          <h2 className="mb-3 text-sm font-semibold text-slate-300">{t('stats.byDifficulty')}</h2>
           <div className="space-y-3">
             {Object.entries(stats.byDifficulty).map(([id, bucket]) => {
               const diff = DIFFICULTIES[id as keyof typeof DIFFICULTIES];
@@ -111,7 +113,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
               return (
                 <div key={id} className="flex items-center gap-3">
                   <span className="w-16 text-sm font-medium" style={{ color: diff.accent }}>
-                    {diff.label}
+                    {t(`difficulty.${id}`)}
                   </span>
                   <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-white/5">
                     <motion.div
@@ -139,7 +141,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           className="card p-5 lg:col-span-3"
         >
           <h2 className="mb-4 text-sm font-semibold text-slate-300">
-            Logros{' '}
+            {t('stats.achievements')}{' '}
             <span className="text-slate-500">
               ({profile.unlockedAchievements.length}/{/* total */ 12})
             </span>
@@ -154,9 +156,9 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           transition={{ delay: 0.16 }}
           className="card p-5 lg:col-span-3"
         >
-          <h2 className="mb-3 text-sm font-semibold text-slate-300">Partidas recientes</h2>
+          <h2 className="mb-3 text-sm font-semibold text-slate-300">{t('stats.recent')}</h2>
           {recent.length === 0 ? (
-            <p className="py-6 text-center text-sm text-slate-500">Todavía no has jugado ninguna partida.</p>
+            <p className="py-6 text-center text-sm text-slate-500">{t('stats.noGames')}</p>
           ) : (
             <div className="divide-y divide-white/5">
               {recent.map((g) => {
@@ -166,14 +168,16 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
                     <span className={`flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold ${o.className}`}>
                       {o.label}
                     </span>
-                    <span className="w-20 text-slate-300">{DIFFICULTIES[g.difficulty].label}</span>
+                    <span className="w-20 text-slate-300">{t(`difficulty.${g.difficulty}`)}</span>
                     <span className="flex items-center gap-1.5 text-slate-500">
                       <span className="inline-flex h-4 w-4">
                         <PieceGlyph type="k" color={g.playerColor} className="h-full w-full" />
                       </span>
-                      {g.playerColor === 'w' ? 'Blancas' : 'Negras'}
+                      {g.playerColor === 'w' ? t('stats.whiteShort') : t('stats.blackShort')}
                     </span>
-                    <span className="ml-auto text-xs text-slate-500">{g.moves} jugadas</span>
+                    <span className="ml-auto text-xs text-slate-500">
+                      {g.moves} {t('stats.movesShort')}
+                    </span>
                     <span
                       className={`w-12 text-right font-mono text-xs ${
                         g.eloAfter >= g.eloBefore ? 'text-emerald-300' : 'text-red-300'
@@ -183,7 +187,7 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
                       {g.eloAfter - g.eloBefore}
                     </span>
                     <span className="hidden w-24 text-right text-xs text-slate-500 sm:block">
-                      {formatDate(g.date)}
+                      {formatDate(g.date, locale)}
                     </span>
                   </div>
                 );

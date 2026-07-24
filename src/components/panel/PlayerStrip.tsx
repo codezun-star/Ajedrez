@@ -9,8 +9,9 @@ import { BotIcon, UserRoundIcon } from 'lucide-react';
 import { Color } from '@/engine/types';
 import { useGameStore } from '@/store/gameStore';
 import { DIFFICULTIES } from '@/ai/difficulty';
-import { eloTitle } from '@/utils/elo';
+import { eloRankKey } from '@/utils/elo';
 import { formatClock } from '@/utils/format';
+import { useI18n } from '@/i18n';
 import { CapturedPieces } from './CapturedPieces';
 
 interface PlayerStripProps {
@@ -19,6 +20,7 @@ interface PlayerStripProps {
 }
 
 export function PlayerStrip({ color }: PlayerStripProps) {
+  const { t } = useI18n();
   const config = useGameStore((s) => s.config);
   const profile = useGameStore((s) => s.profile);
   const captured = useGameStore((s) => s.captured);
@@ -30,8 +32,10 @@ export function PlayerStrip({ color }: PlayerStripProps) {
   const isPlayer = color === config.playerColor;
   const diff = DIFFICULTIES[config.difficulty];
 
-  const name = isPlayer ? 'Tú' : `IA · ${diff.label}`;
-  const subtitle = isPlayer ? `${eloTitle(profile.elo)} · ${profile.elo}` : `~${diff.elo} ELO`;
+  const name = isPlayer ? t('game.you') : `${t('game.ai')} · ${t(`difficulty.${config.difficulty}`)}`;
+  const subtitle = isPlayer
+    ? `${t(`ranks.${eloRankKey(profile.elo)}`)} · ${profile.elo}`
+    : `~${diff.elo} ELO`;
 
   // Captured tray: pieces THIS side has captured are the opponent's color.
   const myCaptures = color === 'w' ? captured.byWhite : captured.byBlack;
@@ -72,7 +76,7 @@ export function PlayerStrip({ color }: PlayerStripProps) {
                   animate={{ opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 />
-                pensando…
+                {t('game.thinking')}
               </span>
             )}
           </div>

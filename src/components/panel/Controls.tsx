@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { CheckIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { exportPgn } from '@/engine/pgn';
+import { useI18n } from '@/i18n';
 import { UndoIcon, FlipIcon, FlagIcon, CopyIcon } from '@/components/ui/Icons';
 import { formatAdvantage } from '@/utils/format';
 
@@ -46,6 +47,7 @@ export function Controls() {
   const aiInfo = useGameStore((s) => s.aiInfo);
   const status = useGameStore((s) => s.status);
 
+  const { t } = useI18n();
   const [confirmResign, setConfirmResign] = useState(false);
   const [copyState, setCopyState] = useState<'idle' | 'ok' | 'fail'>('idle');
 
@@ -59,13 +61,13 @@ export function Controls() {
     setTimeout(() => setCopyState('idle'), 1800);
   };
 
-  const copyLabel = copyState === 'ok' ? '¡Copiado!' : copyState === 'fail' ? 'Error' : 'Copiar PGN';
+  const copyLabel = copyState === 'ok' ? t('controls.copied') : copyState === 'fail' ? t('controls.error') : t('controls.copyPgn');
 
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-4 gap-2">
-        <ControlButton label="Deshacer" onClick={undo} disabled={!canUndo} icon={<UndoIcon className="h-5 w-5" />} />
-        <ControlButton label="Voltear" onClick={flipBoard} icon={<FlipIcon className="h-5 w-5" />} />
+        <ControlButton label={t('controls.undo')} onClick={undo} disabled={!canUndo} icon={<UndoIcon className="h-5 w-5" />} />
+        <ControlButton label={t('controls.flip')} onClick={flipBoard} icon={<FlipIcon className="h-5 w-5" />} />
         <ControlButton
           label={copyLabel}
           onClick={handleCopyPgn}
@@ -75,7 +77,7 @@ export function Controls() {
           danger={copyState === 'fail'}
         />
         <ControlButton
-          label={confirmResign ? '¿Seguro?' : 'Rendirse'}
+          label={confirmResign ? t('controls.sure') : t('controls.resign')}
           onClick={() => {
             if (isOver) return;
             if (confirmResign) {
@@ -92,21 +94,19 @@ export function Controls() {
         />
       </div>
       {confirmResign && (
-        <p className="-mt-1 text-center text-[0.7rem] text-red-300">
-          Pulsa otra vez para confirmar la rendición
-        </p>
+        <p className="-mt-1 text-center text-[0.7rem] text-red-300">{t('controls.resignHint')}</p>
       )}
 
       {aiInfo && (
         <div className="hidden items-center justify-between rounded-lg bg-black/20 px-3 py-2 text-xs text-slate-400 sm:flex">
           <span>
-            Profundidad <b className="text-slate-200">{aiInfo.depth}</b>
+            {t('controls.depth')} <b className="text-slate-200">{aiInfo.depth}</b>
           </span>
           <span>
-            {(aiInfo.nodes / 1000).toFixed(0)}k nodos
+            {(aiInfo.nodes / 1000).toFixed(0)}k {t('controls.nodes')}
           </span>
-          <span title="Evaluación desde el punto de vista de la IA">
-            Eval IA{' '}
+          <span>
+            {t('controls.evalAi')}{' '}
             <b className={aiInfo.score >= 0 ? 'text-emerald-300' : 'text-red-300'}>
               {formatAdvantage(aiInfo.score)}
             </b>

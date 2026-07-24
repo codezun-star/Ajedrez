@@ -15,8 +15,8 @@ export function formatClock(ms: number): string {
 }
 
 /** Format an epoch timestamp as a short, locale-friendly date. */
-export function formatDate(epoch: number): string {
-  return new Date(epoch).toLocaleDateString('es', {
+export function formatDate(epoch: number, locale = 'es'): string {
+  return new Date(epoch).toLocaleDateString(locale, {
     day: '2-digit',
     month: 'short',
     year: 'numeric',

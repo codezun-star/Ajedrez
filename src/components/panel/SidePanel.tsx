@@ -8,6 +8,7 @@
 
 import { useState } from 'react';
 import { useGameStore } from '@/store/gameStore';
+import { useI18n } from '@/i18n';
 import { RefreshIcon } from '@/components/ui/Icons';
 import { MoveHistory } from './MoveHistory';
 import { PieceGuide } from './PieceGuide';
@@ -16,6 +17,7 @@ import { Controls } from './Controls';
 type Tab = 'moves' | 'guide';
 
 export function SidePanel() {
+  const { t } = useI18n();
   const goToSetup = useGameStore((s) => s.goToSetup);
   const [tab, setTab] = useState<Tab>('moves');
 
@@ -24,10 +26,10 @@ export function SidePanel() {
       {/* Tabs */}
       <div className="flex shrink-0 gap-1 rounded-xl bg-black/20 p-1">
         <TabButton active={tab === 'moves'} onClick={() => setTab('moves')}>
-          Jugadas
+          {t('game.tabMoves')}
         </TabButton>
         <TabButton active={tab === 'guide'} onClick={() => setTab('guide')}>
-          Guía de piezas
+          {t('game.tabGuide')}
         </TabButton>
       </div>
 
@@ -40,7 +42,7 @@ export function SidePanel() {
 
       <button onClick={goToSetup} className="btn-ghost w-full shrink-0 text-sm">
         <RefreshIcon className="h-4 w-4" />
-        Nueva partida
+        {t('game.newGame')}
       </button>
     </aside>
   );

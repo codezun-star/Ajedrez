@@ -9,27 +9,23 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { HandshakeIcon, HeartCrackIcon, FlameIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { getAchievement } from '@/utils/achievements';
-import { eloTitle } from '@/utils/elo';
+import { eloRankKey } from '@/utils/elo';
+import { useI18n } from '@/i18n';
 import { Confetti } from './Confetti';
 import { CrownIcon, RefreshIcon } from '@/components/ui/Icons';
 
-const REASON_LABEL: Record<string, string> = {
-  checkmate: 'Jaque mate',
-  stalemate: 'Rey ahogado',
-  'insufficient-material': 'Material insuficiente',
-  'threefold-repetition': 'Triple repetición',
-  'fifty-move-rule': 'Regla de 50 movimientos',
-  resignation: 'Rendición',
-  timeout: 'Tiempo agotado',
-};
-
-const OUTCOME_TITLE = {
-  win: '¡Victoria!',
-  loss: 'Derrota',
-  draw: 'Tablas',
+const REASON_KEY: Record<string, string> = {
+  checkmate: 'rCheckmate',
+  stalemate: 'rStalemate',
+  'insufficient-material': 'rInsufficient',
+  'threefold-repetition': 'rRepetition',
+  'fifty-move-rule': 'rFifty',
+  resignation: 'rResign',
+  timeout: 'rTimeout',
 };
 
 export function GameOverModal() {
+  const { t } = useI18n();
   const showGameOver = useGameStore((s) => s.showGameOver);
   const gameOver = useGameStore((s) => s.gameOver);
   const rematch = useGameStore((s) => s.rematch);
@@ -40,6 +36,7 @@ export function GameOverModal() {
   if (!showGameOver || !gameOver) return null;
 
   const { outcome, elo, status, newAchievements } = gameOver;
+  const outcomeTitle = outcome === 'win' ? t('result.win') : outcome === 'loss' ? t('result.loss') : t('result.draw');
   const accent =
     outcome === 'win' ? 'text-emerald-300' : outcome === 'loss' ? 'text-red-300' : 'text-slate-300';
 
@@ -85,12 +82,14 @@ export function GameOverModal() {
                 <HeartCrackIcon className="h-12 w-12" strokeWidth={1.8} />
               )}
             </motion.div>
-            <h2 className={`font-display text-3xl font-extrabold ${accent}`}>{OUTCOME_TITLE[outcome]}</h2>
+            <h2 className={`font-display text-3xl font-extrabold ${accent}`}>{outcomeTitle}</h2>
             <p className="text-sm text-slate-400">
               {status.winner
-                ? `Ganan las ${status.winner === 'w' ? 'blancas' : 'negras'}`
-                : 'Empate'}{' '}
-              · {REASON_LABEL[status.reason ?? ''] ?? 'Fin de la partida'}
+                ? status.winner === 'w'
+                  ? t('result.winnerWhite')
+                  : t('result.winnerBlack')
+                : t('result.draw')}{' '}
+              · {t(`result.${REASON_KEY[status.reason ?? ''] ?? 'rEnd'}`)}
             </p>
           </div>
 
@@ -98,7 +97,7 @@ export function GameOverModal() {
           <div className="px-6 pb-2">
             <EloDelta before={elo.before} after={elo.after} delta={elo.delta} />
             <p className="mt-1 flex items-center justify-center gap-1 text-center text-xs text-slate-500">
-              {eloTitle(profile.elo)} · racha actual {profile.currentStreak}
+              {t(`ranks.${eloRankKey(profile.elo)}`)} · {t('result.streakNow')} {profile.currentStreak}
               <FlameIcon className="h-3.5 w-3.5 text-orange-400" />
             </p>
           </div>
@@ -107,7 +106,7 @@ export function GameOverModal() {
           {newAchievements.length > 0 && (
             <div className="px-6 py-3">
               <p className="mb-2 text-center text-xs font-semibold uppercase tracking-wide text-amber-300">
-                ¡Logros desbloqueados!
+                {t('result.unlocked')}
               </p>
               <div className="flex flex-wrap justify-center gap-2">
                 {newAchievements.map((id, i) => {
@@ -133,11 +132,11 @@ export function GameOverModal() {
           {/* Actions */}
           <div className="flex gap-3 p-6 pt-4">
             <button onClick={goToSetup} className="btn-ghost flex-1">
-              Menú
+              {t('result.menu')}
             </button>
             <button onClick={rematch} className="btn-primary flex-1">
               <RefreshIcon className="h-4 w-4" />
-              Revancha
+              {t('result.rematch')}
             </button>
           </div>
         </motion.div>

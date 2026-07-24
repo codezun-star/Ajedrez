@@ -15,17 +15,21 @@
  */
 
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useGameStore } from '@/store/gameStore';
 import { opposite } from '@/engine/constants';
 import { useIsWide } from '@/hooks/useIsWide';
+import { useI18n } from '@/i18n';
 import { Board } from '@/components/board/Board';
 import { SquareFit } from '@/components/board/SquareFit';
 import { PlayerStrip } from '@/components/panel/PlayerStrip';
 import { SidePanel } from '@/components/panel/SidePanel';
 import { IconButton } from '@/components/ui/IconButton';
+import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { SunIcon, MoonIcon, VolumeIcon, MuteIcon } from '@/components/ui/Icons';
 
 export function GameScreen() {
+  const { t } = useI18n();
   const orientation = useGameStore((s) => s.orientation);
   const settings = useGameStore((s) => s.settings);
   const toggleTheme = useGameStore((s) => s.toggleTheme);
@@ -40,14 +44,15 @@ export function GameScreen() {
     <div className="mx-auto flex h-[100dvh] w-full max-w-6xl flex-col overflow-hidden px-2 py-2 sm:px-4 sm:py-3">
       {/* Header */}
       <header className="mb-2 flex shrink-0 items-center justify-between">
-        <span className="font-display text-lg font-extrabold sm:text-xl">
+        <Link to="/" className="font-display text-lg font-extrabold sm:text-xl">
           bot<span className="text-brand-400">Agedrez</span>
-        </span>
-        <div className="flex gap-2">
-          <IconButton label={settings.muted ? 'Activar sonido' : 'Silenciar'} onClick={toggleMute}>
+        </Link>
+        <div className="flex items-center gap-2">
+          <LanguageSelector compact />
+          <IconButton label={t('nav.play')} onClick={toggleMute}>
             {settings.muted ? <MuteIcon className="h-5 w-5" /> : <VolumeIcon className="h-5 w-5" />}
           </IconButton>
-          <IconButton label="Cambiar tema" onClick={toggleTheme}>
+          <IconButton label={t('nav.play')} onClick={toggleTheme}>
             {settings.theme === 'dark' ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
           </IconButton>
         </div>
