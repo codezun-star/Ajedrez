@@ -151,10 +151,15 @@ export function HomeScreen() {
 
       {/* Bottom CTA */}
       <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-        <div className="card overflow-hidden bg-gradient-to-br from-brand-600/30 to-surface-900 p-8 text-center sm:p-12">
-          <h2 className="font-display text-3xl font-extrabold sm:text-4xl">{t('home.ctaTitle')}</h2>
-          <p className="mx-auto mt-3 max-w-lg text-slate-300">{t('home.ctaDesc')}</p>
-          <Link to="/jugar" className="btn-primary mt-6 px-8 py-3.5 text-lg">
+        <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-8 text-center shadow-glow sm:p-12">
+          <h2 className="font-display text-3xl font-extrabold text-[#ffffff] sm:text-4xl">
+            {t('home.ctaTitle')}
+          </h2>
+          <p className="mx-auto mt-3 max-w-lg text-[#fdecec]">{t('home.ctaDesc')}</p>
+          <Link
+            to="/jugar"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 text-lg font-semibold text-brand-700 shadow-lg transition-transform hover:-translate-y-0.5"
+          >
             <PlayIcon className="h-5 w-5" />
             {t('home.ctaButton')}
           </Link>

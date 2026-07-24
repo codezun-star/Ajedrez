@@ -63,6 +63,23 @@ body {
     @apply bg-white/70 border-slate-900/5;
   }
 
+  /* Marketing header/footer — theme-aware so they're not dark bars in light mode. */
+  .site-header {
+    @apply sticky top-0 z-40 border-b border-white/5 bg-surface-950/70 backdrop-blur-xl;
+  }
+  .site-footer {
+    @apply border-t border-white/5 bg-surface-950/40;
+  }
+
+  :root:not(.dark) .site-header {
+    background-color: rgba(255, 255, 255, 0.72);
+    border-color: rgba(15, 23, 42, 0.08);
+  }
+  :root:not(.dark) .site-footer {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(15, 23, 42, 0.08);
+  }
+
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-semibold
            transition-all duration-200 select-none disabled:opacity-40 disabled:cursor-not-allowed

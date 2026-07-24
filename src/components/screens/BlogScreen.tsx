@@ -149,9 +149,12 @@ export function BlogPostScreen() {
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
 
-        <div className="mt-10 rounded-2xl bg-gradient-to-br from-brand-600/25 to-surface-900 p-6 text-center">
-          <p className="text-lg font-semibold text-white">{t('home.ctaTitle')}</p>
-          <Link to="/jugar" className="btn-primary mt-4 px-6 py-3">
+        <div className="mt-10 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 text-center shadow-glow">
+          <p className="text-lg font-semibold text-[#ffffff]">{t('home.ctaTitle')}</p>
+          <Link
+            to="/jugar"
+            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-brand-700 shadow-lg transition-transform hover:-translate-y-0.5"
+          >
             {t('home.ctaPlay')}
           </Link>
         </div>
