@@ -11,6 +11,12 @@ import { Locale } from './locales';
 const en = {
   nav: { play: 'Play', blog: 'Blog', home: 'Home', menu: 'Menu' },
   home: {
+    h1: "Play Chess Online Free Against the Computer",
+    seoTitle: "Play Chess Online Free vs Computer · botAgedrez",
+    seoDescription: "Play chess online free against the computer across 4 levels. No sign-up, no downloads: a from-scratch engine, Elo rating, achievements and beginner guides.",
+    guidesTitle: "Chess guides",
+    guidesSubtitle: "Learn the rules, the openings and the tactics that actually win games.",
+    faqTitle: "Frequently asked questions",
     subtitle:
       'Premium web chess with its own engine and AI. Challenge the machine across 4 levels and climb your Elo.',
     ctaPlay: 'Play now',
@@ -175,11 +181,26 @@ const en = {
     grandmaster: 'Grandmaster',
   },
   blog: {
+    keepReading: "Keep reading",
     title: 'Blog',
     subtitle: 'Guides, tips and stories about chess.',
     read: 'Read',
     back: 'Back to blog',
     minRead: 'min read',
+  },
+  play: {
+    seoTitle: "Play chess online free · botAgedrez",
+    seoDescription: "Start a game against the AI: pick your color, difficulty and time control. Free, no sign-up, straight in your browser.",
+  },
+  faq: {
+    q1: "Is botAgedrez free to play?",
+    a1: "Yes. botAgedrez is completely free, with no ads and no in-game purchases. Open the page and start playing.",
+    q2: "Do I need an account to play?",
+    a2: "No. There is no sign-up. Your Elo, achievements and game history are stored in your own browser.",
+    q3: "Can I play chess offline?",
+    a3: "Yes. The engine and the AI both run on your device, so once the page has loaded you can keep playing without an internet connection.",
+    q4: "How strong is the AI?",
+    a4: "There are four levels, from Easy (~800 Elo) to Expert (~2000 Elo). The AI runs minimax with alpha-beta pruning, so it punishes tactical mistakes.",
   },
   lang: { label: 'Language' },
 };
@@ -189,6 +210,12 @@ export type Messages = typeof en;
 const es: Messages = {
   nav: { play: 'Jugar', blog: 'Blog', home: 'Inicio', menu: 'Menú' },
   home: {
+    h1: "Ajedrez online gratis contra la IA",
+    seoTitle: "Ajedrez online gratis contra la IA · botAgedrez",
+    seoDescription: "Juega al ajedrez online gratis contra la máquina en 4 niveles. Sin registro ni descargas: motor propio, sistema ELO, logros y guías para principiantes.",
+    guidesTitle: "Guías de ajedrez",
+    guidesSubtitle: "Aprende las reglas, las aperturas y las tácticas que más partidas ganan.",
+    faqTitle: "Preguntas frecuentes",
     subtitle:
       'Ajedrez web premium con motor propio e inteligencia artificial. Reta a la máquina en 4 niveles y escala tu ELO.',
     ctaPlay: 'Jugar ahora',
@@ -353,11 +380,26 @@ const es: Messages = {
     grandmaster: 'Gran Maestro',
   },
   blog: {
+    keepReading: "Sigue leyendo",
     title: 'Blog',
     subtitle: 'Guías, consejos e historias sobre ajedrez.',
     read: 'Leer',
     back: 'Volver al blog',
     minRead: 'min de lectura',
+  },
+  play: {
+    seoTitle: "Jugar al ajedrez online gratis · botAgedrez",
+    seoDescription: "Empieza una partida de ajedrez contra la IA: elige color, nivel y ritmo de juego. Gratis, sin registro y directo en tu navegador.",
+  },
+  faq: {
+    q1: "¿Es gratis jugar al ajedrez en botAgedrez?",
+    a1: "Sí. botAgedrez es completamente gratuito y no tiene anuncios ni compras dentro del juego. Solo abre la página y empieza a jugar.",
+    q2: "¿Necesito registrarme para jugar?",
+    a2: "No. No hay cuentas ni registro. Tu ELO, tus logros y tu historial se guardan en tu propio navegador.",
+    q3: "¿Puedo jugar al ajedrez sin conexión?",
+    a3: "Sí. Todo el motor y la IA se ejecutan en tu dispositivo, así que una vez cargada la página puedes seguir jugando sin internet.",
+    q4: "¿Qué nivel tiene la inteligencia artificial?",
+    a4: "Hay cuatro niveles, de Fácil (~800 ELO) a Experto (~2000 ELO). La IA usa minimax con poda alfa-beta, así que castiga los errores tácticos.",
   },
   lang: { label: 'Idioma' },
 };
@@ -365,6 +407,12 @@ const es: Messages = {
 const pt: Messages = {
   nav: { play: 'Jogar', blog: 'Blog', home: 'Início', menu: 'Menu' },
   home: {
+    h1: "Xadrez online grátis contra o computador",
+    seoTitle: "Xadrez online grátis contra o computador · botAgedrez",
+    seoDescription: "Jogue xadrez online grátis contra o computador em 4 níveis. Sem cadastro e sem downloads: motor próprio, rating Elo, conquistas e guias para iniciantes.",
+    guidesTitle: "Guias de xadrez",
+    guidesSubtitle: "Aprenda as regras, as aberturas e as táticas que realmente ganham partidas.",
+    faqTitle: "Perguntas frequentes",
     subtitle:
       'Xadrez web premium com motor próprio e inteligência artificial. Desafie a máquina em 4 níveis e suba o seu Elo.',
     ctaPlay: 'Jogar agora',
@@ -529,11 +577,26 @@ const pt: Messages = {
     grandmaster: 'Grande Mestre',
   },
   blog: {
+    keepReading: "Continue lendo",
     title: 'Blog',
     subtitle: 'Guias, dicas e histórias sobre xadrez.',
     read: 'Ler',
     back: 'Voltar ao blog',
     minRead: 'min de leitura',
+  },
+  play: {
+    seoTitle: "Jogar xadrez online grátis · botAgedrez",
+    seoDescription: "Comece uma partida contra a IA: escolha a cor, o nível e o ritmo de jogo. Grátis, sem cadastro, direto no navegador.",
+  },
+  faq: {
+    q1: "É grátis jogar no botAgedrez?",
+    a1: "Sim. O botAgedrez é totalmente gratuito, sem anúncios e sem compras dentro do jogo. Basta abrir a página e jogar.",
+    q2: "Preciso criar uma conta?",
+    a2: "Não. Não existe cadastro. Seu Elo, suas conquistas e seu histórico ficam salvos no seu próprio navegador.",
+    q3: "Dá para jogar xadrez offline?",
+    a3: "Sim. O motor e a IA rodam no seu dispositivo, então depois que a página carrega você pode continuar jogando sem internet.",
+    q4: "Qual é a força da inteligência artificial?",
+    a4: "São quatro níveis, do Fácil (~800 Elo) ao Especialista (~2000 Elo). A IA usa minimax com poda alfa-beta, então ela pune erros táticos.",
   },
   lang: { label: 'Idioma' },
 };
@@ -541,6 +604,12 @@ const pt: Messages = {
 const fr: Messages = {
   nav: { play: 'Jouer', blog: 'Blog', home: 'Accueil', menu: 'Menu' },
   home: {
+    h1: "Jeu d'échecs en ligne gratuit contre l'ordinateur",
+    seoTitle: "Échecs en ligne gratuits contre l'ordinateur · botAgedrez",
+    seoDescription: "Jouez aux échecs en ligne gratuitement contre l'ordinateur sur 4 niveaux. Sans inscription ni téléchargement : moteur maison, classement Elo, succès et guides.",
+    guidesTitle: "Guides d'échecs",
+    guidesSubtitle: "Apprenez les règles, les ouvertures et les tactiques qui font vraiment gagner.",
+    faqTitle: "Questions fréquentes",
     subtitle:
       "Échecs web premium avec moteur maison et intelligence artificielle. Défiez la machine sur 4 niveaux et faites grimper votre Elo.",
     ctaPlay: 'Jouer',
@@ -705,11 +774,26 @@ const fr: Messages = {
     grandmaster: 'Grand Maître',
   },
   blog: {
+    keepReading: "Continuer la lecture",
     title: 'Blog',
     subtitle: 'Guides, conseils et histoires sur les échecs.',
     read: 'Lire',
     back: 'Retour au blog',
     minRead: 'min de lecture',
+  },
+  play: {
+    seoTitle: "Jouer aux échecs en ligne gratuitement · botAgedrez",
+    seoDescription: "Lancez une partie contre l'IA : choisissez votre couleur, le niveau et la cadence. Gratuit, sans inscription, directement dans votre navigateur.",
+  },
+  faq: {
+    q1: "botAgedrez est-il gratuit ?",
+    a1: "Oui. botAgedrez est entièrement gratuit, sans publicité ni achat intégré. Ouvrez la page et jouez.",
+    q2: "Faut-il créer un compte ?",
+    a2: "Non. Il n'y a aucune inscription. Votre Elo, vos succès et votre historique sont enregistrés dans votre propre navigateur.",
+    q3: "Puis-je jouer aux échecs hors ligne ?",
+    a3: "Oui. Le moteur et l'IA tournent sur votre appareil : une fois la page chargée, vous pouvez continuer à jouer sans connexion.",
+    q4: "Quel est le niveau de l'IA ?",
+    a4: "Il y a quatre niveaux, de Facile (~800 Elo) à Expert (~2000 Elo). L'IA utilise le minimax avec élagage alpha-bêta et sanctionne les erreurs tactiques.",
   },
   lang: { label: 'Langue' },
 };
@@ -717,6 +801,12 @@ const fr: Messages = {
 const de: Messages = {
   nav: { play: 'Spielen', blog: 'Blog', home: 'Start', menu: 'Menü' },
   home: {
+    h1: "Schach online kostenlos gegen den Computer",
+    seoTitle: "Schach online kostenlos gegen Computer · botAgedrez",
+    seoDescription: "Spiele Schach online kostenlos gegen den Computer in 4 Stufen. Ohne Anmeldung und ohne Download: eigene Engine, Elo-Wertung, Erfolge und Anfänger-Guides.",
+    guidesTitle: "Schach-Guides",
+    guidesSubtitle: "Lerne die Regeln, die Eröffnungen und die Taktiken, die Partien wirklich gewinnen.",
+    faqTitle: "Häufige Fragen",
     subtitle:
       'Premium-Web-Schach mit eigener Engine und KI. Fordere die Maschine in 4 Stufen heraus und steigere deine Elo.',
     ctaPlay: 'Jetzt spielen',
@@ -881,11 +971,26 @@ const de: Messages = {
     grandmaster: 'Großmeister',
   },
   blog: {
+    keepReading: "Weiterlesen",
     title: 'Blog',
     subtitle: 'Anleitungen, Tipps und Geschichten über Schach.',
     read: 'Lesen',
     back: 'Zurück zum Blog',
     minRead: 'Min. Lesezeit',
+  },
+  play: {
+    seoTitle: "Schach online kostenlos spielen · botAgedrez",
+    seoDescription: "Starte eine Partie gegen die KI: Farbe, Schwierigkeit und Bedenkzeit wählen. Kostenlos, ohne Anmeldung, direkt im Browser.",
+  },
+  faq: {
+    q1: "Ist botAgedrez kostenlos?",
+    a1: "Ja. botAgedrez ist komplett kostenlos, ohne Werbung und ohne In-Game-Käufe. Seite öffnen und losspielen.",
+    q2: "Brauche ich ein Konto?",
+    a2: "Nein. Es gibt keine Anmeldung. Deine Elo-Zahl, deine Erfolge und dein Verlauf werden in deinem eigenen Browser gespeichert.",
+    q3: "Kann ich offline Schach spielen?",
+    a3: "Ja. Engine und KI laufen auf deinem Gerät. Sobald die Seite geladen ist, kannst du ohne Internet weiterspielen.",
+    q4: "Wie stark ist die KI?",
+    a4: "Es gibt vier Stufen, von Leicht (~800 Elo) bis Experte (~2000 Elo). Die KI nutzt Minimax mit Alpha-Beta-Schnitt und bestraft taktische Fehler.",
   },
   lang: { label: 'Sprache' },
 };
@@ -893,6 +998,12 @@ const de: Messages = {
 const ru: Messages = {
   nav: { play: 'Играть', blog: 'Блог', home: 'Главная', menu: 'Меню' },
   home: {
+    h1: "Шахматы онлайн бесплатно против компьютера",
+    seoTitle: "Шахматы онлайн бесплатно против компьютера · botAgedrez",
+    seoDescription: "Играйте в шахматы онлайн бесплатно против компьютера на 4 уровнях. Без регистрации и скачивания: собственный движок, рейтинг Эло, достижения и руководства.",
+    guidesTitle: "Руководства по шахматам",
+    guidesSubtitle: "Изучите правила, дебюты и тактику, которая действительно выигрывает партии.",
+    faqTitle: "Частые вопросы",
     subtitle:
       'Премиум веб-шахматы с собственным движком и ИИ. Бросьте вызов машине на 4 уровнях и повышайте рейтинг Эло.',
     ctaPlay: 'Играть',
@@ -1057,11 +1168,26 @@ const ru: Messages = {
     grandmaster: 'Гроссмейстер',
   },
   blog: {
+    keepReading: "Читать дальше",
     title: 'Блог',
     subtitle: 'Руководства, советы и истории о шахматах.',
     read: 'Читать',
     back: 'Назад к блогу',
     minRead: 'мин чтения',
+  },
+  play: {
+    seoTitle: "Играть в шахматы онлайн бесплатно · botAgedrez",
+    seoDescription: "Начните партию против ИИ: выберите цвет, уровень и контроль времени. Бесплатно, без регистрации, прямо в браузере.",
+  },
+  faq: {
+    q1: "Игра на botAgedrez бесплатная?",
+    a1: "Да. botAgedrez полностью бесплатен, без рекламы и внутриигровых покупок. Просто откройте страницу и играйте.",
+    q2: "Нужна ли регистрация?",
+    a2: "Нет. Регистрации нет. Ваш рейтинг Эло, достижения и история партий хранятся в вашем браузере.",
+    q3: "Можно ли играть в шахматы офлайн?",
+    a3: "Да. Движок и ИИ работают на вашем устройстве, поэтому после загрузки страницы можно продолжать игру без интернета.",
+    q4: "Насколько силён искусственный интеллект?",
+    a4: "Есть четыре уровня — от лёгкого (~800 Эло) до эксперта (~2000 Эло). ИИ использует минимакс с альфа-бета отсечением и наказывает за тактические ошибки.",
   },
   lang: { label: 'Язык' },
 };
@@ -1069,6 +1195,12 @@ const ru: Messages = {
 const hi: Messages = {
   nav: { play: 'खेलें', blog: 'ब्लॉग', home: 'होम', menu: 'मेन्यू' },
   home: {
+    h1: "कंप्यूटर के खिलाफ मुफ़्त ऑनलाइन शतरंज",
+    seoTitle: "ऑनलाइन शतरंज मुफ़्त — कंप्यूटर के खिलाफ · botAgedrez",
+    seoDescription: "कंप्यूटर के खिलाफ 4 स्तरों पर मुफ़्त ऑनलाइन शतरंज खेलें। बिना रजिस्ट्रेशन और बिना डाउनलोड: अपना इंजन, Elo रेटिंग, उपलब्धियाँ और शुरुआती गाइड।",
+    guidesTitle: "शतरंज गाइड",
+    guidesSubtitle: "नियम, ओपनिंग और वे रणनीतियाँ सीखें जो सच में बाज़ी जिताती हैं।",
+    faqTitle: "अक्सर पूछे जाने वाले प्रश्न",
     subtitle:
       'अपने इंजन और एआई वाला प्रीमियम वेब शतरंज। 4 स्तरों पर मशीन को चुनौती दें और अपनी एलो बढ़ाएँ।',
     ctaPlay: 'अभी खेलें',
@@ -1233,11 +1365,26 @@ const hi: Messages = {
     grandmaster: 'ग्रैंडमास्टर',
   },
   blog: {
+    keepReading: "आगे पढ़ें",
     title: 'ब्लॉग',
     subtitle: 'शतरंज पर गाइड, सुझाव और कहानियाँ।',
     read: 'पढ़ें',
     back: 'ब्लॉग पर वापस',
     minRead: 'मिनट पढ़ें',
+  },
+  play: {
+    seoTitle: "ऑनलाइन शतरंज मुफ़्त खेलें · botAgedrez",
+    seoDescription: "AI के खिलाफ बाज़ी शुरू करें: रंग, कठिनाई और समय चुनें। मुफ़्त, बिना रजिस्ट्रेशन, सीधे ब्राउज़र में।",
+  },
+  faq: {
+    q1: "क्या botAgedrez खेलना मुफ़्त है?",
+    a1: "हाँ। botAgedrez पूरी तरह मुफ़्त है, न विज्ञापन हैं न इन-गेम खरीदारी। बस पेज खोलें और खेलना शुरू करें।",
+    q2: "क्या खेलने के लिए अकाउंट चाहिए?",
+    a2: "नहीं। कोई रजिस्ट्रेशन नहीं है। आपकी Elo रेटिंग, उपलब्धियाँ और इतिहास आपके अपने ब्राउज़र में सेव होते हैं।",
+    q3: "क्या मैं ऑफ़लाइन शतरंज खेल सकता हूँ?",
+    a3: "हाँ। इंजन और AI आपके डिवाइस पर चलते हैं, इसलिए पेज लोड होने के बाद आप बिना इंटरनेट के भी खेल सकते हैं।",
+    q4: "AI कितना मजबूत है?",
+    a4: "चार स्तर हैं, आसान (~800 Elo) से विशेषज्ञ (~2000 Elo) तक। AI अल्फा-बीटा प्रूनिंग के साथ मिनिमैक्स चलाता है, इसलिए यह रणनीतिक गलतियों को सज़ा देता है।",
   },
   lang: { label: 'भाषा' },
 };
@@ -1245,6 +1392,12 @@ const hi: Messages = {
 const zh: Messages = {
   nav: { play: '开始', blog: '博客', home: '首页', menu: '菜单' },
   home: {
+    h1: "免费在线国际象棋 · 与电脑对战",
+    seoTitle: "免费在线国际象棋 — 与电脑对战 · botAgedrez",
+    seoDescription: "免费在线与电脑下国际象棋，共 4 个难度等级。无需注册、无需下载：自研引擎、Elo 等级分、成就系统和新手指南。",
+    guidesTitle: "国际象棋指南",
+    guidesSubtitle: "学习规则、开局和真正能赢棋的战术。",
+    faqTitle: "常见问题",
     subtitle: '拥有自研引擎和 AI 的高级网页国际象棋。在 4 个难度挑战机器，提升你的 Elo。',
     ctaPlay: '立即开始',
     ctaBlog: '阅读博客',
@@ -1408,11 +1561,26 @@ const zh: Messages = {
     grandmaster: '特级大师',
   },
   blog: {
+    keepReading: "继续阅读",
     title: '博客',
     subtitle: '关于国际象棋的指南、技巧和故事。',
     read: '阅读',
     back: '返回博客',
     minRead: '分钟阅读',
+  },
+  play: {
+    seoTitle: "免费在线下国际象棋 · botAgedrez",
+    seoDescription: "开始与 AI 对局：选择棋色、难度和时间控制。免费、无需注册，直接在浏览器中进行。",
+  },
+  faq: {
+    q1: "botAgedrez 是免费的吗？",
+    a1: "是的。botAgedrez 完全免费，没有广告，也没有游戏内购买。打开页面即可开始下棋。",
+    q2: "需要注册账号吗？",
+    a2: "不需要。没有注册流程。你的 Elo 等级分、成就和对局历史都保存在你自己的浏览器中。",
+    q3: "可以离线下棋吗？",
+    a3: "可以。引擎和 AI 都在你的设备上运行，页面加载完成后即使断网也能继续对弈。",
+    q4: "AI 的棋力如何？",
+    a4: "共有四个等级，从简单（约 800 Elo）到专家（约 2000 Elo）。AI 使用带 Alpha-Beta 剪枝的极小化极大搜索，会抓住战术失误。",
   },
   lang: { label: '语言' },
 };
@@ -1420,6 +1588,12 @@ const zh: Messages = {
 const ja: Messages = {
   nav: { play: 'プレイ', blog: 'ブログ', home: 'ホーム', menu: 'メニュー' },
   home: {
+    h1: "無料オンラインチェス — AIと対戦",
+    seoTitle: "無料オンラインチェス AI対戦 · botAgedrez",
+    seoDescription: "コンピュータと無料でオンラインチェス。4段階の難易度、登録不要・ダウンロード不要。自作エンジン、Eloレーティング、実績、初心者向けガイド付き。",
+    guidesTitle: "チェスガイド",
+    guidesSubtitle: "ルール、序盤、そして実際に勝てる戦術を学びましょう。",
+    faqTitle: "よくある質問",
     subtitle: '独自エンジンとAIを備えたプレミアムなWebチェスClient。4段階でマシンに挑み、Eloを上げよう。',
     ctaPlay: '今すぐプレイ',
     ctaBlog: 'ブログを読む',
@@ -1583,11 +1757,26 @@ const ja: Messages = {
     grandmaster: 'グランドマスター',
   },
   blog: {
+    keepReading: "続けて読む",
     title: 'ブログ',
     subtitle: 'チェスのガイド、コツ、物語。',
     read: '読む',
     back: 'ブログへ戻る',
     minRead: '分で読める',
+  },
+  play: {
+    seoTitle: "無料でオンラインチェスをプレイ · botAgedrez",
+    seoDescription: "AIとの対局を開始：手番の色、難易度、持ち時間を選ぶだけ。登録不要、ブラウザでそのまま遊べます。",
+  },
+  faq: {
+    q1: "botAgedrez は無料ですか？",
+    a1: "はい。botAgedrez は完全無料で、広告もアプリ内課金もありません。ページを開けばすぐに対局できます。",
+    q2: "アカウント登録は必要ですか？",
+    a2: "いいえ。登録は不要です。Eloレーティング、実績、対局履歴はご自身のブラウザに保存されます。",
+    q3: "オフラインでもプレイできますか？",
+    a3: "はい。エンジンもAIも端末上で動作するため、ページの読み込みが終わればインターネットなしで対局を続けられます。",
+    q4: "AIの強さはどれくらいですか？",
+    a4: "難易度は4段階、イージー（約800 Elo）からエキスパート（約2000 Elo）まで。AIはアルファベータ枝刈り付きミニマックスで探索し、戦術的なミスを見逃しません。",
   },
   lang: { label: '言語' },
 };
@@ -1595,6 +1784,12 @@ const ja: Messages = {
 const ar: Messages = {
   nav: { play: 'العب', blog: 'المدونة', home: 'الرئيسية', menu: 'القائمة' },
   home: {
+    h1: "شطرنج أونلاين مجاني ضد الكمبيوتر",
+    seoTitle: "شطرنج أونلاين مجاني ضد الكمبيوتر · botAgedrez",
+    seoDescription: "العب الشطرنج أونلاين مجانًا ضد الكمبيوتر على 4 مستويات. بدون تسجيل وبدون تحميل: محرك خاص، تصنيف إيلو، إنجازات وأدلة للمبتدئين.",
+    guidesTitle: "أدلة الشطرنج",
+    guidesSubtitle: "تعلّم القواعد والافتتاحيات والتكتيكات التي تربح المباريات فعلاً.",
+    faqTitle: "الأسئلة الشائعة",
     subtitle: 'شطرنج ويب مميّز بمحرّك خاص وذكاء اصطناعي. تحدَّ الآلة عبر 4 مستويات وارفع تصنيف الإيلو.',
     ctaPlay: 'العب الآن',
     ctaBlog: 'اقرأ المدونة',
@@ -1758,11 +1953,26 @@ const ar: Messages = {
     grandmaster: 'أستاذ كبير',
   },
   blog: {
+    keepReading: "تابع القراءة",
     title: 'المدونة',
     subtitle: 'أدلة ونصائح وقصص عن الشطرنج.',
     read: 'اقرأ',
     back: 'العودة إلى المدونة',
     minRead: 'دقيقة قراءة',
+  },
+  play: {
+    seoTitle: "العب الشطرنج أونلاين مجانًا · botAgedrez",
+    seoDescription: "ابدأ مباراة ضد الذكاء الاصطناعي: اختر لونك ومستوى الصعوبة والتوقيت. مجانًا، بدون تسجيل، مباشرة في متصفحك.",
+  },
+  faq: {
+    q1: "هل اللعب على botAgedrez مجاني؟",
+    a1: "نعم. botAgedrez مجاني بالكامل، بلا إعلانات وبلا مشتريات داخل اللعبة. افتح الصفحة وابدأ اللعب.",
+    q2: "هل أحتاج إلى حساب؟",
+    a2: "لا. لا يوجد تسجيل. تصنيف إيلو والإنجازات وسجل المباريات تُحفظ في متصفحك أنت.",
+    q3: "هل يمكنني اللعب دون اتصال بالإنترنت؟",
+    a3: "نعم. المحرك والذكاء الاصطناعي يعملان على جهازك، لذا بعد تحميل الصفحة يمكنك متابعة اللعب بدون إنترنت.",
+    q4: "ما مستوى قوة الذكاء الاصطناعي؟",
+    a4: "هناك أربعة مستويات، من السهل (~800 إيلو) إلى الخبير (~2000 إيلو). يستخدم الذكاء الاصطناعي خوارزمية مينيماكس مع تقليم ألفا-بيتا، لذا يعاقب الأخطاء التكتيكية.",
   },
   lang: { label: 'اللغة' },
 };

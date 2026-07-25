@@ -118,6 +118,19 @@ body {
   .card {
     @apply glass rounded-2xl shadow-xl;
   }
+
+  /* Floating menus sit on top of the board and article text, so they need a
+     near-opaque backdrop — the 70%-translucent `.glass` left the board legible
+     straight through the language names. */
+  .menu-panel {
+    @apply rounded-xl border border-white/10 shadow-2xl backdrop-blur-xl;
+    background-color: rgba(18, 23, 43, 0.97);
+  }
+
+  :root:not(.dark) .menu-panel {
+    background-color: rgba(255, 255, 255, 0.98);
+    border-color: rgba(15, 23, 42, 0.1);
+  }
 }
 
 /* The board must never trigger the browser's own touch scrolling/zooming while
@@ -173,6 +186,31 @@ body {
 }
 .article hr {
   @apply my-8 border-white/10;
+}
+/* Tables are wrapped by the content loader so a wide one scrolls inside its
+   own box instead of widening the page. */
+.article .table-wrap {
+  @apply my-6 overflow-x-auto;
+}
+.article table {
+  @apply w-full border-collapse text-sm;
+  min-width: 22rem;
+}
+.article th {
+  @apply border-b border-white/15 px-3 py-2 text-left font-semibold text-white;
+}
+.article td {
+  @apply border-b border-white/5 px-3 py-2 align-top;
+}
+.article tbody tr:last-child td {
+  @apply border-b-0;
+}
+:root:not(.dark) .article th {
+  border-color: rgba(15, 23, 42, 0.18);
+  color: #0f172a;
+}
+:root:not(.dark) .article td {
+  border-color: rgba(15, 23, 42, 0.08);
 }
 .article blockquote {
   @apply my-4 border-l-2 border-brand-400/50 pl-4 italic text-slate-400;
@@ -247,6 +285,19 @@ body {
 :root:not(.dark) [class~='text-brand-200'],
 :root:not(.dark) [class~='text-brand-300'] {
   color: #c5191a;
+}
+
+/*
+ * Hover variants need their own rules. Tailwind emits `hover:text-white` as the
+ * class token `hover:text-white`, which `[class~='text-white']` above does NOT
+ * match — so without these, hovering a footer or header link in light mode
+ * turned it pure white on a white surface and it disappeared.
+ */
+:root:not(.dark) [class~='hover:text-white']:hover {
+  color: #0f172a;
+}
+:root:not(.dark) [class~='hover:text-slate-200']:hover {
+  color: #1e293b;
 }
 
 /* Raised translucent surfaces → subtle dark tints on light. */

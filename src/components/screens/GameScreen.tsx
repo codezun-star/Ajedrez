@@ -24,6 +24,7 @@ import { useGameStore } from '@/store/gameStore';
 import { opposite } from '@/engine/constants';
 import { useIsWide, useIsShort } from '@/hooks/useIsWide';
 import { useI18n } from '@/i18n';
+import { homePath } from '@/i18n/routes';
 import { Board } from '@/components/board/Board';
 import { SquareFit } from '@/components/board/SquareFit';
 import { PlayerStrip } from '@/components/panel/PlayerStrip';
@@ -33,7 +34,7 @@ import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { SunIcon, MoonIcon, VolumeIcon, MuteIcon } from '@/components/ui/Icons';
 
 export function GameScreen() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const orientation = useGameStore((s) => s.orientation);
   const settings = useGameStore((s) => s.settings);
   const toggleTheme = useGameStore((s) => s.toggleTheme);
@@ -65,7 +66,7 @@ export function GameScreen() {
       {/* Header — dropped in short landscape; its controls move into the panel */}
       {!compactLandscape && (
         <header className="mb-2 flex shrink-0 items-center justify-between gap-2">
-          <Link to="/" className="min-w-0 truncate font-display text-lg font-extrabold sm:text-xl">
+          <Link to={homePath(locale)} className="min-w-0 truncate font-display text-lg font-extrabold sm:text-xl">
             bot<span className="text-brand-400">Agedrez</span>
           </Link>
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">{chrome}</div>

@@ -13,23 +13,25 @@ import { Link, useLocation } from 'react-router-dom';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { useI18n } from '@/i18n';
+import { blogPath, homePath, playPath } from '@/i18n/routes';
 import { SunIcon, MoonIcon } from '@/components/ui/Icons';
 import { IconButton } from '@/components/ui/IconButton';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 
 export function SiteHeader() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const settings = useGameStore((s) => s.settings);
   const toggleTheme = useGameStore((s) => s.toggleTheme);
   const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const home = homePath(locale);
   const links = [
-    { to: '/', label: t('nav.home') },
-    { to: '/blog', label: t('nav.blog') },
+    { to: home, label: t('nav.home') },
+    { to: blogPath(locale), label: t('nav.blog') },
   ];
 
-  const isActive = (to: string) => (to === '/' ? pathname === '/' : pathname.startsWith(to));
+  const isActive = (to: string) => (to === home ? pathname === home : pathname.startsWith(to));
 
   // Navigating away closes the panel; so does Escape.
   useEffect(() => setMenuOpen(false), [pathname]);
@@ -48,7 +50,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:px-6">
-        <Link to="/" className="min-w-0 truncate font-display text-lg font-extrabold sm:text-xl">
+        <Link to={home} className="min-w-0 truncate font-display text-lg font-extrabold sm:text-xl">
           bot<span className="text-brand-400">Agedrez</span>
         </Link>
 
@@ -69,14 +71,14 @@ export function SiteHeader() {
           <IconButton label={t('nav.home')} onClick={toggleTheme} aria-label="theme">
             {themeIcon}
           </IconButton>
-          <Link to="/jugar" className="btn-primary ml-1 px-4 py-2 text-sm">
+          <Link to={playPath(locale)} className="btn-primary ml-1 px-4 py-2 text-sm">
             {t('nav.play')}
           </Link>
         </nav>
 
         {/* Phone — the CTA stays reachable, the rest folds into the panel */}
         <div className="flex shrink-0 items-center gap-1.5 sm:hidden">
-          <Link to="/jugar" className="btn-primary px-3 py-2 text-sm">
+          <Link to={playPath(locale)} className="btn-primary px-3 py-2 text-sm">
             {t('nav.play')}
           </Link>
           <IconButton

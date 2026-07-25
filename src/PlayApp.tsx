@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useGameStore } from '@/store/gameStore';
 import { useI18n } from '@/i18n';
+import { LOCALES } from '@/i18n/locales';
+import { playPath } from '@/i18n/routes';
 import { useSeo } from '@/hooks/useSeo';
 import { useAI } from '@/hooks/useAI';
 import { useClock } from '@/hooks/useClock';
@@ -20,12 +22,21 @@ import { GameOverModal } from '@/components/modals/GameOverModal';
 
 type View = 'app' | 'stats';
 
+/** Every language's game page — the hreflang set shared by all of them. */
+const PLAY_ALTERNATES = LOCALES.map((l) => ({ locale: l.code, path: playPath(l.code) }));
+
 export default function PlayApp() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const screen = useGameStore((s) => s.screen);
   const [view, setView] = useState<View>('app');
 
-  useSeo({ title: `${t('nav.play')} · botAgedrez`, description: t('home.subtitle'), path: '/jugar' });
+  useSeo({
+    title: t('play.seoTitle'),
+    description: t('play.seoDescription'),
+    path: playPath(locale),
+    locale,
+    alternates: PLAY_ALTERNATES,
+  });
 
   const play = useSound();
   useAI();

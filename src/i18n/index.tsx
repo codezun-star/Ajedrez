@@ -81,6 +81,9 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
+// The provider and its hook belong together; splitting them to satisfy fast
+// refresh would only add an indirection file.
+// eslint-disable-next-line react-refresh/only-export-components
 export function useI18n(): I18nValue {
   const ctx = useContext(I18nContext);
   if (!ctx) throw new Error('useI18n must be used within <I18nProvider>');

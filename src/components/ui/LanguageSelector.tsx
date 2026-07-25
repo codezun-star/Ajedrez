@@ -4,9 +4,13 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GlobeIcon, CheckIcon } from 'lucide-react';
 import { useI18n } from '@/i18n';
-import { LOCALES } from '@/i18n/locales';
+import { LOCALES, Locale } from '@/i18n/locales';
+import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
+import { getPost, translatedSlug } from '@/content/blog';
+import { FlagIcon } from './FlagIcon';
 
 interface LanguageSelectorProps {
   /** Icon-only trigger (no language name) — for tight toolbars. */
@@ -23,8 +27,31 @@ export function LanguageSelector({ compact = false, align = 'end' }: LanguageSel
   const { locale, setLocale, t } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
+
+  /**
+   * The current page's address in another language. Switching language is a
+   * navigation now that the locale lives in the URL — and from an article it
+   * lands on that article's translation rather than dropping you on the index.
+   */
+  const pathIn = (next: Locale): string => {
+    const [, section, slug] = pathname.split('/').filter(Boolean);
+    if (section === 'play') return playPath(next);
+    if (section !== 'blog') return homePath(next);
+    if (!slug) return blogPath(next);
+    const post = getPost(locale, slug);
+    const translated = post && translatedSlug(post, next);
+    return translated ? postPath(next, translated) : blogPath(next);
+  };
+
+  const choose = (next: Locale) => {
+    setLocale(next);
+    navigate(pathIn(next));
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -45,16 +72,16 @@ export function LanguageSelector({ compact = false, align = 'end' }: LanguageSel
                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60"
       >
         <GlobeIcon className="h-4 w-4 shrink-0" />
-        <span className="text-base leading-none">{current.flag}</span>
-        {!compact && <span className="truncate">{current.name}</span>}
+        <FlagIcon code={current.code} />
+        {/* The name always shows in the roomy mobile panel; in the compact
+            toolbar trigger it only appears once the header has space for it. */}
+        <span className={compact ? 'hidden truncate lg:inline' : 'truncate'}>{current.name}</span>
       </button>
 
       {open && (
         <div
-          className={`glass absolute z-50 mt-2 max-h-[70vh] w-48 max-w-[calc(100vw-2rem)]
-                      overflow-y-auto rounded-xl p-1 shadow-xl ${
-                        align === 'start' ? 'left-0' : 'right-0'
-                      }`}
+          className={`menu-panel absolute z-50 mt-2 max-h-[70vh] w-48 max-w-[calc(100vw-2rem)]
+                      overflow-y-auto p-1 ${align === 'start' ? 'left-0' : 'right-0'}`}
           role="listbox"
         >
           {LOCALES.map((l) => (
@@ -62,15 +89,12 @@ export function LanguageSelector({ compact = false, align = 'end' }: LanguageSel
               key={l.code}
               role="option"
               aria-selected={l.code === locale}
-              onClick={() => {
-                setLocale(l.code);
-                setOpen(false);
-              }}
+              onClick={() => choose(l.code)}
               className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm transition-colors ${
                 l.code === locale ? 'bg-brand-500/25 text-white' : 'text-slate-300 hover:bg-white/10'
               }`}
             >
-              <span className="text-base leading-none">{l.flag}</span>
+              <FlagIcon code={l.code} />
               <span className="flex-1 text-left">{l.name}</span>
               {l.code === locale && <CheckIcon className="h-4 w-4 text-brand-300" />}
             </button>

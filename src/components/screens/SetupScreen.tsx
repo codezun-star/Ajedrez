@@ -13,6 +13,7 @@ import { useGameStore, GameConfig } from '@/store/gameStore';
 import { DIFFICULTY_LIST, Difficulty } from '@/ai/difficulty';
 import { TIME_CONTROL_LIST, TimeControlId } from '@/constants/timeControls';
 import { useI18n } from '@/i18n';
+import { homePath } from '@/i18n/routes';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { eloRankKey } from '@/utils/elo';
 import { ChartIcon } from '@/components/ui/Icons';
@@ -24,7 +25,7 @@ const fadeUp = {
 };
 
 export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const startGame = useGameStore((s) => s.startGame);
   const profile = useGameStore((s) => s.profile);
   const savedConfig = useGameStore((s) => s.config);
@@ -46,7 +47,7 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
     <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 px-4 py-6 sm:gap-8">
       {/* Top bar */}
       <div className="flex items-center justify-between gap-2">
-        <Link to="/" className="btn-ghost text-sm">
+        <Link to={homePath(locale)} className="btn-ghost text-sm">
           <HomeIcon className="h-4 w-4 shrink-0" />
           <span className="truncate">{t('nav.home')}</span>
         </Link>

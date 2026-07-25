@@ -1,6 +1,10 @@
 /**
- * HomeScreen — the marketing landing page. Hero, feature grid, a three-step
- * "how it works", and a closing call to action. Fully translated and SEO-tagged.
+ * HomeScreen — the language hub at `/:locale`, the page a market lands on.
+ *
+ * Hero, feature grid, a three-step "how it works", that language's guides, an
+ * FAQ (backed by FAQPage structured data so it can win a rich result) and a
+ * closing call to action. Fully translated and SEO-tagged, with hreflang links
+ * to its nine siblings.
  */
 
 import { Link } from 'react-router-dom';
@@ -17,9 +21,14 @@ import {
   Gamepad2Icon,
   MousePointerClickIcon,
   TrophyIcon,
+  CalendarIcon,
+  ClockIcon,
 } from 'lucide-react';
 import { useI18n } from '@/i18n';
+import { LOCALES, Locale } from '@/i18n/locales';
+import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
 import { useSeo, SITE_URL } from '@/hooks/useSeo';
+import { postsFor } from '@/content/blog';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
@@ -29,14 +38,22 @@ const fadeUp = {
   show: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.4 } }),
 };
 
+/** Every language's hub — the hreflang set shared by all hub pages. */
+const HUB_ALTERNATES = LOCALES.map((l) => ({ locale: l.code, path: homePath(l.code) }));
+
 export function HomeScreen() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   useSeo({
-    title: 'botAgedrez · ' + t('home.subtitle').slice(0, 60),
-    description: t('home.subtitle'),
-    path: '/',
+    title: t('home.seoTitle'),
+    description: t('home.seoDescription'),
+    path: homePath(locale),
     image: `${SITE_URL}/og.png`,
+    locale,
+    alternates: HUB_ALTERNATES,
   });
+
+  const posts = postsFor(locale);
+  const faq = [1, 2, 3, 4].map((n) => ({ q: t(`faq.q${n}`), a: t(`faq.a${n}`) }));
 
   const features = [
     { icon: CpuIcon, title: t('home.fEngineTitle'), desc: t('home.fEngineDesc') },
@@ -69,16 +86,17 @@ export function HomeScreen() {
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/15 px-3 py-1 text-xs font-semibold text-brand-300 ring-1 ring-brand-400/20">
             ♟ botAgedrez
           </span>
+          {/* Keyword-bearing H1 — the brand itself is already above in the badge. */}
           <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight xs:text-4xl sm:text-5xl lg:text-6xl">
-            bot<span className="text-brand-400">Agedrez</span>
+            {t('home.h1')}
           </h1>
           <p className="mt-4 max-w-lg text-base text-slate-300 sm:text-lg">{t('home.subtitle')}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/jugar" className="btn-primary px-5 py-3 text-base sm:px-6">
+            <Link to={playPath(locale)} className="btn-primary px-5 py-3 text-base sm:px-6">
               <PlayIcon className="h-5 w-5 shrink-0" />
               <span className="truncate">{t('home.ctaPlay')}</span>
             </Link>
-            <Link to="/blog" className="btn-ghost px-5 py-3 text-base sm:px-6">
+            <Link to={blogPath(locale)} className="btn-ghost px-5 py-3 text-base sm:px-6">
               <span className="truncate">{t('home.ctaBlog')}</span>
               <ArrowRightIcon className="h-4 w-4 shrink-0" />
             </Link>
@@ -149,6 +167,61 @@ export function HomeScreen() {
         </div>
       </section>
 
+      {/* Guides written in this language */}
+      {posts.length > 0 && (
+        <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-2xl font-bold xs:text-3xl">{t('home.guidesTitle')}</h2>
+            <p className="mt-3 text-slate-400">{t('home.guidesSubtitle')}</p>
+          </div>
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
+            {posts.map((post) => (
+              <Link
+                key={post.slug}
+                to={postPath(locale, post.slug)}
+                className="card block p-5 transition-transform hover:-translate-y-0.5"
+              >
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+                  <span className="inline-flex items-center gap-1">
+                    <CalendarIcon className="h-3.5 w-3.5 shrink-0" />
+                    {post.date}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <ClockIcon className="h-3.5 w-3.5 shrink-0" />
+                    {post.readingMinutes} {t('blog.minRead')}
+                  </span>
+                </div>
+                <h3 className="mt-2 font-display text-lg font-bold text-white sm:text-xl">
+                  {post.title}
+                </h3>
+                <p className="mt-1.5 text-sm text-slate-400">{post.description}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-300">
+                  {t('blog.read')}
+                  <ArrowRightIcon className="h-4 w-4 shrink-0" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* FAQ — also emitted as FAQPage structured data below. */}
+      <section className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+        <h2 className="text-center font-display text-2xl font-bold xs:text-3xl">
+          {t('home.faqTitle')}
+        </h2>
+        <div className="mt-8 space-y-3">
+          {faq.map((item) => (
+            <details key={item.q} className="rounded-2xl bg-white/5 p-5">
+              <summary className="cursor-pointer list-none font-semibold text-white">
+                {item.q}
+              </summary>
+              <p className="mt-2 text-sm leading-relaxed text-slate-400">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       {/* Bottom CTA */}
       <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 text-center shadow-glow sm:p-12">
@@ -157,7 +230,7 @@ export function HomeScreen() {
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[#fdecec]">{t('home.ctaDesc')}</p>
           <Link
-            to="/jugar"
+            to={playPath(locale)}
             className="mt-6 inline-flex max-w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-semibold text-brand-700 shadow-lg transition-transform hover:-translate-y-0.5 sm:px-8 sm:text-lg"
           >
             <PlayIcon className="h-5 w-5" />
@@ -167,7 +240,55 @@ export function HomeScreen() {
       </section>
 
       <SiteFooter />
+      <HomeJsonLd
+        faq={faq}
+        locale={locale}
+        title={t('home.seoTitle')}
+        description={t('home.seoDescription')}
+      />
     </div>
+  );
+}
+
+/** WebApplication + FAQPage structured data for this language's hub. */
+function HomeJsonLd({
+  faq,
+  locale,
+  title,
+  description,
+}: {
+  faq: { q: string; a: string }[];
+  locale: Locale;
+  title: string;
+  description: string;
+}) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        name: 'botAgedrez',
+        url: SITE_URL + homePath(locale),
+        applicationCategory: 'GameApplication',
+        operatingSystem: 'Web',
+        inLanguage: locale,
+        headline: title,
+        description,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      },
+      {
+        '@type': 'FAQPage',
+        inLanguage: locale,
+        mainEntity: faq.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+    ],
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   );
 }
 

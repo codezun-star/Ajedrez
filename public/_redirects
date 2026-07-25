@@ -1,3 +1,15 @@
-# Cloudflare Pages: serve the SPA for every path so client-side routes
-# (/, /jugar, /blog, /blog/:slug) deep-link correctly.
+# Cloudflare Pages routing.
+#
+# 1) The pre-i18n URLs are permanently moved into the language trees, so any
+#    existing link or indexed page keeps its ranking instead of 404-ing.
+# 2) Everything else falls through to the SPA, which resolves the client-side
+#    routes (/:locale, /:locale/play, /:locale/blog, /:locale/blog/:slug).
+
+/jugar                                  /es/play                                    301
+/blog                                   /es/blog                                    301
+/blog/como-mejorar-en-ajedrez           /es/blog/como-mejorar-en-ajedrez            301
+/blog/chess-opening-principles          /en/blog/chess-opening-principles           301
+/blog/regras-do-xadrez-para-iniciantes  /pt/blog/regras-do-xadrez-para-iniciantes   301
+/blog/regles-des-echecs-simplement      /fr/blog/regles-des-echecs-simplement       301
+
 /*    /index.html   200
