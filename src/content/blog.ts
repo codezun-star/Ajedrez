@@ -114,11 +114,21 @@ function wrapTables(html: string): string {
     .replace(/<\/table>/g, '</table></div>');
 }
 
+/**
+ * `html` and `faq` are computed on first access rather than up front.
+ *
+ * Only the article page needs them, but this module is also pulled in by the
+ * hub and the language switcher — so eager parsing meant every visitor, on
+ * every page, paid to render twenty articles to HTML before anything painted.
+ * Metadata (title, date, …) stays eager because listings need it.
+ */
 function build(): BlogPost[] {
   const posts: BlogPost[] = [];
   for (const path in files) {
     const raw = files[path] as string;
     const { data, body } = parseFrontmatter(raw);
+    let html: string | undefined;
+    let faq: { q: string; a: string }[] | undefined;
     posts.push({
       slug: data.slug || path.split('/').pop()!.replace('.md', ''),
       title: data.title || 'Untitled',
@@ -127,9 +137,15 @@ function build(): BlogPost[] {
       lang: (isLocale(data.lang) ? data.lang : 'en') as Locale,
       cluster: data.cluster || 'general',
       tags: parseTags(data.tags),
-      html: wrapTables(marked.parse(body) as string),
       readingMinutes: readingMinutes(body),
-      faq: parseFaq(body),
+      get html() {
+        if (html === undefined) html = wrapTables(marked.parse(body) as string);
+        return html;
+      },
+      get faq() {
+        if (faq === undefined) faq = parseFaq(body);
+        return faq;
+      },
     });
   }
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));

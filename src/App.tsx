@@ -18,7 +18,7 @@
  * deep-link correctly.
  */
 
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { useGameStore } from '@/store/gameStore';
 import { useI18n } from '@/i18n';
@@ -26,8 +26,21 @@ import { DEFAULT_LOCALE, detectLocale, isLocale } from '@/i18n/locales';
 import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
 import { BLOG_POSTS } from '@/content/blog';
 import { HomeScreen } from '@/components/screens/HomeScreen';
-import { BlogListScreen, BlogPostScreen } from '@/components/screens/BlogScreen';
-import PlayApp from './PlayApp';
+import { GameSkeleton, ScreenLoader } from '@/components/ui/Loaders';
+
+/**
+ * The game (engine, AI worker, board) and the blog are split out of the main
+ * bundle: a visitor landing on the marketing page shouldn't download a chess
+ * engine to read it. Each is fetched on first navigation, behind the Suspense
+ * fallbacks below.
+ */
+const PlayApp = lazy(() => import('./PlayApp'));
+const BlogListScreen = lazy(() =>
+  import('@/components/screens/BlogScreen').then((m) => ({ default: m.BlogListScreen })),
+);
+const BlogPostScreen = lazy(() =>
+  import('@/components/screens/BlogScreen').then((m) => ({ default: m.BlogPostScreen })),
+);
 
 export default function App() {
   const theme = useGameStore((s) => s.settings.theme);
@@ -55,9 +68,30 @@ export default function App() {
 
       <Route path="/:locale" element={<LocaleLayout />}>
         <Route index element={<HomeScreen />} />
-        <Route path="play" element={<PlayApp />} />
-        <Route path="blog" element={<BlogListScreen />} />
-        <Route path="blog/:slug" element={<BlogPostScreen />} />
+        <Route
+          path="play"
+          element={
+            <Suspense fallback={<GameSkeleton />}>
+              <PlayApp />
+            </Suspense>
+          }
+        />
+        <Route
+          path="blog"
+          element={
+            <Suspense fallback={<ScreenLoader />}>
+              <BlogListScreen />
+            </Suspense>
+          }
+        />
+        <Route
+          path="blog/:slug"
+          element={
+            <Suspense fallback={<ScreenLoader />}>
+              <BlogPostScreen />
+            </Suspense>
+          }
+        />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
