@@ -617,6 +617,57 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
+    <loc>https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/ja/blog/chess-elo-rating</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/en/blog/chess-endgames-basics</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
     <loc>https://botagedrez.codezun.com/ja/blog/chess-no-rule</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -665,6 +716,23 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-guize"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-no-rule"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/qawaid-al-shatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/ja/blog/chess-shuban</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
@@ -719,6 +787,23 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
+    <loc>https://botagedrez.codezun.com/fr/blog/classement-elo-echecs</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
     <loc>https://botagedrez.codezun.com/es/blog/como-mejorar-en-ajedrez</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -767,6 +852,142 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/jiangsi-taoli"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/checkmate-patterns"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/anmat-kish-mat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/es/blog/elo-en-ajedrez</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/de/blog/elo-zahl-schach</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/pt/blog/finais-de-xadrez</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/es/blog/finales-de-ajedrez</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/fr/blog/finales-echecs</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
@@ -940,6 +1161,23 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
+    <loc>https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
     <loc>https://botagedrez.codezun.com/ja/blog/osusume-chess-joseki</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -1008,6 +1246,23 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
+    <loc>https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
     <loc>https://botagedrez.codezun.com/es/blog/reglas-del-ajedrez</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -1059,6 +1314,23 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
+    <loc>https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
     <loc>https://botagedrez.codezun.com/zh/blog/ruhe-tigao-guoji-xiangqi</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -1073,6 +1345,23 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/ruhe-tigao-guoji-xiangqi"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-tsuyoku-naru-hoho"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/kayfa-tatahassan-fi-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/de/blog/schachendspiele</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
@@ -1158,6 +1447,40 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/jiangsi-taoli"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/checkmate-patterns"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/anmat-kish-mat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/hi/blog/shatranj-endgame</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/finales-de-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-endgames-basics"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/finais-de-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/finales-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/schachendspiele"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-endgame"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-shuban"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>
@@ -1277,6 +1600,23 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-zhanshu"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-tactics-kihon"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/taktikat-alshatranj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
+  </url>
+  <url>
+    <loc>https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://botagedrez.codezun.com/es/blog/elo-en-ajedrez"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://botagedrez.codezun.com/fr/blog/classement-elo-echecs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://botagedrez.codezun.com/de/blog/elo-zahl-schach"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://botagedrez.codezun.com/ja/blog/chess-elo-rating"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://botagedrez.codezun.com/"/>
   </url>
   <url>

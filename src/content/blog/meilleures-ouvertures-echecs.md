@@ -1,6 +1,6 @@
 ---
 title: "Les 7 meilleures ouvertures d'échecs pour débutants"
-description: "Quelle ouverture choisir selon votre style : Italienne, Espagnole, Sicilienne, Française, Caro-Kann, Gambit Dame et Système Londres, avec leurs premiers coups et leurs plans."
+description: "Quelle ouverture choisir selon votre style : Italienne, Espagnole, Sicilienne, Française, Caro-Kann, Gambit Dame et Système Londres, avec leurs plans."
 date: "2026-07-20"
 lang: fr
 slug: meilleures-ouvertures-echecs

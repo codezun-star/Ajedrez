@@ -1,6 +1,6 @@
 ---
 title: "Besser Schach spielen: Eröffnungen, Taktik und Endspiele"
-description: "Praktischer Leitfaden, um im Schach besser zu werden: die Eröffnungsprinzipien, die wirklich zählen, die entscheidenden Taktikmotive und die vier Endspiele, die man können muss."
+description: "Praktischer Leitfaden für besseres Schach: die Eröffnungsprinzipien, die wirklich zählen, die entscheidenden Taktikmotive und die vier wichtigsten Endspiele."
 date: "2026-07-22"
 lang: de
 slug: schacheroeffnungen-fuer-anfaenger
