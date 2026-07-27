@@ -1,0 +1,18 @@
+# Cloudflare Pages headers.
+#
+# Pages normally infers the type from the extension, but if sitemap.xml ever
+# goes out as text/html the browser parses it as HTML: the tags disappear and
+# you see the values run together as plain text. Crawlers are stricter than
+# browsers here, so pin the type rather than rely on inference.
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+# Hashed bundles never change under the same name.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
