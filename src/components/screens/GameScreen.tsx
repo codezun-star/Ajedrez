@@ -32,6 +32,7 @@ import { SidePanel } from '@/components/panel/SidePanel';
 import { IconButton } from '@/components/ui/IconButton';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { SunIcon, MoonIcon, VolumeIcon, MuteIcon } from '@/components/ui/Icons';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export function GameScreen() {
   const { t, locale } = useI18n();
@@ -66,8 +67,12 @@ export function GameScreen() {
       {/* Header — dropped in short landscape; its controls move into the panel */}
       {!compactLandscape && (
         <header className="mb-2 flex shrink-0 items-center justify-between gap-2">
-          <Link to={homePath(locale)} className="min-w-0 truncate font-display text-lg font-extrabold sm:text-xl">
-            bot<span className="text-brand-400">Agedrez</span>
+          <Link
+            to={homePath(locale)}
+            className="flex min-w-0 shrink items-center"
+            aria-label="botAgedrez"
+          >
+            <BrandLogo className="h-10 sm:h-12" />
           </Link>
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">{chrome}</div>
         </header>

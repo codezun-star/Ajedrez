@@ -18,6 +18,7 @@ import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { eloRankKey } from '@/utils/elo';
 import { ChartIcon } from '@/components/ui/Icons';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -56,18 +57,16 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
 
       {/* Hero */}
       <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0} className="flex flex-col items-center text-center">
-        <div className="mb-3 flex max-w-full items-center gap-2 sm:gap-3">
+        {/* The lockup already reads as the title, so it *is* the H1. */}
+        <h1 className="mb-3 flex max-w-full justify-center">
           <motion.div
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="h-10 w-10 shrink-0 sm:h-14 sm:w-14"
+            className="flex justify-center"
           >
-            <PieceGlyph type="n" color="w" className="h-full w-full" />
+            <BrandLogo className="h-32 xs:h-40 sm:h-48 md:h-56" />
           </motion.div>
-          <h1 className="min-w-0 truncate font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
-            bot<span className="text-brand-400">Agedrez</span>
-          </h1>
-        </div>
+        </h1>
         <p className="max-w-md text-sm text-slate-400 sm:text-base">{t('home.subtitle')}</p>
       </motion.div>
 

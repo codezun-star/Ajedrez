@@ -10,6 +10,7 @@ import { useI18n } from '@/i18n';
 import { LOCALES } from '@/i18n/locales';
 import { blogPath, homePath, playPath } from '@/i18n/routes';
 import { FlagIcon } from '@/components/ui/FlagIcon';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export function SiteFooter() {
   const { t, locale } = useI18n();
@@ -19,10 +20,8 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div>
-          <div className="font-display text-lg font-extrabold">
-            bot<span className="text-brand-400">Agedrez</span>
-          </div>
-          <p className="mt-1 max-w-sm text-sm text-slate-400">{t('home.footerTagline')}</p>
+          <BrandLogo className="h-16 sm:h-20" />
+          <p className="mt-2 max-w-sm text-sm text-slate-400">{t('home.footerTagline')}</p>
         </div>
         <nav className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400">
           <Link to={homePath(locale)} className="hover:text-white">

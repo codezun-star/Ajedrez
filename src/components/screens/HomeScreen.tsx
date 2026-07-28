@@ -30,6 +30,7 @@ import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
 import { useSeo, SITE_URL } from '@/hooks/useSeo';
 import { postsFor } from '@/content/blog';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
 
@@ -83,9 +84,9 @@ export function HomeScreen() {
       {/* Hero */}
       <section className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:py-24">
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
-          <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/15 px-3 py-1 text-xs font-semibold text-brand-300 ring-1 ring-brand-400/20">
-            ♟ botAgedrez
-          </span>
+          {/* The lockup carries the brand name, so the H1 below is free to be
+              the keyword-bearing headline. */}
+          <BrandLogo className="h-32 xs:h-40 sm:h-48 lg:h-56" />
           {/* Keyword-bearing H1 — the brand itself is already above in the badge. */}
           <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight xs:text-4xl sm:text-5xl lg:text-6xl">
             {t('home.h1')}

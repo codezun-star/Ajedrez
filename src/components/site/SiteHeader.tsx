@@ -15,6 +15,7 @@ import { useGameStore } from '@/store/gameStore';
 import { useI18n } from '@/i18n';
 import { blogPath, homePath, playPath } from '@/i18n/routes';
 import { SunIcon, MoonIcon } from '@/components/ui/Icons';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 import { IconButton } from '@/components/ui/IconButton';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 
@@ -49,9 +50,9 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:px-6">
-        <Link to={home} className="min-w-0 truncate font-display text-lg font-extrabold sm:text-xl">
-          bot<span className="text-brand-400">Agedrez</span>
+      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:h-24 sm:px-6">
+        <Link to={home} className="flex min-w-0 shrink items-center" aria-label="botAgedrez">
+          <BrandLogo className="h-16 sm:h-[4.5rem]" />
         </Link>
 
         {/* Full navigation — tablet and up */}
