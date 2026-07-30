@@ -15,6 +15,7 @@ import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
+import { marked } from 'marked';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const SITE = 'https://botagedrez.codezun.com';
@@ -65,7 +66,8 @@ export async function loadContent() {
   const posts = readdirSync(dir)
     .filter((f) => f.endsWith('.md'))
     .map((file) => {
-      const fm = frontmatter(readFileSync(join(dir, file), 'utf8'));
+      const raw = readFileSync(join(dir, file), 'utf8');
+      const fm = frontmatter(raw);
       const post = {
         slug: fm.slug || file.replace(/\.md$/, ''),
         title: fm.title || '',
@@ -73,6 +75,7 @@ export async function loadContent() {
         date: fm.date || '',
         lang: fm.lang,
         cluster: fm.cluster,
+        body: raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, ''),
       };
       if (!LOCALES.some((l) => l.code === post.lang)) {
         throw new Error(`${file}: unknown lang "${post.lang}"`);
@@ -99,6 +102,133 @@ function frontmatter(raw) {
       .replace(/^["']|["']$/g, '');
   }
   return data;
+}
+
+/**
+ * The article body, rendered the same way the app renders it.
+ *
+ * These rules mirror `src/content/blog.ts` — the `<!-- faq -->` marker, the
+ * `### question` pairs, the scroll wrapper around tables. They are repeated
+ * here rather than imported because that module reaches for `import.meta.glob`,
+ * which only exists inside Vite; esbuild can't bundle it for Node. The
+ * frontmatter parser above is duplicated for the same reason. **If the marker
+ * or the FAQ shape changes there, change it here too**, or the prerendered
+ * page and the hydrated page will stop agreeing.
+ */
+const FAQ_MARKER = '<!-- faq -->';
+
+marked.setOptions({ gfm: true, breaks: false });
+
+function parseFaq(body) {
+  const idx = body.indexOf(FAQ_MARKER);
+  if (idx === -1) return [];
+  const faq = [];
+  for (const part of body.slice(idx).split(/\n### +/).slice(1)) {
+    const [question, ...rest] = part.split('\n');
+    const answer = rest.join(' ').replace(/\s+/g, ' ').trim();
+    if (question && answer) faq.push({ q: question.trim(), a: answer });
+  }
+  return faq;
+}
+
+function renderBody(body) {
+  return marked
+    .parse(body)
+    .replace(/<table>/g, '<div class="table-wrap"><table>')
+    .replace(/<\/table>/g, '</table></div>');
+}
+
+/** The home page's four questions, from the same strings the screen renders. */
+function homeFaq(t) {
+  return [1, 2, 3, 4].map((n) => ({ q: t.faq[`q${n}`], a: t.faq[`a${n}`] }));
+}
+
+/**
+ * Questions and answers, already paired.
+ *
+ * This is the schema an answer engine extracts a reply from: it gets the
+ * question and its answer together, instead of having to work out which
+ * paragraph of the page answers what. The app already emitted it — but from a
+ * React component, so it only existed after JavaScript ran, and the crawlers
+ * that most want it are exactly the ones that don't run any.
+ */
+function faqNode(pairs, lang) {
+  if (!pairs.length) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: lang,
+    mainEntity: pairs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+}
+
+/**
+ * The static copy of a page's content, written inside `#root`.
+ *
+ * The app is client-rendered, so what this build has been shipping for every
+ * one of the ~730 URLs is a `<head>` full of metadata over a body containing
+ * exactly `<div id="root"></div>`. A search engine that runs JavaScript
+ * eventually sees the real page; the crawlers behind the answer engines
+ * largely don't run any, so for them seventy articles had a title, a
+ * description and no text at all — nothing to quote, nothing to answer with.
+ *
+ * `createRoot().render()` empties the container before it mounts, so React
+ * wipes this the moment it boots: there is no hydration to mismatch, and no
+ * duplicate content in the DOM. It isn't cloaking either — it's the same text
+ * the app renders, from the same source. And the visitor gains too: the window
+ * that used to show a blank page while the bundle downloaded now shows the
+ * article.
+ *
+ * Only the parts that are content are emitted — the article, the questions,
+ * the intro. Not the header, the footer or the board: they are chrome, and
+ * copying their markup here would be two definitions of the same thing waiting
+ * to drift.
+ */
+function faqMarkup(pairs, title) {
+  if (!pairs.length) return '';
+  return [
+    '<section>',
+    `<h2>${escapeHtml(title)}</h2>`,
+    ...pairs.map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`),
+    '</section>',
+  ].join('');
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function bodyFor({ section, page, t, post }) {
+  if (section === 'home') {
+    return [
+      `<h1>${escapeHtml(t.home.h1)}</h1>`,
+      `<p>${escapeHtml(t.home.subtitle)}</p>`,
+      faqMarkup(homeFaq(t), t.home.faqTitle),
+    ].join('');
+  }
+
+  if (section === 'post') {
+    return [
+      `<article lang="${post.lang}">`,
+      `<h1>${escapeHtml(post.title)}</h1>`,
+      `<p>${escapeHtml(post.description)}</p>`,
+      renderBody(post.body),
+      '</article>',
+    ].join('');
+  }
+
+  if (section === 'blog') {
+    return `<h1>${escapeHtml(t.blog.title)}</h1><p>${escapeHtml(t.blog.subtitle)}</p>`;
+  }
+
+  return `<h1>${escapeHtml(page.title)}</h1><p>${escapeHtml(page.description)}</p>`;
 }
 
 /** Stable @id anchors, so every page refers to one site and one publisher. */
@@ -201,7 +331,9 @@ function jsonLdFor({ section, page, t, codes, post }) {
   const url = SITE + page.path;
   const home = { name: t.nav.home, path: `/${page.lang}` };
 
-  if (section === 'home') return rootNodes(page.description, codes);
+  if (section === 'home') {
+    return [...rootNodes(page.description, codes), faqNode(homeFaq(t), page.lang)].filter(Boolean);
+  }
 
   if (section === 'play') {
     return [
@@ -266,7 +398,8 @@ function jsonLdFor({ section, page, t, codes, post }) {
       { name: t.nav.blog, path: `/${post.lang}/blog` },
       { name: post.title, path: page.path },
     ]),
-  ];
+    faqNode(parseFaq(post.body), post.lang),
+  ].filter(Boolean);
 }
 
 /**
@@ -322,6 +455,7 @@ export async function buildPages() {
         priority: spec.priority,
       };
       page.jsonLd = jsonLdFor({ section: spec.section, page, t, codes });
+      page.body = bodyFor({ section: spec.section, page, t });
       pages.push(page);
     }
   }
@@ -349,6 +483,7 @@ export async function buildPages() {
       codes,
       post,
     });
+    page.body = bodyFor({ section: 'post', page, t: translations[post.lang], post });
     pages.push(page);
   }
 

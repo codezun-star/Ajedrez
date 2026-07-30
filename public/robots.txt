@@ -1,4 +1,40 @@
+# The whole site is public: no admin area, no API, no session routes. Every
+# group below says the same thing.
 User-agent: *
+Allow: /
+
+# Answer-engine crawlers, named explicitly.
+#
+# The group above already lets them in, so this looks redundant. It isn't: a
+# crawler obeys exactly ONE group — the most specific one matching its name —
+# and ignores `*` entirely. The day someone adds a rule for one of these bots,
+# every agent listed here silently stops inheriting the permission above.
+# Written down, the intent is explicit and survives that edit.
+#
+# Two of these names aren't crawlers at all. `Google-Extended` and
+# `Applebot-Extended` fetch nothing; they decide whether already-crawled
+# content may be used to answer in Gemini and in Apple Intelligence. They exist
+# only here.
+#
+# And note the `-User` agents: `ChatGPT-User`, `Claude-User` and
+# `Perplexity-User` fetch a page at the moment a person asks something about
+# it. Blocking those protects nothing — a human already requested the visit —
+# it only leaves the assistant answering from memory instead of from the page.
+User-agent: OAI-SearchBot
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: DuckAssistBot
+User-agent: Amazonbot
+User-agent: MistralAI-User
+User-agent: cohere-ai
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://botagedrez.codezun.com/sitemap.xml

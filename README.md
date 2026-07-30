@@ -82,6 +82,39 @@ npm run test      # tests del motor y la IA (perft, mate, etc.)
 npm run lint      # ESLint
 ```
 
+## 🔎 SEO y motores de respuestas
+
+`npm run build` no solo empaqueta: antes genera el sitemap y `llms.txt`, y
+después reescribe cada una de las ~730 URLs con su propio `<head>` y su propio
+contenido. Los tres pasos leen `scripts/content.mjs`, así que no pueden
+anunciar cosas distintas.
+
+- **`scripts/prerender.mjs`** escribe un HTML real por URL: canónica propia,
+  `lang`/`dir`, título y descripción del idioma, Open Graph, el juego completo
+  de `hreflang` y los datos estructurados de *esa* página. Y, dentro de
+  `#root`, **el contenido en texto**: el artículo, las preguntas, la entradilla.
+  Sin eso, el cuerpo que recibe un rastreador es un `<div>` vacío — los
+  buscadores acaban ejecutando el JavaScript, pero los rastreadores de los
+  motores de respuestas en su mayoría no, y para ellos setenta artículos eran
+  un título sin texto. React vacía el contenedor al montar, así que lo
+  reemplaza sin duplicar nada.
+- **Datos estructurados**: `WebSite` + `Organization` + `WebApplication` en las
+  portadas, `BlogPosting` en cada artículo, `BreadcrumbList` en todas, y
+  `FAQPage` donde hay preguntas —tanto las cuatro de la portada como las que
+  cierran un artículo tras el marcador `<!-- faq -->`—. Se enlazan por `@id`.
+- **`public/llms.txt`** (`npm run llms`) resume el sitio para un modelo: qué es,
+  qué cuesta, cómo funcionan las URLs por idioma y una línea por artículo,
+  agrupados por idioma. Va en inglés porque el archivo no tiene `hreflang` y
+  solo admite un idioma.
+- **`public/robots.txt`** nombra explícitamente a los rastreadores de los
+  motores de respuestas. No es redundante con `User-agent: *`: un rastreador
+  obedece un único grupo, el más específico, y en cuanto alguien añada una
+  regla para uno de ellos dejaría de heredar el permiso general.
+
+`scripts/content.mjs` repite el parser de frontmatter y las reglas del FAQ de
+`src/content/blog.ts` porque ese módulo usa `import.meta.glob`, que solo existe
+dentro de Vite. **Si cambian ahí, hay que cambiarlas aquí también.**
+
 ## 🧪 Tests
 
 Los tests del motor usan **perft** — el estándar de oro para validar un

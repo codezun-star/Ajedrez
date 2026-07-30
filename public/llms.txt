@@ -1,0 +1,144 @@
+# botAgedrez
+
+> Free online chess against a from-scratch engine and AI, playable in the
+> browser in ten languages, with an Elo rating and a beginner blog.
+
+## What it is
+
+- Name: botAgedrez
+- Site: https://botagedrez.codezun.com
+- Type: browser chess game, playable against the computer
+- Cost: free. No sign-up, no account, no download, no payment of any kind.
+- Opponent: a chess engine written for this project — minimax with
+  alpha-beta pruning, running in a Web Worker — at 4 difficulty levels.
+  It is not Stockfish and not a third-party chess library.
+- Rules: complete, including castling, en passant, promotion, check,
+  checkmate, stalemate and every draw condition.
+- Progress: Elo rating, streaks, achievements and full match history, all
+  kept in the browser. Nothing is sent to a server and there is no tracking.
+- Languages: Español (es), English (en), Português (pt), Français (fr), Deutsch (de), Русский (ru), हिन्दी (hi), 中文 (zh), 日本語 (ja), العربية (ar).
+
+## How the URLs work
+
+Every page sits under a language prefix, and the ten versions of a page are
+translations of one another rather than separate pages:
+
+- `/{lang}` — that language's landing page
+- `/{lang}/play` — the game itself
+- `/{lang}/blog` — the article index for that language
+- `/{lang}/blog/{slug}` — one article
+
+The bare root `/` detects the visitor's language and redirects; it is not a
+page in its own right.
+
+
+## Frequently asked questions
+
+- **Is botAgedrez free to play?** Yes. botAgedrez is completely free, with no ads and no in-game purchases. Open the page and start playing.
+- **Do I need an account to play?** No. There is no sign-up. Your Elo, achievements and game history are stored in your own browser.
+- **Can I play chess offline?** Yes. The engine and the AI both run on your device, so once the page has loaded you can keep playing without an internet connection.
+- **How strong is the AI?** There are four levels, from Easy (~800 Elo) to Expert (~2000 Elo). The AI runs minimax with alpha-beta pruning, so it punishes tactical mistakes.
+
+
+## Articles
+
+### Español (es)
+
+- [Jaque mate rápido: el mate del pastor y 6 patrones más](https://botagedrez.codezun.com/es/blog/jaque-mate-patrones-basicos): Cómo dar jaque mate en pocas jugadas y cómo defenderse: mate del pastor, mate del loco, mate del pasillo, mate de la coz y los patrones que más partidas deciden.
+- [Reglas del ajedrez: cómo se mueven las piezas (guía completa)](https://botagedrez.codezun.com/es/blog/reglas-del-ajedrez): Todas las reglas del ajedrez explicadas paso a paso: cómo se mueve cada pieza, el enroque, la captura al paso, la coronación, el jaque mate y todas las tablas.
+- [Cómo mejorar en ajedrez: aperturas, táctica y finales](https://botagedrez.codezun.com/es/blog/como-mejorar-en-ajedrez): Guía práctica para subir de nivel en ajedrez: los principios de apertura que de verdad importan, los patrones tácticos que deciden partidas y los finales que hay que saber.
+- [Las 7 mejores aperturas de ajedrez para principiantes](https://botagedrez.codezun.com/es/blog/mejores-aperturas-de-ajedrez): Qué apertura elegir según tu estilo: Italiana, Española, Siciliana, Francesa, Caro-Kann, Gambito de Dama y Sistema Londres, con sus primeras jugadas y sus planes.
+- [Tácticas de ajedrez: 8 patrones que ganan partidas](https://botagedrez.codezun.com/es/blog/tacticas-de-ajedrez): Horquilla, clavada, pincho, ataque descubierto, jaque doble, desviación, atracción y sobrecarga: los ocho patrones tácticos que deciden las partidas y cómo detectarlos.
+- [Finales de ajedrez: los 6 que tienes que saber](https://botagedrez.codezun.com/es/blog/finales-de-ajedrez): Cómo dar mate con rey y torre, la oposición en finales de peones, la regla del cuadrado, torres y peones y cuándo el final es tablas. Técnica esencial explicada paso a paso.
+- [ELO en ajedrez: qué es, cómo se calcula y cómo subirlo](https://botagedrez.codezun.com/es/blog/elo-en-ajedrez): Qué significa tu ELO, la fórmula real con la que se calcula, qué nivel representa cada rango de puntos y las cinco cosas que de verdad lo hacen subir.
+
+### English (en)
+
+- [Fast Checkmates: Scholar's Mate and 6 More Patterns](https://botagedrez.codezun.com/en/blog/checkmate-patterns-for-beginners): How to checkmate in a few moves and how to defend: Scholar's Mate, Fool's Mate, back-rank mate, smothered mate and the patterns that decide most games.
+- [Chess Rules for Beginners: How Every Piece Moves](https://botagedrez.codezun.com/en/blog/chess-rules-for-beginners): Every chess rule explained step by step: how each piece moves, castling, en passant, promotion, check and checkmate, and all five ways a game can end in a draw.
+- [How to Get Better at Chess: Openings, Tactics and Endgames](https://botagedrez.codezun.com/en/blog/chess-opening-principles): A practical guide to improving at chess: the opening principles that actually matter, the tactical patterns that decide games, and the four endgames you must know.
+- [The 7 Best Chess Openings for Beginners](https://botagedrez.codezun.com/en/blog/best-chess-openings-for-beginners): Which opening to pick for your style: Italian, Ruy Lopez, Sicilian, French, Caro-Kann, Queen's Gambit and the London System — with their first moves and their plans.
+- [Chess Tactics: 8 Patterns That Win Games](https://botagedrez.codezun.com/en/blog/chess-tactics-patterns): Fork, pin, skewer, discovered attack, double check, deflection, decoy and overloading — the eight tactical patterns that decide games, and how to spot them.
+- [Chess Endgames: The 6 You Have to Know](https://botagedrez.codezun.com/en/blog/chess-endgames-basics): How to mate with king and rook, opposition in pawn endings, the square rule, rook and pawn endgames and when a position is drawn. Essential technique, step by step.
+- [Chess Elo Rating: What It Is, How It's Calculated, How to Raise It](https://botagedrez.codezun.com/en/blog/chess-elo-rating-explained): What your Elo actually means, the real formula behind it, what each rating band represents, and the five things that genuinely make it go up.
+
+### Português (pt)
+
+- [Xeque-mate rápido: mate do pastor e mais 6 padrões](https://botagedrez.codezun.com/pt/blog/xeque-mate-padroes): Como dar xeque-mate em poucos lances e como se defender: mate do pastor, mate do louco, mate do corredor, mate sufocado e os padrões que mais decidem partidas.
+- [Regras do xadrez: como as peças se movem (guia completo)](https://botagedrez.codezun.com/pt/blog/regras-do-xadrez-para-iniciantes): Todas as regras do xadrez explicadas passo a passo: como cada peça se move, o roque, a captura en passant, a promoção, o xeque-mate e todos os empates.
+- [Como melhorar no xadrez: aberturas, táticas e finais](https://botagedrez.codezun.com/pt/blog/aberturas-de-xadrez-para-iniciantes): Guia prático para evoluir no xadrez: os princípios de abertura que realmente importam, os padrões táticos que decidem partidas e os finais que você precisa saber.
+- [As 7 melhores aberturas de xadrez para iniciantes](https://botagedrez.codezun.com/pt/blog/melhores-aberturas-de-xadrez): Qual abertura escolher para o seu estilo: Italiana, Espanhola, Siciliana, Francesa, Caro-Kann, Gambito da Dama e Sistema Londres, com os primeiros lances e os planos.
+- [Táticas de xadrez: 8 padrões que ganham partidas](https://botagedrez.codezun.com/pt/blog/taticas-de-xadrez): Garfo, cravada, espeto, ataque descoberto, xeque duplo, desvio, atração e sobrecarga: os oito padrões táticos que decidem partidas e como enxergá-los.
+- [Finais de xadrez: os 6 que você precisa saber](https://botagedrez.codezun.com/pt/blog/finais-de-xadrez): Como dar mate com rei e torre, a oposição nos finais de peões, a regra do quadrado, finais de torre e quando a posição é empate. Técnica essencial passo a passo.
+- [Rating Elo no xadrez: o que é, como se calcula e como subir](https://botagedrez.codezun.com/pt/blog/rating-elo-no-xadrez): O que significa o seu Elo, a fórmula real por trás dele, que nível representa cada faixa de pontos e as cinco coisas que realmente fazem o rating subir.
+
+### Français (fr)
+
+- [Échec et mat rapide : le mat du berger et 6 autres schémas](https://botagedrez.codezun.com/fr/blog/echec-et-mat-schemas): Comment mater en quelques coups et comment s'en défendre : mat du berger, mat du lion, mat du couloir, mat étouffé et les schémas qui décident le plus de parties.
+- [Règles des échecs : comment bougent les pièces (guide complet)](https://botagedrez.codezun.com/fr/blog/regles-des-echecs-simplement): Toutes les règles des échecs expliquées pas à pas : le déplacement de chaque pièce, le roque, la prise en passant, la promotion, l'échec et mat et toutes les nulles.
+- [Comment progresser aux échecs : ouvertures, tactique et finales](https://botagedrez.codezun.com/fr/blog/ouvertures-echecs-debutants): Guide pratique pour progresser aux échecs : les principes d'ouverture qui comptent vraiment, les motifs tactiques qui décident les parties et les finales à connaître.
+- [Les 7 meilleures ouvertures d'échecs pour débutants](https://botagedrez.codezun.com/fr/blog/meilleures-ouvertures-echecs): Quelle ouverture choisir selon votre style : Italienne, Espagnole, Sicilienne, Française, Caro-Kann, Gambit Dame et Système Londres, avec leurs plans.
+- [Tactiques d'échecs : 8 motifs qui gagnent des parties](https://botagedrez.codezun.com/fr/blog/tactiques-echecs): Fourchette, clouage, enfilade, attaque à la découverte, échec double, déviation, attraction et surcharge : les huit motifs tactiques qui décident les parties.
+- [Finales d'échecs : les 6 à connaître absolument](https://botagedrez.codezun.com/fr/blog/finales-echecs): Mater avec roi et tour, l'opposition dans les finales de pions, la règle du carré, les finales de tours et quand la position est nulle. Technique essentielle.
+- [Classement Elo aux échecs : définition, calcul et comment progresser](https://botagedrez.codezun.com/fr/blog/classement-elo-echecs): Ce que signifie votre Elo, la formule réelle qui le calcule, le niveau que représente chaque tranche de points et les cinq choses qui le font vraiment monter.
+
+### Deutsch (de)
+
+- [Schnelles Schachmatt: Schäfermatt und 6 weitere Muster](https://botagedrez.codezun.com/de/blog/schachmatt-muster): Wie du in wenigen Zügen mattsetzt und wie du dich wehrst: Schäfermatt, Narrenmatt, Grundreihenmatt, ersticktes Matt und die Muster, die die meisten Partien entscheiden.
+- [Schachregeln für Anfänger: Wie sich jede Figur bewegt](https://botagedrez.codezun.com/de/blog/schachregeln-fuer-anfaenger): Alle Schachregeln Schritt für Schritt erklärt: die Zugweise jeder Figur, Rochade, En passant, Umwandlung, Schachmatt und alle fünf Arten von Remis.
+- [Besser Schach spielen: Eröffnungen, Taktik und Endspiele](https://botagedrez.codezun.com/de/blog/schacheroeffnungen-fuer-anfaenger): Praktischer Leitfaden für besseres Schach: die Eröffnungsprinzipien, die wirklich zählen, die entscheidenden Taktikmotive und die vier wichtigsten Endspiele.
+- [Die 7 besten Schacheröffnungen für Anfänger](https://botagedrez.codezun.com/de/blog/beste-schacheroeffnungen): Welche Eröffnung zu deinem Stil passt: Italienisch, Spanisch, Sizilianisch, Französisch, Caro-Kann, Damengambit und Londoner System — mit den ersten Zügen und den Plänen.
+- [Schachtaktik: 8 Muster, die Partien gewinnen](https://botagedrez.codezun.com/de/blog/schachtaktik-muster): Gabel, Fesselung, Spieß, Abzugsangriff, Doppelschach, Ablenkung, Hinlenkung und Überlastung — die acht Taktikmuster, die Partien entscheiden, und wie du sie erkennst.
+- [Schachendspiele: die 6, die du können musst](https://botagedrez.codezun.com/de/blog/schachendspiele): Mattsetzen mit König und Turm, Opposition im Bauernendspiel, Quadratregel, Turmendspiele und wann die Stellung remis ist. Die wichtigste Technik, Schritt für Schritt.
+- [Elo-Zahl im Schach: was sie ist, wie sie berechnet wird, wie du sie steigerst](https://botagedrez.codezun.com/de/blog/elo-zahl-schach): Was deine Elo-Zahl bedeutet, die tatsächliche Formel dahinter, welches Niveau jede Punktespanne beschreibt und die fünf Dinge, die sie wirklich steigen lassen.
+
+### Русский (ru)
+
+- [Быстрый мат: детский мат и ещё 6 матовых узоров](https://botagedrez.codezun.com/ru/blog/matovye-patterny): Как поставить мат в несколько ходов и как защититься: детский мат, дурацкий мат, мат по последней горизонтали, спёртый мат и узоры, решающие большинство партий.
+- [Правила шахмат для начинающих: как ходят фигуры](https://botagedrez.codezun.com/ru/blog/pravila-shahmat-dlya-nachinayushchih): Все правила шахмат по шагам: как ходит каждая фигура, рокировка, взятие на проходе, превращение пешки, шах и мат и все виды ничьей.
+- [Как играть в шахматы лучше: дебюты, тактика и эндшпиль](https://botagedrez.codezun.com/ru/blog/debyuty-v-shahmatah): Практическое руководство по росту в шахматах: принципы дебюта, которые действительно работают, тактические мотивы, решающие партии, и четыре обязательных окончания.
+- [7 лучших шахматных дебютов для начинающих](https://botagedrez.codezun.com/ru/blog/luchshie-debyuty): Какой дебют выбрать под свой стиль: итальянская, испанская, сицилианская, французская, Каро-Канн, ферзевый гамбит и лондонская система — с ходами и планами.
+- [Тактика в шахматах: 8 приёмов, которые выигрывают партии](https://botagedrez.codezun.com/ru/blog/taktika-v-shahmatah): Вилка, связка, сквозное нападение, вскрытое нападение, двойной шах, отвлечение, завлечение и перегрузка — восемь тактических приёмов, решающих партии.
+- [Эндшпиль в шахматах: 6 окончаний, которые нужно знать](https://botagedrez.codezun.com/ru/blog/endshpil-v-shahmatah): Как поставить мат королём и ладьёй, оппозиция в пешечных окончаниях, правило квадрата, ладейные эндшпили и когда позиция ничейна. Ключевая техника по шагам.
+- [Рейтинг Эло в шахматах: что это, как считается и как его поднять](https://botagedrez.codezun.com/ru/blog/reyting-elo-v-shahmatah): Что означает ваш рейтинг Эло, настоящая формула расчёта, какому уровню соответствует каждый диапазон и пять вещей, которые действительно поднимают рейтинг.
+
+### हिन्दी (hi)
+
+- [तेज़ शह-मात: स्कॉलर मेट और 6 और पैटर्न](https://botagedrez.codezun.com/hi/blog/shatranj-checkmate-patterns): कुछ ही चालों में शह-मात कैसे दें और कैसे बचें: स्कॉलर मेट, फ़ूल्स मेट, बैक-रैंक मेट, स्मदर्ड मेट और वे पैटर्न जो सबसे ज़्यादा बाज़ियाँ तय करते हैं।
+- [शतरंज के नियम: हर मोहरा कैसे चलता है (पूरी गाइड)](https://botagedrez.codezun.com/hi/blog/shatranj-ke-niyam): शतरंज के सभी नियम आसान भाषा में: हर मोहरे की चाल, कैसलिंग, आँ पासां, प्यादे का प्रमोशन, शह और मात, और ड्रॉ के सभी तरीके।
+- [शतरंज में बेहतर कैसे बनें: ओपनिंग, रणनीति और अंतिम चरण](https://botagedrez.codezun.com/hi/blog/shatranj-mein-behtar-kaise-bane): शतरंज में सुधार की व्यावहारिक गाइड: वे ओपनिंग सिद्धांत जो सच में काम आते हैं, बाज़ी तय करने वाले रणनीतिक पैटर्न, और चार ज़रूरी अंतिम चरण।
+- [शुरुआती के लिए 7 सबसे अच्छी शतरंज ओपनिंग](https://botagedrez.codezun.com/hi/blog/behtareen-shatranj-openings): अपनी शैली के हिसाब से ओपनिंग चुनें: इटैलियन, रुय लोपेज़, सिसिलियन, फ़्रेंच, कारो-कान, क्वीन्स गैम्बिट और लंदन सिस्टम — पहली चालों और योजनाओं के साथ।
+- [शतरंज की रणनीति: 8 पैटर्न जो बाज़ी जिताते हैं](https://botagedrez.codezun.com/hi/blog/shatranj-tactics): फ़ोर्क, पिन, स्क्यूअर, डिस्कवर्ड अटैक, डबल चेक, डिफ़्लेक्शन, डिकॉय और ओवरलोडिंग — वे आठ टैक्टिकल पैटर्न जो बाज़ियाँ तय करते हैं और उन्हें कैसे पहचानें।
+- [शतरंज के अंतिम चरण: 6 जो आपको आने ही चाहिए](https://botagedrez.codezun.com/hi/blog/shatranj-endgame): राजा और हाथी से मात कैसे दें, प्यादों के अंत में ऑपोज़िशन, वर्ग का नियम, हाथी के अंतिम चरण और कब बाज़ी ड्रॉ होती है। ज़रूरी तकनीक कदम-दर-कदम।
+- [शतरंज में Elo रेटिंग: यह क्या है, कैसे बनती है और कैसे बढ़ाएँ](https://botagedrez.codezun.com/hi/blog/shatranj-elo-rating): आपकी Elo रेटिंग का मतलब क्या है, इसके पीछे का असली फ़ॉर्मूला, हर अंक-श्रेणी किस स्तर को दर्शाती है, और वे पाँच चीज़ें जो सचमुच रेटिंग बढ़ाती हैं।
+
+### 中文 (zh)
+
+- [快速将死：牧师杀和另外 6 种杀法](https://botagedrez.codezun.com/zh/blog/jiangsi-taoli): 如何在几步之内将死对手，以及如何防守：牧师杀、愚人杀、底线杀、闷杀，以及决定大多数对局胜负的基本杀法。
+- [国际象棋规则：每个棋子怎么走（完整指南）](https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-guize): 国际象棋全部规则逐步讲解：每个棋子的走法、王车易位、吃过路兵、兵的升变、将军与将死，以及所有和棋情形。
+- [如何提高国际象棋水平：开局、战术与残局](https://botagedrez.codezun.com/zh/blog/ruhe-tigao-guoji-xiangqi): 提升国际象棋实力的实用指南：真正重要的开局原则、决定胜负的战术模式，以及必须掌握的四种残局。
+- [新手最值得学的 7 个国际象棋开局](https://botagedrez.codezun.com/zh/blog/zui-hao-de-kaiju): 按你的棋风选开局：意大利开局、西班牙开局、西西里防御、法兰西防御、卡罗-卡恩、后翼弃兵和伦敦体系，附首几步走法与作战计划。
+- [国际象棋战术：赢棋的 8 个基本图形](https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-zhanshu): 捉双、牵制、串击、闪击、双将、引离、引入和过载——决定胜负的八个战术图形，以及如何在实战中把它们看出来。
+- [国际象棋残局：必须掌握的 6 种](https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-canju): 王车怎么将杀、兵残局中的对王、方框规则、车兵残局，以及什么时候必和。最核心的残局技术，一步步讲清楚。
+- [国际象棋等级分（Elo）：是什么、怎么算、怎么涨](https://botagedrez.codezun.com/zh/blog/guoji-xiangqi-elo): 你的 Elo 到底代表什么、背后的真实公式、每个分数段对应什么水平，以及真正能让分数上涨的五件事。
+
+### 日本語 (ja)
+
+- [速いチェックメイト：スカラーズメイトと6つの詰み形](https://botagedrez.codezun.com/ja/blog/checkmate-patterns): 数手で詰ませる方法と、その防ぎ方。スカラーズメイト、フールズメイト、バックランクメイト、窒息メイトなど、勝敗を決める基本の詰み形。
+- [チェスのルール入門：駒の動かし方を全部解説](https://botagedrez.codezun.com/ja/blog/chess-no-rule): チェスのルールをステップごとに解説：各駒の動かし方、キャスリング、アンパッサン、プロモーション、チェックとチェックメイト、そして引き分けの全パターン。
+- [チェスが強くなる方法：序盤・戦術・終盤](https://botagedrez.codezun.com/ja/blog/chess-tsuyoku-naru-hoho): チェス上達のための実践ガイド。本当に重要な序盤の原則、勝敗を決める戦術パターン、そして必ず覚えるべき四つの終盤。
+- [初心者におすすめのチェス序盤7選](https://botagedrez.codezun.com/ja/blog/osusume-chess-joseki): 棋風に合わせて選ぶ序盤：イタリアン、ルイ・ロペス、シシリアン、フレンチ、カロ・カン、クイーンズギャンビット、ロンドンシステム。最初の数手と狙いつき。
+- [チェスの戦術：勝敗を分ける8つの基本形](https://botagedrez.codezun.com/ja/blog/chess-tactics-kihon): フォーク、ピン、スキュア、ディスカバードアタック、ダブルチェック、ディフレクション、デコイ、オーバーロード。対局を決める8つの戦術パターンと見つけ方。
+- [チェスの終盤：必ず覚えたい6つの形](https://botagedrez.codezun.com/ja/blog/chess-shuban): キングとルークでの詰ませ方、ポーン終盤のオポジション、四角形の法則、ルーク終盤、そして引き分けになる条件。核となる技術を順を追って解説。
+- [チェスのEloレーティング：意味・計算方法・上げ方](https://botagedrez.codezun.com/ja/blog/chess-elo-rating): 自分のEloが何を表しているのか、実際の計算式、各レーティング帯が示す実力、そして本当にレーティングを上げる5つのこと。
+
+### العربية (ar)
+
+- [كش مات سريع: مات الراعي وستة أنماط أخرى](https://botagedrez.codezun.com/ar/blog/anmat-kish-mat): كيف تحقق كش مات في نقلات قليلة وكيف تدافع: مات الراعي، مات الأحمق، مات الصف الأخير، المات المخنوق، والأنماط التي تحسم أغلب المباريات.
+- [قواعد الشطرنج للمبتدئين: كيف يتحرك كل قطعة](https://botagedrez.codezun.com/ar/blog/qawaid-al-shatranj): شرح كامل لقواعد الشطرنج خطوة بخطوة: حركة كل قطعة، التبييت، الأخذ في المرور، ترقية البيدق، الكش ومات، وكل حالات التعادل.
+- [كيف تتحسن في الشطرنج: الافتتاحيات والتكتيك والنهايات](https://botagedrez.codezun.com/ar/blog/kayfa-tatahassan-fi-alshatranj): دليل عملي للتطور في الشطرنج: مبادئ الافتتاح التي تهم فعلًا، الأنماط التكتيكية التي تحسم المباريات، والنهايات الأربع التي يجب إتقانها.
+- [أفضل 7 افتتاحيات شطرنج للمبتدئين](https://botagedrez.codezun.com/ar/blog/afdal-iftitahiyat-alshatranj): أي افتتاحية تختار حسب أسلوبك: الإيطالية، الإسبانية، الصقلية، الفرنسية، كارو-كان، مقامرة الوزير والنظام اللندني، مع نقلاتها الأولى وخططها.
+- [تكتيكات الشطرنج: 8 أنماط تربح المباريات](https://botagedrez.codezun.com/ar/blog/taktikat-alshatranj): الشوكة، التثبيت، السفود، الهجوم المكشوف، الكش المزدوج، التحويل، الاستدراج والتحميل الزائد: ثمانية أنماط تكتيكية تحسم المباريات وكيف تكتشفها.
+- [نهايات الشطرنج: الست التي يجب أن تتقنها](https://botagedrez.codezun.com/ar/blog/nihayat-alshatranj): كيف تمات بالملك والقلعة، المواجهة في نهايات البيادق، قاعدة المربع، نهايات القلاع ومتى تكون النتيجة تعادلًا. التقنية الأساسية خطوة بخطوة.
+- [تصنيف إيلو في الشطرنج: ما هو، كيف يُحسب، وكيف ترفعه](https://botagedrez.codezun.com/ar/blog/tasnif-elo-alshatranj): ماذا يعني تصنيف إيلو الخاص بك، المعادلة الحقيقية وراءه، أي مستوى تمثله كل شريحة نقاط، والأشياء الخمسة التي ترفعه فعلًا.
+

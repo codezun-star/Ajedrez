@@ -113,6 +113,13 @@ function render(template, page, dirOf) {
     .join('\n');
   html = html.replace('</head>', `${alternates}\n  </head>`);
 
+  // The page's own content, inside #root. Without it the body every crawler
+  // receives is an empty div — see `bodyFor` in content.mjs for why that was
+  // the biggest gap on this site and why React replacing it is safe.
+  if (page.body) {
+    html = html.replace('<div id="root"></div>', `<div id="root">${page.body}</div>`);
+  }
+
   return html;
 }
 
