@@ -1,0 +1,66 @@
+{
+  "id": "/",
+  "name": "botAgedrez — ajedrez online gratis con IA",
+  "short_name": "botAgedrez",
+  "description": "Juega al ajedrez contra un motor propio con inteligencia artificial en cuatro niveles, sigue tu ELO y aprende con guías de aperturas, táctica y finales. Gratis, sin cuenta y en diez idiomas.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["games", "education", "entertainment"],
+  "background_color": "#0c0f1d",
+  "theme_color": "#eef2f9",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/movil-inicio.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ajedrez online gratis contra la IA"
+    },
+    {
+      "src": "/screenshots/movil-partida.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Una partida contra el motor, con lista de jugadas"
+    },
+    {
+      "src": "/screenshots/escritorio-inicio.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Ajedrez online gratis contra la IA"
+    },
+    {
+      "src": "/screenshots/escritorio-partida.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "El tablero completo, con jugadas y controles"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Jugar una partida",
+      "short_name": "Jugar",
+      "description": "Abre el tablero y reta al motor",
+      "url": "/play",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Leer el blog",
+      "short_name": "Blog",
+      "description": "Guías de aperturas, táctica y finales",
+      "url": "/blog",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

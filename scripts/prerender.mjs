@@ -28,6 +28,14 @@ const esc = (s) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
+/**
+ * Serialise JSON-LD for embedding in a <script>.
+ *
+ * `<` is escaped because a title containing `</script>` would otherwise close
+ * the tag early and spill the rest of the payload into the page as markup.
+ */
+const jsonText = (data) => JSON.stringify(data).replace(/</g, '\\u003c');
+
 /** Replace a whole tag matched by `re`, or append to <head> when absent. */
 function swap(html, re, replacement) {
   return re.test(html) ? html.replace(re, replacement) : html.replace('</head>', `    ${replacement}\n  </head>`);
@@ -85,6 +93,15 @@ function render(template, page, dirOf) {
   );
   html = swap(html, /<meta\s+name="twitter:url"[^>]*>/, `<meta name="twitter:url" content="${url}" />`);
 
+  // Structured data for *this* page. Left alone, every URL would keep the
+  // template's site-level block and claim to be the WebApplication at the site
+  // root; articles would carry no article markup at all.
+  html = swap(
+    html,
+    /<script\s+type="application\/ld\+json"\s+data-seo-jsonld>[\s\S]*?<\/script>/,
+    `<script type="application/ld+json" data-seo-jsonld>${jsonText(page.jsonLd)}</script>`,
+  );
+
   // hreflang. `data-seo-alternate` is the same marker useSeo uses, so when the
   // app hydrates it replaces this set instead of appending a duplicate one.
   const alternates = page.alternates
@@ -99,7 +116,7 @@ function render(template, page, dirOf) {
   return html;
 }
 
-const { pages, locales } = await buildPages();
+const { pages, locales, rootJsonLd } = await buildPages();
 const dirOf = (code) => locales.find((l) => l.code === code)?.dir ?? 'ltr';
 
 const template = readFileSync(join(DIST, 'index.html'), 'utf8');
@@ -120,7 +137,15 @@ for (const page of pages) {
     )
     .concat(`    <link rel="alternate" hreflang="x-default" href="${SITE}/" data-seo-alternate />`)
     .join('\n');
-  writeFileSync(join(DIST, 'index.html'), template.replace('</head>', `${alternates}\n  </head>`));
+
+  // Rewritten from the same source as every other page, so the site name and
+  // the publisher can't drift between the template and the generated pages.
+  const withJsonLd = swap(
+    template,
+    /<script\s+type="application\/ld\+json"\s+data-seo-jsonld>[\s\S]*?<\/script>/,
+    `<script type="application/ld+json" data-seo-jsonld>${jsonText(rootJsonLd)}</script>`,
+  );
+  writeFileSync(join(DIST, 'index.html'), withJsonLd.replace('</head>', `${alternates}\n  </head>`));
 }
 
 console.log(`prerender — ${pages.length} paginas con head propio`);

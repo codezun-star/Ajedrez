@@ -11,6 +11,9 @@ Outputs (all in public/):
     favicon.png           the knight mark alone, square
     apple-touch-icon.png  the mark flattened onto the light theme colour
     og.png                1200x630 social card
+    icon-192.png          PWA install icon
+    icon-512.png          PWA splash / store-style icon
+    maskable-512.png      same mark inset for Android's shape mask
 """
 
 from PIL import Image, ImageDraw, ImageFont
@@ -121,5 +124,42 @@ touch.convert("RGB").resize((180, 180), Image.LANCZOS).save(OUT + "apple-touch-i
 
 social_card(dark).save(OUT + "og.png", optimize=True)
 
-for name in ("logo.png", "logo-dark.png", "favicon.png", "apple-touch-icon.png", "og.png"):
+
+def pwa_icon(side: int) -> Image.Image:
+    """Install icon. Opaque: Android draws it on whatever wallpaper is behind."""
+    icon = Image.new("RGBA", (side, side), (*THEME_LIGHT, 255))
+    pad = round(side * 0.08)
+    inner = mark.resize((side - pad * 2, side - pad * 2), Image.LANCZOS)
+    icon.paste(inner, (pad, pad), inner)
+    return icon.convert("RGB")
+
+
+def maskable_icon(side: int) -> Image.Image:
+    """Android clips this to the launcher's shape (circle, squircle, teardrop).
+
+    Only the central 80% circle is guaranteed to survive, so the mark is scaled
+    to ~60% of the canvas: anything larger loses the knight's ears to the clip.
+    """
+    icon = Image.new("RGBA", (side, side), (*THEME_LIGHT, 255))
+    inner_side = round(side * 0.6)
+    inner = mark.resize((inner_side, inner_side), Image.LANCZOS)
+    offset = (side - inner_side) // 2
+    icon.paste(inner, (offset, offset), inner)
+    return icon.convert("RGB")
+
+
+pwa_icon(192).save(OUT + "icon-192.png", optimize=True)
+pwa_icon(512).save(OUT + "icon-512.png", optimize=True)
+maskable_icon(512).save(OUT + "maskable-512.png", optimize=True)
+
+for name in (
+    "logo.png",
+    "logo-dark.png",
+    "favicon.png",
+    "apple-touch-icon.png",
+    "og.png",
+    "icon-192.png",
+    "icon-512.png",
+    "maskable-512.png",
+):
     print(name, Image.open(OUT + name).size)

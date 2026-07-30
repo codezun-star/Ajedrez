@@ -9,6 +9,15 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#eef2f9" />
+
+    <!-- Installable app. iOS ignores the manifest's name and display mode, so
+         the `apple-mobile-web-app-*` pair repeats them for the home screen. -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="application-name" content="botAgedrez" />
+    <meta name="apple-mobile-web-app-title" content="botAgedrez" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta
       name="description"
       content="botAgedrez — ajedrez web premium con motor propio, IA e ELO. Juega contra la máquina en 4 niveles."
@@ -24,19 +33,54 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://botagedrez.codezun.com/" />
 
-    <!-- Structured data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "botAgedrez",
-        "url": "https://botagedrez.codezun.com/",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Web",
-        "description": "Ajedrez web premium con motor propio e inteligencia artificial. Juega contra la máquina en 4 niveles, en 10 idiomas.",
-        "inLanguage": ["es", "en", "pt", "fr", "de", "ru", "hi", "zh", "ja", "ar"],
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-      }
+    <!-- Structured data.
+         The `WebSite` node is what makes Google label the result "botAgedrez"
+         instead of falling back to the registrable domain (codezun.com): the
+         site name is read from the `WebSite` on the home page, and without one
+         Search picks the parent domain and shows every subdomain under it.
+         `url` must be this subdomain's root for the name to apply here only.
+         The prerenderer swaps this block per page — see scripts/prerender.mjs. -->
+    <script type="application/ld+json" data-seo-jsonld>
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "@id": "https://botagedrez.codezun.com/#website",
+          "name": "botAgedrez",
+          "alternateName": "botAgedrez Ajedrez Online",
+          "url": "https://botagedrez.codezun.com/",
+          "description": "Ajedrez web premium con motor propio e inteligencia artificial. Juega contra la máquina en 4 niveles, en 10 idiomas.",
+          "inLanguage": ["es", "en", "pt", "fr", "de", "ru", "hi", "zh", "ja", "ar"],
+          "publisher": { "@id": "https://botagedrez.codezun.com/#organization" }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": "https://botagedrez.codezun.com/#organization",
+          "name": "botAgedrez",
+          "url": "https://botagedrez.codezun.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://botagedrez.codezun.com/icon-512.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "@id": "https://botagedrez.codezun.com/#webapp",
+          "name": "botAgedrez",
+          "url": "https://botagedrez.codezun.com/",
+          "applicationCategory": "GameApplication",
+          "operatingSystem": "Web",
+          "browserRequirements": "Requiere JavaScript",
+          "description": "Ajedrez web premium con motor propio e inteligencia artificial. Juega contra la máquina en 4 niveles, en 10 idiomas.",
+          "inLanguage": ["es", "en", "pt", "fr", "de", "ru", "hi", "zh", "ja", "ar"],
+          "publisher": { "@id": "https://botagedrez.codezun.com/#organization" },
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        }
+      ]
     </script>
 
     <!-- Open Graph -->
@@ -51,6 +95,7 @@
     <meta property="og:image" content="https://botagedrez.codezun.com/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="botAgedrez — ajedrez online gratis con IA" />
     <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter -->
@@ -62,6 +107,7 @@
       content="Ajedrez web premium con motor propio e inteligencia artificial. Reta a la máquina en 4 niveles y escala tu ELO."
     />
     <meta name="twitter:image" content="https://botagedrez.codezun.com/og.png" />
+    <meta name="twitter:image:alt" content="botAgedrez — ajedrez online gratis con IA" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

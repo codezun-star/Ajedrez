@@ -60,6 +60,11 @@ export default function App() {
     <Routes>
       <Route path="/" element={<RootRedirect />} />
 
+      {/* Language-neutral entry point for the installed app's "Jugar"
+          shortcut: a manifest holds one URL, but the visitor may be on any of
+          the ten languages, so resolve it the same way `/` does. */}
+      <Route path="/play" element={<LegacyRedirect section="play" />} />
+
       {/* Legacy, pre-i18n URLs — kept alive so existing links and any indexed
           pages land on the right language instead of a 404. */}
       <Route path="/jugar" element={<LegacyRedirect section="play" />} />

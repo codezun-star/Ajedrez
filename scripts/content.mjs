@@ -58,7 +58,7 @@ let cached;
 export async function loadContent() {
   if (cached) return cached;
 
-  const { LOCALES } = await importTs('src/i18n/locales.ts');
+  const { LOCALES, DEFAULT_LOCALE } = await importTs('src/i18n/locales.ts');
   const { translations } = await importTs('src/i18n/translations.ts');
 
   const dir = join(ROOT, 'src/content/blog');
@@ -82,7 +82,7 @@ export async function loadContent() {
       return post;
     });
 
-  cached = { locales: LOCALES, translations, posts };
+  cached = { locales: LOCALES, defaultLocale: DEFAULT_LOCALE, translations, posts };
   return cached;
 }
 
@@ -101,6 +101,174 @@ function frontmatter(raw) {
   return data;
 }
 
+/** Stable @id anchors, so every page refers to one site and one publisher. */
+const ID_SITE = `${SITE}/#website`;
+const ID_ORG = `${SITE}/#organization`;
+const ID_APP = `${SITE}/#webapp`;
+
+const ORG_REF = { '@id': ID_ORG };
+
+/**
+ * The publisher. Goes on **every** page, because the `author` and `publisher`
+ * of an article are written as `@id` references: a reference only resolves
+ * against a node in the same document, and an article whose author resolves to
+ * nothing is an article with no author as far as Search is concerned.
+ */
+function organizationNode() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': ID_ORG,
+    name: 'botAgedrez',
+    url: `${SITE}/`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE}/icon-512.png`,
+      width: 512,
+      height: 512,
+    },
+  };
+}
+
+/**
+ * The site-level nodes, repeated on the home pages.
+ *
+ * `WebSite` is the one Google reads to label a result. Without it Search falls
+ * back to the registrable domain and every subdomain shows up as
+ * "codezun.com"; with it, this subdomain is its own named site. `url` is the
+ * subdomain root on purpose — a site name applies to the site it points at.
+ */
+function siteNodes(description, codes) {
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': ID_SITE,
+      name: 'botAgedrez',
+      alternateName: 'botAgedrez Ajedrez Online',
+      url: `${SITE}/`,
+      description,
+      inLanguage: codes,
+      publisher: ORG_REF,
+    },
+    organizationNode(),
+  ];
+}
+
+/** The home page's full set: the site nodes plus the app itself. */
+export function rootNodes(description, codes) {
+  return [
+    ...siteNodes(description, codes),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      '@id': ID_APP,
+      name: 'botAgedrez',
+      url: `${SITE}/`,
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'Web',
+      browserRequirements: 'Requiere JavaScript',
+      description,
+      inLanguage: codes,
+      publisher: ORG_REF,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  ];
+}
+
+/** Inicio → … , with the localised labels the header itself uses. */
+function breadcrumb(trail) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((step, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: step.name,
+      item: `${SITE}${step.path}`,
+    })),
+  };
+}
+
+/**
+ * Structured data for one page.
+ *
+ * Every prerendered page used to inherit the home page's block verbatim, so
+ * all ~730 URLs declared themselves to be the same `WebApplication` sitting at
+ * the site root, and not one of the 70 articles said it was an article.
+ */
+function jsonLdFor({ section, page, t, codes, post }) {
+  const url = SITE + page.path;
+  const home = { name: t.nav.home, path: `/${page.lang}` };
+
+  if (section === 'home') return rootNodes(page.description, codes);
+
+  if (section === 'play') {
+    return [
+      organizationNode(),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        '@id': ID_APP,
+        name: 'botAgedrez',
+        url,
+        applicationCategory: 'GameApplication',
+        operatingSystem: 'Web',
+        browserRequirements: 'Requiere JavaScript',
+        description: page.description,
+        inLanguage: page.lang,
+        publisher: ORG_REF,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      },
+      breadcrumb([home, { name: t.nav.play, path: page.path }]),
+    ];
+  }
+
+  if (section === 'blog') {
+    return [
+      organizationNode(),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        '@id': `${url}#blog`,
+        name: t.blog.title,
+        url,
+        description: page.description,
+        inLanguage: page.lang,
+        publisher: ORG_REF,
+      },
+      breadcrumb([home, { name: t.nav.blog, path: page.path }]),
+    ];
+  }
+
+  return [
+    organizationNode(),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      '@id': `${url}#article`,
+      headline: post.title,
+      description: post.description,
+      url,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      datePublished: post.date,
+      dateModified: post.date,
+      inLanguage: post.lang,
+      image: `${SITE}/og.png`,
+      author: ORG_REF,
+      publisher: ORG_REF,
+      // Spelled out rather than referenced: the `WebSite` node itself only
+      // ships on the home pages, where Search reads the site name from it.
+      isPartOf: { '@type': 'WebSite', '@id': ID_SITE, name: 'botAgedrez', url: `${SITE}/` },
+    },
+    breadcrumb([
+      home,
+      { name: t.nav.blog, path: `/${post.lang}/blog` },
+      { name: post.title, path: page.path },
+    ]),
+  ];
+}
+
 /**
  * Every indexable URL, each with its title, description and the full set of
  * translations it should point at via hreflang.
@@ -109,12 +277,13 @@ function frontmatter(raw) {
  * hydrated head agree.
  */
 export async function buildPages() {
-  const { locales, translations, posts } = await loadContent();
+  const { locales, defaultLocale, translations, posts } = await loadContent();
   const codes = locales.map((l) => l.code);
   const pages = [];
 
   const fixed = [
     {
+      section: 'home',
       suffix: '',
       title: (t) => t.home.seoTitle,
       description: (t) => t.home.seoDescription,
@@ -122,6 +291,7 @@ export async function buildPages() {
       priority: '1.0',
     },
     {
+      section: 'play',
       suffix: '/play',
       title: (t) => t.play.seoTitle,
       description: (t) => t.play.seoDescription,
@@ -129,6 +299,7 @@ export async function buildPages() {
       priority: '0.9',
     },
     {
+      section: 'blog',
       suffix: '/blog',
       title: (t) => `${t.blog.title} · botAgedrez`,
       description: (t) => t.blog.subtitle,
@@ -141,7 +312,7 @@ export async function buildPages() {
     const alternates = codes.map((c) => ({ lang: c, path: `/${c}${spec.suffix}` }));
     for (const code of codes) {
       const t = translations[code];
-      pages.push({
+      const page = {
         path: `/${code}${spec.suffix}`,
         lang: code,
         title: spec.title(t),
@@ -149,7 +320,9 @@ export async function buildPages() {
         alternates,
         changefreq: spec.changefreq,
         priority: spec.priority,
-      });
+      };
+      page.jsonLd = jsonLdFor({ section: spec.section, page, t, codes });
+      pages.push(page);
     }
   }
 
@@ -158,7 +331,7 @@ export async function buildPages() {
       .filter((p) => p.cluster === post.cluster)
       .sort((a, b) => codes.indexOf(a.lang) - codes.indexOf(b.lang))
       .map((p) => ({ lang: p.lang, path: `/${p.lang}/blog/${p.slug}` }));
-    pages.push({
+    const page = {
       path: `/${post.lang}/blog/${post.slug}`,
       lang: post.lang,
       title: `${post.title} · botAgedrez`,
@@ -168,8 +341,22 @@ export async function buildPages() {
       changefreq: 'monthly',
       priority: '0.7',
       article: true,
+    };
+    page.jsonLd = jsonLdFor({
+      section: 'post',
+      page,
+      t: translations[post.lang],
+      codes,
+      post,
     });
+    pages.push(page);
   }
 
-  return { pages, locales, codes };
+  return {
+    pages,
+    locales,
+    codes,
+    // The language-neutral root advertises the site, not any one language.
+    rootJsonLd: rootNodes(translations[defaultLocale].home.seoDescription, codes),
+  };
 }

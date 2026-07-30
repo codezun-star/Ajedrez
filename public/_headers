@@ -13,6 +13,12 @@
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=3600
 
+# Chrome refuses to offer the install prompt if the manifest comes back as
+# text/html, which is what a fall-through would serve.
+/site.webmanifest
+  Content-Type: application/manifest+json; charset=utf-8
+  Cache-Control: public, max-age=3600
+
 # Hashed bundles never change under the same name.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
