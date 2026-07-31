@@ -44,6 +44,7 @@ page in its own right.
 
 ### Español (es)
 
+- [Trampas de apertura en ajedrez: 7 que ganan antes de la jugada 15](https://botagedrez.codezun.com/es/blog/trampas-de-apertura-en-ajedrez): La trampa de Légal, el ataque Fegatello, el Blackburne-Shilling, el mate del Englund, el Arca de Noé, la trampa de Lasker y la caña de pescar: siete trampas de apertura jugada a jugada y cómo no caer en ellas.
 - [Jaque mate rápido: el mate del pastor y 6 patrones más](https://botagedrez.codezun.com/es/blog/jaque-mate-patrones-basicos): Cómo dar jaque mate en pocas jugadas y cómo defenderse: mate del pastor, mate del loco, mate del pasillo, mate de la coz y los patrones que más partidas deciden.
 - [Reglas del ajedrez: cómo se mueven las piezas (guía completa)](https://botagedrez.codezun.com/es/blog/reglas-del-ajedrez): Todas las reglas del ajedrez explicadas paso a paso: cómo se mueve cada pieza, el enroque, la captura al paso, la coronación, el jaque mate y todas las tablas.
 - [Cómo mejorar en ajedrez: aperturas, táctica y finales](https://botagedrez.codezun.com/es/blog/como-mejorar-en-ajedrez): Guía práctica para subir de nivel en ajedrez: los principios de apertura que de verdad importan, los patrones tácticos que deciden partidas y los finales que hay que saber.
@@ -54,6 +55,7 @@ page in its own right.
 
 ### English (en)
 
+- [Chess Opening Traps for Beginners: 7 That End Games Early](https://botagedrez.codezun.com/en/blog/chess-opening-traps-for-beginners): The Légal trap, the Fried Liver, the Blackburne-Shilling, the Englund mate, Noah's Ark, the Lasker trap and the fishing pole: seven chess opening traps, move by move, and how to avoid falling for them.
 - [Fast Checkmates: Scholar's Mate and 6 More Patterns](https://botagedrez.codezun.com/en/blog/checkmate-patterns-for-beginners): How to checkmate in a few moves and how to defend: Scholar's Mate, Fool's Mate, back-rank mate, smothered mate and the patterns that decide most games.
 - [Chess Rules for Beginners: How Every Piece Moves](https://botagedrez.codezun.com/en/blog/chess-rules-for-beginners): Every chess rule explained step by step: how each piece moves, castling, en passant, promotion, check and checkmate, and all five ways a game can end in a draw.
 - [How to Get Better at Chess: Openings, Tactics and Endgames](https://botagedrez.codezun.com/en/blog/chess-opening-principles): A practical guide to improving at chess: the opening principles that actually matter, the tactical patterns that decide games, and the four endgames you must know.
@@ -64,6 +66,7 @@ page in its own right.
 
 ### Português (pt)
 
+- [Armadilhas de abertura no xadrez: 7 que decidem antes do lance 15](https://botagedrez.codezun.com/pt/blog/armadilhas-de-abertura-no-xadrez): A armadilha de Légal, o Fegatello, o Blackburne-Shilling, o mate do Englund, a Arca de Noé, a armadilha de Lasker e a vara de pescar: sete armadilhas de abertura lance a lance e como não cair nelas.
 - [Xeque-mate rápido: mate do pastor e mais 6 padrões](https://botagedrez.codezun.com/pt/blog/xeque-mate-padroes): Como dar xeque-mate em poucos lances e como se defender: mate do pastor, mate do louco, mate do corredor, mate sufocado e os padrões que mais decidem partidas.
 - [Regras do xadrez: como as peças se movem (guia completo)](https://botagedrez.codezun.com/pt/blog/regras-do-xadrez-para-iniciantes): Todas as regras do xadrez explicadas passo a passo: como cada peça se move, o roque, a captura en passant, a promoção, o xeque-mate e todos os empates.
 - [Como melhorar no xadrez: aberturas, táticas e finais](https://botagedrez.codezun.com/pt/blog/aberturas-de-xadrez-para-iniciantes): Guia prático para evoluir no xadrez: os princípios de abertura que realmente importam, os padrões táticos que decidem partidas e os finais que você precisa saber.
@@ -94,6 +97,7 @@ page in its own right.
 
 ### Русский (ru)
 
+- [Ловушки в дебюте: 7 схем, решающих партию до 15-го хода](https://botagedrez.codezun.com/ru/blog/lovushki-v-debyute): Ловушка Легаля, атака Фегателло, гамбит Блэкберна — Шиллинга, мат в гамбите Энглунда, «Ноев ковчег», ловушка Ласкера и «удочка»: семь дебютных ловушек по ходам и как в них не попасться.
 - [Быстрый мат: детский мат и ещё 6 матовых узоров](https://botagedrez.codezun.com/ru/blog/matovye-patterny): Как поставить мат в несколько ходов и как защититься: детский мат, дурацкий мат, мат по последней горизонтали, спёртый мат и узоры, решающие большинство партий.
 - [Правила шахмат для начинающих: как ходят фигуры](https://botagedrez.codezun.com/ru/blog/pravila-shahmat-dlya-nachinayushchih): Все правила шахмат по шагам: как ходит каждая фигура, рокировка, взятие на проходе, превращение пешки, шах и мат и все виды ничьей.
 - [Как играть в шахматы лучше: дебюты, тактика и эндшпиль](https://botagedrez.codezun.com/ru/blog/debyuty-v-shahmatah): Практическое руководство по росту в шахматах: принципы дебюта, которые действительно работают, тактические мотивы, решающие партии, и четыре обязательных окончания.
@@ -104,6 +108,7 @@ page in its own right.
 
 ### हिन्दी (hi)
 
+- [शतरंज ओपनिंग ट्रैप: 7 जाल जो 15वीं चाल से पहले बाज़ी ख़त्म कर देते हैं](https://botagedrez.codezun.com/hi/blog/shatranj-opening-traps): लेगल ट्रैप, फ्राइड लिवर अटैक, ब्लैकबर्न-शिलिंग, इंग्लंड गैम्बिट की मात, नोआज़ आर्क, लास्कर ट्रैप और फ़िशिंग पोल — सात ओपनिंग ट्रैप, चाल दर चाल, और उनसे बचने का तरीक़ा।
 - [तेज़ शह-मात: स्कॉलर मेट और 6 और पैटर्न](https://botagedrez.codezun.com/hi/blog/shatranj-checkmate-patterns): कुछ ही चालों में शह-मात कैसे दें और कैसे बचें: स्कॉलर मेट, फ़ूल्स मेट, बैक-रैंक मेट, स्मदर्ड मेट और वे पैटर्न जो सबसे ज़्यादा बाज़ियाँ तय करते हैं।
 - [शतरंज के नियम: हर मोहरा कैसे चलता है (पूरी गाइड)](https://botagedrez.codezun.com/hi/blog/shatranj-ke-niyam): शतरंज के सभी नियम आसान भाषा में: हर मोहरे की चाल, कैसलिंग, आँ पासां, प्यादे का प्रमोशन, शह और मात, और ड्रॉ के सभी तरीके।
 - [शतरंज में बेहतर कैसे बनें: ओपनिंग, रणनीति और अंतिम चरण](https://botagedrez.codezun.com/hi/blog/shatranj-mein-behtar-kaise-bane): शतरंज में सुधार की व्यावहारिक गाइड: वे ओपनिंग सिद्धांत जो सच में काम आते हैं, बाज़ी तय करने वाले रणनीतिक पैटर्न, और चार ज़रूरी अंतिम चरण।
