@@ -8,7 +8,7 @@
  * translations via hreflang and carries BlogPosting + FAQPage structured data.
  */
 
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CalendarIcon, ClockIcon, ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
@@ -19,6 +19,15 @@ import { useSeo, SITE_URL } from '@/hooks/useSeo';
 import { postsFor, getPost, translationsOf, BlogPost } from '@/content/blog';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { AdAnchor, AdRail, AdSlot, ArticleWithAds, NativeAd } from '@/components/ads';
+
+/** How many article cards go between two ads in the index. */
+const AD_EVERY_N_POSTS = 3;
+
+/** True when a unit belongs after the card at `i`, never after the last one. */
+function adAfterCard(i: number, total: number): boolean {
+  return i % AD_EVERY_N_POSTS === AD_EVERY_N_POSTS - 1 && i < total - 1;
+}
 
 /** Every language's blog index — the hreflang set shared by all indexes. */
 const INDEX_ALTERNATES = LOCALES.map((l) => ({ locale: l.code, path: blogPath(l.code) }));
@@ -48,42 +57,59 @@ export function BlogListScreen() {
         <h1 className="font-display text-3xl font-extrabold sm:text-4xl">{t('blog.title')}</h1>
         <p className="mt-2 text-slate-400">{t('blog.subtitle')}</p>
 
+        <AdSlot className="mt-6" />
+
         <div className="mt-8 grid gap-4">
           {posts.map((post, i) => (
-            <motion.article
-              key={post.slug}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-            >
-              <Link
-                to={postPath(locale, post.slug)}
-                className="card block p-4 transition-transform hover:-translate-y-0.5 sm:p-5"
+            <Fragment key={post.slug}>
+              <motion.article
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05 }}
               >
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400">
-                  <span className="inline-flex items-center gap-1">
-                    <CalendarIcon className="h-3.5 w-3.5 shrink-0" />
-                    {formatDate(post.date, post.lang)}
+                <Link
+                  to={postPath(locale, post.slug)}
+                  className="card block p-4 transition-transform hover:-translate-y-0.5 sm:p-5"
+                >
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400">
+                    <span className="inline-flex items-center gap-1">
+                      <CalendarIcon className="h-3.5 w-3.5 shrink-0" />
+                      {formatDate(post.date, post.lang)}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <ClockIcon className="h-3.5 w-3.5 shrink-0" />
+                      {post.readingMinutes} {t('blog.minRead')}
+                    </span>
+                  </div>
+                  <h2 className="mt-2 font-display text-lg font-bold text-white sm:text-xl">
+                    {post.title}
+                  </h2>
+                  <p className="mt-1.5 text-sm text-slate-400">{post.description}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-300">
+                    {t('blog.read')}
+                    <ArrowRightIcon className="h-4 w-4 shrink-0" />
                   </span>
-                  <span className="inline-flex items-center gap-1">
-                    <ClockIcon className="h-3.5 w-3.5 shrink-0" />
-                    {post.readingMinutes} {t('blog.minRead')}
-                  </span>
-                </div>
-                <h2 className="mt-2 font-display text-lg font-bold text-white sm:text-xl">
-                  {post.title}
-                </h2>
-                <p className="mt-1.5 text-sm text-slate-400">{post.description}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-300">
-                  {t('blog.read')}
-                  <ArrowRightIcon className="h-4 w-4 shrink-0" />
-                </span>
-              </Link>
-            </motion.article>
+                </Link>
+              </motion.article>
+
+              {/* A unit every few cards — often enough to be seen while
+                  scanning, rare enough that the page still reads as a list of
+                  articles. Never after the last card, where the closing strip
+                  already sits. */}
+              {adAfterCard(i, posts.length) &&
+                (i === AD_EVERY_N_POSTS - 1 ? (
+                  <NativeAd className="my-4" />
+                ) : (
+                  <AdSlot ladder="inline" className="my-4" />
+                ))}
+            </Fragment>
           ))}
         </div>
+
+        <AdSlot className="mt-8" />
       </main>
       <SiteFooter />
+      <AdAnchor />
       <BlogListJsonLd posts={posts} locale={locale} />
     </div>
   );
@@ -144,11 +170,9 @@ export function BlogPostScreen() {
           </span>
         </div>
 
-        <article
-          lang={post.lang}
-          className="article mt-4"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
+        <AdSlot className="mt-5" />
+
+        <ArticleWithAds html={post.html} lang={post.lang} />
 
         <div className="mt-10 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-5 text-center shadow-glow sm:p-6">
           <p className="text-lg font-semibold text-[#ffffff]">{t('home.ctaTitle')}</p>
@@ -159,6 +183,8 @@ export function BlogPostScreen() {
             {t('home.ctaPlay')}
           </Link>
         </div>
+
+        <AdSlot ladder="inline" className="mt-10" />
 
         {/* Keep readers (and crawlers) moving between the articles of this language. */}
         {others.length > 0 && (
@@ -178,8 +204,13 @@ export function BlogPostScreen() {
             </div>
           </section>
         )}
+        <AdSlot className="mt-10" />
       </main>
+      {/* Only from 2xl up, where the reading column leaves real empty margin. */}
+      <AdRail side="left" />
+      <AdRail side="right" />
       <SiteFooter />
+      <AdAnchor />
       <BlogPostJsonLd post={post} />
     </div>
   );

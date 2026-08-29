@@ -33,7 +33,7 @@ const en = {
     fEloTitle: 'Progression',
     fEloDesc: 'Elo rating, streaks, achievements and full match history.',
     fPrivacyTitle: 'Private & offline',
-    fPrivacyDesc: 'Everything runs in your browser. No sign-up, no tracking.',
+    fPrivacyDesc: 'Engine and AI run on your device. No sign-up, no accounts.',
     fStylesTitle: 'Your style',
     fStylesDesc: 'Two piece sets, light/dark theme and configurable clocks.',
     fLangsTitle: '10 languages',
@@ -194,7 +194,7 @@ const en = {
   },
   faq: {
     q1: "Is botAgedrez free to play?",
-    a1: "Yes. botAgedrez is completely free, with no ads and no in-game purchases. Open the page and start playing.",
+    a1: "Yes. botAgedrez is completely free, with no sign-up and no in-game purchases — the site is paid for by the ads around it. Open the page and start playing.",
     q2: "Do I need an account to play?",
     a2: "No. There is no sign-up. Your Elo, achievements and game history are stored in your own browser.",
     q3: "Can I play chess offline?",
@@ -203,6 +203,7 @@ const en = {
     a4: "There are four levels, from Easy (~800 Elo) to Expert (~2000 Elo). The AI runs minimax with alpha-beta pruning, so it punishes tactical mistakes.",
   },
   lang: { label: 'Language' },
+  ads: { label: 'Advertisement', close: 'Close ad' },
 };
 
 export type Messages = typeof en;
@@ -232,7 +233,7 @@ const es: Messages = {
     fEloTitle: 'Progresión',
     fEloDesc: 'ELO, rachas, logros e historial completo de partidas.',
     fPrivacyTitle: 'Privado y sin conexión',
-    fPrivacyDesc: 'Todo corre en tu navegador. Sin registro ni rastreo.',
+    fPrivacyDesc: 'El motor y la IA corren en tu dispositivo. Sin registro ni cuentas.',
     fStylesTitle: 'Tu estilo',
     fStylesDesc: 'Dos sets de piezas, tema claro/oscuro y relojes configurables.',
     fLangsTitle: '10 idiomas',
@@ -393,7 +394,7 @@ const es: Messages = {
   },
   faq: {
     q1: "¿Es gratis jugar al ajedrez en botAgedrez?",
-    a1: "Sí. botAgedrez es completamente gratuito y no tiene anuncios ni compras dentro del juego. Solo abre la página y empieza a jugar.",
+    a1: "Sí. botAgedrez es completamente gratuito, sin registro ni compras dentro del juego: el sitio se sostiene con la publicidad. Solo abre la página y empieza a jugar.",
     q2: "¿Necesito registrarme para jugar?",
     a2: "No. No hay cuentas ni registro. Tu ELO, tus logros y tu historial se guardan en tu propio navegador.",
     q3: "¿Puedo jugar al ajedrez sin conexión?",
@@ -402,6 +403,7 @@ const es: Messages = {
     a4: "Hay cuatro niveles, de Fácil (~800 ELO) a Experto (~2000 ELO). La IA usa minimax con poda alfa-beta, así que castiga los errores tácticos.",
   },
   lang: { label: 'Idioma' },
+  ads: { label: 'Publicidad', close: 'Cerrar anuncio' },
 };
 
 const pt: Messages = {
@@ -429,7 +431,7 @@ const pt: Messages = {
     fEloTitle: 'Progressão',
     fEloDesc: 'Elo, sequências, conquistas e histórico completo de partidas.',
     fPrivacyTitle: 'Privado e offline',
-    fPrivacyDesc: 'Tudo roda no seu navegador. Sem cadastro, sem rastreamento.',
+    fPrivacyDesc: 'Motor e IA rodam no seu aparelho. Sem cadastro, sem contas.',
     fStylesTitle: 'Seu estilo',
     fStylesDesc: 'Dois conjuntos de peças, tema claro/escuro e relógios configuráveis.',
     fLangsTitle: '10 idiomas',
@@ -590,7 +592,7 @@ const pt: Messages = {
   },
   faq: {
     q1: "É grátis jogar no botAgedrez?",
-    a1: "Sim. O botAgedrez é totalmente gratuito, sem anúncios e sem compras dentro do jogo. Basta abrir a página e jogar.",
+    a1: "Sim. O botAgedrez é totalmente gratuito, sem cadastro e sem compras dentro do jogo — o site é mantido pela publicidade. Basta abrir a página e jogar.",
     q2: "Preciso criar uma conta?",
     a2: "Não. Não existe cadastro. Seu Elo, suas conquistas e seu histórico ficam salvos no seu próprio navegador.",
     q3: "Dá para jogar xadrez offline?",
@@ -599,6 +601,7 @@ const pt: Messages = {
     a4: "São quatro níveis, do Fácil (~800 Elo) ao Especialista (~2000 Elo). A IA usa minimax com poda alfa-beta, então ela pune erros táticos.",
   },
   lang: { label: 'Idioma' },
+  ads: { label: 'Publicidade', close: 'Fechar anúncio' },
 };
 
 const fr: Messages = {
@@ -626,7 +629,7 @@ const fr: Messages = {
     fEloTitle: 'Progression',
     fEloDesc: 'Elo, séries, succès et historique complet des parties.',
     fPrivacyTitle: 'Privé et hors ligne',
-    fPrivacyDesc: 'Tout tourne dans votre navigateur. Sans compte, sans pistage.',
+    fPrivacyDesc: 'Moteur et IA tournent sur votre appareil. Sans inscription, sans compte.',
     fStylesTitle: 'Votre style',
     fStylesDesc: 'Deux jeux de pièces, thème clair/sombre et pendules configurables.',
     fLangsTitle: '10 langues',
@@ -787,7 +790,7 @@ const fr: Messages = {
   },
   faq: {
     q1: "botAgedrez est-il gratuit ?",
-    a1: "Oui. botAgedrez est entièrement gratuit, sans publicité ni achat intégré. Ouvrez la page et jouez.",
+    a1: "Oui. botAgedrez est entièrement gratuit, sans compte ni achat intégré : le site est financé par la publicité. Ouvrez la page et jouez.",
     q2: "Faut-il créer un compte ?",
     a2: "Non. Il n'y a aucune inscription. Votre Elo, vos succès et votre historique sont enregistrés dans votre propre navigateur.",
     q3: "Puis-je jouer aux échecs hors ligne ?",
@@ -796,6 +799,7 @@ const fr: Messages = {
     a4: "Il y a quatre niveaux, de Facile (~800 Elo) à Expert (~2000 Elo). L'IA utilise le minimax avec élagage alpha-bêta et sanctionne les erreurs tactiques.",
   },
   lang: { label: 'Langue' },
+  ads: { label: 'Publicité', close: 'Fermer la publicité' },
 };
 
 const de: Messages = {
@@ -823,7 +827,7 @@ const de: Messages = {
     fEloTitle: 'Fortschritt',
     fEloDesc: 'Elo, Serien, Erfolge und vollständige Partie-Historie.',
     fPrivacyTitle: 'Privat & offline',
-    fPrivacyDesc: 'Alles läuft im Browser. Keine Anmeldung, kein Tracking.',
+    fPrivacyDesc: 'Engine und KI laufen auf deinem Gerät. Keine Anmeldung, keine Konten.',
     fStylesTitle: 'Dein Stil',
     fStylesDesc: 'Zwei Figurensätze, helles/dunkles Design und konfigurierbare Uhren.',
     fLangsTitle: '10 Sprachen',
@@ -984,7 +988,7 @@ const de: Messages = {
   },
   faq: {
     q1: "Ist botAgedrez kostenlos?",
-    a1: "Ja. botAgedrez ist komplett kostenlos, ohne Werbung und ohne In-Game-Käufe. Seite öffnen und losspielen.",
+    a1: "Ja. botAgedrez ist komplett kostenlos, ohne Anmeldung und ohne In-Game-Käufe — finanziert wird die Seite über Werbung. Seite öffnen und losspielen.",
     q2: "Brauche ich ein Konto?",
     a2: "Nein. Es gibt keine Anmeldung. Deine Elo-Zahl, deine Erfolge und dein Verlauf werden in deinem eigenen Browser gespeichert.",
     q3: "Kann ich offline Schach spielen?",
@@ -993,6 +997,7 @@ const de: Messages = {
     a4: "Es gibt vier Stufen, von Leicht (~800 Elo) bis Experte (~2000 Elo). Die KI nutzt Minimax mit Alpha-Beta-Schnitt und bestraft taktische Fehler.",
   },
   lang: { label: 'Sprache' },
+  ads: { label: 'Werbung', close: 'Werbung schließen' },
 };
 
 const ru: Messages = {
@@ -1020,7 +1025,7 @@ const ru: Messages = {
     fEloTitle: 'Прогресс',
     fEloDesc: 'Рейтинг Эло, серии, достижения и полная история партий.',
     fPrivacyTitle: 'Приватно и офлайн',
-    fPrivacyDesc: 'Всё работает в браузере. Без регистрации и слежки.',
+    fPrivacyDesc: 'Движок и ИИ работают на вашем устройстве. Без регистрации и аккаунтов.',
     fStylesTitle: 'Ваш стиль',
     fStylesDesc: 'Два набора фигур, светлая/тёмная тема и настраиваемые часы.',
     fLangsTitle: '10 языков',
@@ -1181,7 +1186,7 @@ const ru: Messages = {
   },
   faq: {
     q1: "Игра на botAgedrez бесплатная?",
-    a1: "Да. botAgedrez полностью бесплатен, без рекламы и внутриигровых покупок. Просто откройте страницу и играйте.",
+    a1: "Да. botAgedrez полностью бесплатен, без регистрации и внутриигровых покупок — сайт живёт за счёт рекламы. Просто откройте страницу и играйте.",
     q2: "Нужна ли регистрация?",
     a2: "Нет. Регистрации нет. Ваш рейтинг Эло, достижения и история партий хранятся в вашем браузере.",
     q3: "Можно ли играть в шахматы офлайн?",
@@ -1190,6 +1195,7 @@ const ru: Messages = {
     a4: "Есть четыре уровня — от лёгкого (~800 Эло) до эксперта (~2000 Эло). ИИ использует минимакс с альфа-бета отсечением и наказывает за тактические ошибки.",
   },
   lang: { label: 'Язык' },
+  ads: { label: 'Реклама', close: 'Закрыть рекламу' },
 };
 
 const hi: Messages = {
@@ -1217,7 +1223,7 @@ const hi: Messages = {
     fEloTitle: 'प्रगति',
     fEloDesc: 'एलो, स्ट्रीक, उपलब्धियाँ और पूरा मैच इतिहास।',
     fPrivacyTitle: 'निजी और ऑफलाइन',
-    fPrivacyDesc: 'सब कुछ आपके ब्राउज़र में चलता है। कोई साइन-अप नहीं, कोई ट्रैकिंग नहीं।',
+    fPrivacyDesc: 'इंजन और AI आपके डिवाइस पर चलते हैं। न साइन-अप, न खाता।',
     fStylesTitle: 'आपकी शैली',
     fStylesDesc: 'दो प्यादा सेट, हल्की/गहरी थीम और समायोज्य घड़ियाँ।',
     fLangsTitle: '10 भाषाएँ',
@@ -1378,7 +1384,7 @@ const hi: Messages = {
   },
   faq: {
     q1: "क्या botAgedrez खेलना मुफ़्त है?",
-    a1: "हाँ। botAgedrez पूरी तरह मुफ़्त है, न विज्ञापन हैं न इन-गेम खरीदारी। बस पेज खोलें और खेलना शुरू करें।",
+    a1: "हाँ। botAgedrez पूरी तरह मुफ़्त है — न साइन-अप, न इन-गेम खरीदारी। साइट विज्ञापनों से चलती है। बस पेज खोलें और खेलना शुरू करें।",
     q2: "क्या खेलने के लिए अकाउंट चाहिए?",
     a2: "नहीं। कोई रजिस्ट्रेशन नहीं है। आपकी Elo रेटिंग, उपलब्धियाँ और इतिहास आपके अपने ब्राउज़र में सेव होते हैं।",
     q3: "क्या मैं ऑफ़लाइन शतरंज खेल सकता हूँ?",
@@ -1387,6 +1393,7 @@ const hi: Messages = {
     a4: "चार स्तर हैं, आसान (~800 Elo) से विशेषज्ञ (~2000 Elo) तक। AI अल्फा-बीटा प्रूनिंग के साथ मिनिमैक्स चलाता है, इसलिए यह रणनीतिक गलतियों को सज़ा देता है।",
   },
   lang: { label: 'भाषा' },
+  ads: { label: 'विज्ञापन', close: 'विज्ञापन बंद करें' },
 };
 
 const zh: Messages = {
@@ -1413,7 +1420,7 @@ const zh: Messages = {
     fEloTitle: '进阶成长',
     fEloDesc: 'Elo 积分、连胜、成就和完整对局历史。',
     fPrivacyTitle: '私密且离线',
-    fPrivacyDesc: '一切都在浏览器中运行。无需注册，无追踪。',
+    fPrivacyDesc: '引擎与 AI 都在你的设备上运行。无需注册，无需账号。',
     fStylesTitle: '你的风格',
     fStylesDesc: '两套棋子、明暗主题和可配置的计时器。',
     fLangsTitle: '10 种语言',
@@ -1574,7 +1581,7 @@ const zh: Messages = {
   },
   faq: {
     q1: "botAgedrez 是免费的吗？",
-    a1: "是的。botAgedrez 完全免费，没有广告，也没有游戏内购买。打开页面即可开始下棋。",
+    a1: "是的。botAgedrez 完全免费，无需注册，也没有游戏内购买；网站由广告支持。打开页面即可开始下棋。",
     q2: "需要注册账号吗？",
     a2: "不需要。没有注册流程。你的 Elo 等级分、成就和对局历史都保存在你自己的浏览器中。",
     q3: "可以离线下棋吗？",
@@ -1583,6 +1590,7 @@ const zh: Messages = {
     a4: "共有四个等级，从简单（约 800 Elo）到专家（约 2000 Elo）。AI 使用带 Alpha-Beta 剪枝的极小化极大搜索，会抓住战术失误。",
   },
   lang: { label: '语言' },
+  ads: { label: '广告', close: '关闭广告' },
 };
 
 const ja: Messages = {
@@ -1609,7 +1617,7 @@ const ja: Messages = {
     fEloTitle: '成長',
     fEloDesc: 'Eloレーティング、連勝、実績、全対局履歴。',
     fPrivacyTitle: 'プライベート＆オフライン',
-    fPrivacyDesc: 'すべてブラウザ内で動作。登録も追跡もなし。',
+    fPrivacyDesc: 'エンジンと AI は端末上で動作。登録もアカウントも不要。',
     fStylesTitle: 'あなたのスタイル',
     fStylesDesc: '2種類の駒、ライト/ダークテーマ、設定可能な時計。',
     fLangsTitle: '10言語',
@@ -1770,7 +1778,7 @@ const ja: Messages = {
   },
   faq: {
     q1: "botAgedrez は無料ですか？",
-    a1: "はい。botAgedrez は完全無料で、広告もアプリ内課金もありません。ページを開けばすぐに対局できます。",
+    a1: "はい。botAgedrez は完全無料で、登録もアプリ内課金もありません（サイトは広告で運営されています）。ページを開けばすぐに対局できます。",
     q2: "アカウント登録は必要ですか？",
     a2: "いいえ。登録は不要です。Eloレーティング、実績、対局履歴はご自身のブラウザに保存されます。",
     q3: "オフラインでもプレイできますか？",
@@ -1779,6 +1787,7 @@ const ja: Messages = {
     a4: "難易度は4段階、イージー（約800 Elo）からエキスパート（約2000 Elo）まで。AIはアルファベータ枝刈り付きミニマックスで探索し、戦術的なミスを見逃しません。",
   },
   lang: { label: '言語' },
+  ads: { label: '広告', close: '広告を閉じる' },
 };
 
 const ar: Messages = {
@@ -1805,7 +1814,7 @@ const ar: Messages = {
     fEloTitle: 'التقدّم',
     fEloDesc: 'تصنيف إيلو، سلاسل الفوز، الإنجازات وسجل كامل للمباريات.',
     fPrivacyTitle: 'خصوصي وبدون إنترنت',
-    fPrivacyDesc: 'كل شيء يعمل في متصفحك. بدون تسجيل ولا تتبّع.',
+    fPrivacyDesc: 'المحرك والذكاء الاصطناعي يعملان على جهازك. بدون تسجيل ولا حسابات.',
     fStylesTitle: 'أسلوبك',
     fStylesDesc: 'مجموعتا قطع، سمة فاتحة/داكنة وساعات قابلة للضبط.',
     fLangsTitle: '10 لغات',
@@ -1966,7 +1975,7 @@ const ar: Messages = {
   },
   faq: {
     q1: "هل اللعب على botAgedrez مجاني؟",
-    a1: "نعم. botAgedrez مجاني بالكامل، بلا إعلانات وبلا مشتريات داخل اللعبة. افتح الصفحة وابدأ اللعب.",
+    a1: "نعم. botAgedrez مجاني بالكامل، بدون تسجيل وبدون مشتريات داخل اللعبة — ويُموَّل الموقع عبر الإعلانات. افتح الصفحة وابدأ اللعب.",
     q2: "هل أحتاج إلى حساب؟",
     a2: "لا. لا يوجد تسجيل. تصنيف إيلو والإنجازات وسجل المباريات تُحفظ في متصفحك أنت.",
     q3: "هل يمكنني اللعب دون اتصال بالإنترنت؟",
@@ -1975,6 +1984,7 @@ const ar: Messages = {
     a4: "هناك أربعة مستويات، من السهل (~800 إيلو) إلى الخبير (~2000 إيلو). يستخدم الذكاء الاصطناعي خوارزمية مينيماكس مع تقليم ألفا-بيتا، لذا يعاقب الأخطاء التكتيكية.",
   },
   lang: { label: 'اللغة' },
+  ads: { label: 'إعلان', close: 'إغلاق الإعلان' },
 };
 
 export const translations: Record<Locale, Messages> = { en, es, pt, fr, de, ru, hi, zh, ja, ar };

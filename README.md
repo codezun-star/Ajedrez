@@ -64,13 +64,39 @@ src/
 ├── ai/         Evaluación, búsqueda (minimax/alfa-beta), dificultad, worker
 ├── store/      Estado global (Zustand)
 ├── hooks/      useAI, useClock, useSound, usePieceTracking, ...
-├── components/ board · panel · screens · modals · stats · ui
+├── components/ board · panel · screens · modals · stats · ui · ads
 ├── utils/      elo, storage, achievements, stats, material, format
-└── constants/  Geometría del tablero, ritmos de tiempo
+└── constants/  Geometría del tablero, ritmos de tiempo, inventario de anuncios
 ```
 
 La regla de oro: **el motor no sabe nada de la UI**. Todo en `engine/` y `ai/`
 es data pura y funciones, ejecutable en tests o en un worker sin un DOM.
+
+## 📣 Publicidad
+
+Las zonas viven en un único sitio, `src/constants/ads.ts`; ninguna pantalla
+conoce una clave ni una medida. `components/ads/` las sirve:
+
+- **`AdSlot`** — cada banner se renderiza dentro de su propio iframe `srcdoc`.
+  El `invoke.js` de la red pinta con `document.write`, que en una SPA borraría
+  el documento entero: aislado en un iframe solo se reescribe a sí mismo. El
+  slot mide el ancho que realmente recibió y elige la mayor medida que entra
+  (728×90 en escritorio, 320×50 en móvil), reserva la caja antes de que llegue
+  el creativo — así un anuncio tardío no desplaza lo que se está leyendo — y no
+  llama a la red hasta estar cerca del viewport.
+- **`NativeAd`** — el bloque nativo por contenedor. Su id es global, así que
+  solo hay una instancia viva por página.
+- **`AdAnchor`** — la barra inferior fija, cerrable durante la sesión. Ausente
+  en la partida: ahí taparía el tablero.
+- **`AdRail`** — rascacielos 160×600 en los márgenes, solo desde `2xl`.
+- **`ArticleWithAds`** — corta el artículo por sus propios `<h2>` e inserta
+  unidades en las pausas entre secciones, nunca dentro de un párrafo.
+
+El *social bar* es de documento, no de ruta: se carga una vez desde
+`index.html`. El sandbox de los iframes concede `allow-same-origin` (sin él las
+redes tratan la petición como tráfico inválido y dejan de rellenar) pero **no**
+navegación del top, para que ningún creativo pueda sacar al jugador de una
+partida en curso.
 
 ## 🚀 Desarrollo
 

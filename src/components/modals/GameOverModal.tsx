@@ -2,6 +2,11 @@
  * GameOverModal — the end-of-game summary: outcome, the reason it ended, the
  * Elo change with an animated counter, any freshly-unlocked achievements, and
  * rematch / new-game actions. A confetti burst celebrates a win.
+ *
+ * The card carries one ad, between the Elo counter and the achievements: the
+ * player is reading rather than playing, and the gap keeps it clear of the
+ * rematch button. The overlay already scrolls, so the taller card still fits a
+ * short screen.
  */
 
 import { useEffect, useState } from 'react';
@@ -14,6 +19,7 @@ import { useI18n } from '@/i18n';
 import { achievementText } from '@/i18n/achievementsI18n';
 import { Confetti } from './Confetti';
 import { CrownIcon, RefreshIcon } from '@/components/ui/Icons';
+import { AdSlot } from '@/components/ads';
 
 const REASON_KEY: Record<string, string> = {
   checkmate: 'rCheckmate',
@@ -101,6 +107,13 @@ export function GameOverModal() {
               {t(`ranks.${eloRankKey(profile.elo)}`)} · {t('result.streakNow')} {profile.currentStreak}
               <FlameIcon className="h-3.5 w-3.5 text-orange-400" />
             </p>
+          </div>
+
+          {/* The one genuinely idle moment in a game — the player is reading
+              their result, not moving. Deliberately kept away from the buttons
+              below so a rematch tap can never land on an ad. */}
+          <div className="px-4 pt-3 sm:px-6">
+            <AdSlot ladder="inline" />
           </div>
 
           {/* Achievements */}

@@ -324,3 +324,33 @@ body {
 :root:not(.dark) [class~='border-white/5'] {
   border-color: rgba(15, 23, 42, 0.08);
 }
+
+/* ── Advertising ─────────────────────────────────────────────────────────────
+   Slots are labelled and boxed so a unit reads as paid placement rather than
+   as part of the site, and so an unfilled one looks like an empty frame rather
+   than a broken layout. The box is sized before the creative arrives, which is
+   what keeps a late ad from shifting the text under the reader. */
+.ad-slot {
+  @apply flex w-full flex-col items-center gap-1;
+}
+.ad-label {
+  @apply text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-slate-500;
+}
+.ad-frame {
+  @apply overflow-hidden rounded-xl bg-white/[0.03] ring-1 ring-white/5;
+  max-width: 100%;
+}
+:root:not(.dark) .ad-frame {
+  @apply bg-slate-900/[0.03] ring-slate-900/5;
+}
+
+/* The anchor bar rides above the page, so it needs its own opaque-ish backing
+   and to clear the phone's home indicator. */
+.ad-anchor {
+  @apply fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface-950/85 backdrop-blur-xl;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+:root:not(.dark) .ad-anchor {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.1);
+}

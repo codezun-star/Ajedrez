@@ -33,6 +33,7 @@ import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { BrandLogo } from '@/components/ui/BrandLogo';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { AdAnchor, AdBreak } from '@/components/ads';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -124,6 +125,8 @@ export function HomeScreen() {
         </motion.div>
       </section>
 
+      <AdBreak />
+
       {/* Features */}
       <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-2xl text-center">
@@ -149,6 +152,8 @@ export function HomeScreen() {
         </div>
       </section>
 
+      <AdBreak native />
+
       {/* How it works */}
       <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <h2 className="text-center font-display text-2xl font-bold sm:text-3xl">{t('home.howTitle')}</h2>
@@ -167,6 +172,8 @@ export function HomeScreen() {
           ))}
         </div>
       </section>
+
+      <AdBreak />
 
       {/* Guides written in this language */}
       {posts.length > 0 && (
@@ -223,6 +230,8 @@ export function HomeScreen() {
         </div>
       </section>
 
+      <AdBreak ladder="inline" />
+
       {/* Bottom CTA */}
       <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 text-center shadow-glow sm:p-12">
@@ -241,6 +250,7 @@ export function HomeScreen() {
       </section>
 
       <SiteFooter />
+      <AdAnchor />
       <HomeJsonLd
         faq={faq}
         locale={locale}

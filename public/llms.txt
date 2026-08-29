@@ -34,7 +34,7 @@ page in its own right.
 
 ## Frequently asked questions
 
-- **Is botAgedrez free to play?** Yes. botAgedrez is completely free, with no ads and no in-game purchases. Open the page and start playing.
+- **Is botAgedrez free to play?** Yes. botAgedrez is completely free, with no sign-up and no in-game purchases — the site is paid for by the ads around it. Open the page and start playing.
 - **Do I need an account to play?** No. There is no sign-up. Your Elo, achievements and game history are stored in your own browser.
 - **Can I play chess offline?** Yes. The engine and the AI both run on your device, so once the page has loaded you can keep playing without an internet connection.
 - **How strong is the AI?** There are four levels, from Easy (~800 Elo) to Expert (~2000 Elo). The AI runs minimax with alpha-beta pruning, so it punishes tactical mistakes.

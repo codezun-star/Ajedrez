@@ -17,6 +17,7 @@ import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { EloChart } from '@/components/stats/EloChart';
 import { AchievementsGrid } from '@/components/stats/AchievementsGrid';
 import { ChevronLeft } from '@/components/ui/Icons';
+import { AdAnchor, AdSlot, NativeAd } from '@/components/ads';
 
 const OUTCOME_STYLE = {
   win: { label: 'V', className: 'bg-emerald-500/20 text-emerald-300' },
@@ -47,6 +48,8 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
         {/* Balances the back button so the title stays centred on wide screens. */}
         <div className="hidden w-20 shrink-0 sm:block" />
       </div>
+
+      <AdSlot className="mb-6" />
 
       <div className="grid gap-4 lg:grid-cols-3">
         {/* Headline stats */}
@@ -134,6 +137,10 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           </div>
         </motion.div>
 
+        <div className="lg:col-span-3">
+          <NativeAd />
+        </div>
+
         {/* Achievements */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -199,6 +206,9 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
           )}
         </motion.div>
       </div>
+
+      <AdSlot className="mt-6" />
+      <AdAnchor />
     </div>
   );
 }

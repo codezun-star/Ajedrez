@@ -16,6 +16,12 @@
  *
  * Rotating the device flips between these instantly via {@link useIsWide} /
  * {@link useIsShort}.
+ *
+ * Ads here are bounded by that same height budget, so each one is placed where
+ * it costs the board the least: beside it in the panel column when the layout
+ * is wide, and a single 320×50 strip along the bottom edge in portrait — which
+ * the board's height cap below accounts for. Short landscape gets none at all:
+ * that layout already drops the header to find room for the board.
  */
 
 import { motion } from 'framer-motion';
@@ -33,6 +39,7 @@ import { IconButton } from '@/components/ui/IconButton';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { SunIcon, MoonIcon, VolumeIcon, MuteIcon } from '@/components/ui/Icons';
 import { BrandLogo } from '@/components/ui/BrandLogo';
+import { AdSlot } from '@/components/ads';
 
 export function GameScreen() {
   const { t, locale } = useI18n();
@@ -98,9 +105,11 @@ export function GameScreen() {
             </SquareFit>
           ) : (
             // Portrait: width is the scarce axis. Take the full width and only
-            // cap it by what the header, strips and panel need, so the board is
-            // as large as the phone allows instead of splitting the screen.
-            <div className="mx-auto w-full max-w-[min(100%,calc(100dvh-21rem))]">
+            // cap it by what the rest of the screen needs — 21rem of chrome
+            // (header, strips, panel) plus the 4rem the bottom ad strip costs —
+            // so the board is as large as the phone allows instead of splitting
+            // the screen.
+            <div className="mx-auto w-full max-w-[min(100%,calc(100dvh-25rem))]">
               <Board />
             </div>
           )}
@@ -128,9 +137,26 @@ export function GameScreen() {
             <SidePanel />
           </div>
 
+          {/* Beside the board, never over it, and only from `lg` up — that is
+              the first width where the column can hold a 300×250 and still
+              leave the move list a usable height. */}
+          {wide && !compactLandscape && (
+            <div className="hidden shrink-0 pt-2 lg:block">
+              <AdSlot ladder="panel" maxHeight={260} />
+            </div>
+          )}
+
           {compactLandscape && <PlayerStrip color={bottomColor} />}
         </div>
       </div>
+
+      {/* Portrait only: a fixed 320×50, the one unit the height budget above
+          was written around. */}
+      {!wide && (
+        <div className="shrink-0 pt-1.5">
+          <AdSlot ladder="strip" />
+        </div>
+      )}
     </div>
   );
 }

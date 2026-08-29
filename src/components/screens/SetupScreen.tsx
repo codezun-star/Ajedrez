@@ -19,6 +19,7 @@ import { eloRankKey } from '@/utils/elo';
 import { ChartIcon } from '@/components/ui/Icons';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { BrandLogo } from '@/components/ui/BrandLogo';
+import { AdAnchor, AdSlot, NativeAd } from '@/components/ads';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -69,6 +70,8 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
         </h1>
         <p className="max-w-md text-sm text-slate-400 sm:text-base">{t('home.subtitle')}</p>
       </motion.div>
+
+      <AdSlot />
 
       {/* Config card */}
       <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="card w-full space-y-6 p-4 sm:p-6 md:p-8">
@@ -158,6 +161,8 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
         </button>
       </motion.div>
 
+      <NativeAd />
+
       {/* Footer: profile + stats */}
       <motion.div
         variants={fadeUp}
@@ -175,6 +180,8 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
           <span className="truncate">{t('setup.statsBtn')}</span>
         </button>
       </motion.div>
+
+      <AdAnchor />
     </div>
   );
 }

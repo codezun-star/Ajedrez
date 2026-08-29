@@ -111,6 +111,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Ad delivery hosts. The tags themselves are injected by the app once a
+         slot nears the viewport, so warming the DNS/TLS handshake here is what
+         keeps that first ad call from costing a round trip when it happens. -->
+    <link rel="preconnect" href="https://www.highrevenueformat.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.highrevenueformat.com" />
+    <link rel="dns-prefetch" href="https://pl31073502.profitableratecpmnetwork.com" />
+    <link rel="dns-prefetch" href="https://pl31073503.profitableratecpmnetwork.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -119,5 +127,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Social bar / pop. A document-level unit that manages its own placement,
+         so it belongs to the document rather than to any React route: loading it
+         here means it runs once per visit on every prerendered page, instead of
+         being torn down and re-armed on each client-side navigation. `async` so
+         it never blocks the app bundle. -->
+    <script
+      async
+      data-cfasync="false"
+      src="https://pl31073503.profitableratecpmnetwork.com/81/4a/59/814a59c7bceb52fd9a0e164460d98b84.js"
+    ></script>
   </body>
 </html>
