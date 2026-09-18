@@ -8,7 +8,31 @@
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#eef2f9" />
+
+    <!-- The browser chrome follows the theme the reader actually picked, which
+         the script below has already applied to <html> by this point. A single
+         light value left the address bar white behind a dark page. -->
+    <meta name="theme-color" content="#eef2f9" data-theme-color />
+
+    <!-- Theme, before first paint.
+         The class is applied by React on mount, which is after the bundle has
+         downloaded, parsed and rendered — so a reader who chose the dark theme
+         got a full flash of the light one on every navigation. This reads the
+         same key `src/utils/storage.ts` writes and settles it inline. Kept
+         tiny and dependency-free on purpose: it blocks the parser. -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem('botagedrez.v1.settings');
+          var dark = raw && JSON.parse(raw).theme === 'dark';
+          document.documentElement.classList.toggle('dark', !!dark);
+          var meta = document.querySelector('meta[data-theme-color]');
+          if (meta && dark) meta.setAttribute('content', '#0c0f1d');
+        } catch (e) {
+          /* private mode, blocked storage: fall through to the light default */
+        }
+      })();
+    </script>
 
     <!-- Installable app. iOS ignores the manifest's name and display mode, so
          the `apple-mobile-web-app-*` pair repeats them for the home screen. -->
@@ -23,10 +47,10 @@
       content="botAgedrez — ajedrez web premium con motor propio, IA e ELO. Juega contra la máquina en 4 niveles."
     />
     <title>botAgedrez · Ajedrez online gratis con IA</title>
-    <meta
-      name="keywords"
-      content="ajedrez, ajedrez online, jugar ajedrez, ajedrez contra la máquina, chess, chess online, play chess, ajedrez gratis, IA ajedrez"
-    />
+    <!-- No `keywords` meta. No major engine has read one for well over a
+         decade, and the prerenderer copies the template's head to all 105
+         pages — so the Japanese, Arabic and Russian trees were each shipping
+         the same Spanish keyword list. -->
     <meta name="robots" content="index, follow" />
     <meta name="author" content="botAgedrez" />
 

@@ -10,6 +10,11 @@
  *   /:locale/blog         → article index for that language
  *   /:locale/blog/:slug   → a single article
  *
+ * Anything else renders {@link NotFoundScreen}, which marks itself `noindex`.
+ * It used to `Navigate` to `/` instead: the reader was moved somewhere they
+ * hadn't asked for, and because the host answers 200 for every path, Search saw
+ * a real page with the home page's content — a soft 404 for every dead URL.
+ *
  * The pre-launch URLs (`/jugar`, `/blog`, `/blog/:slug`) still resolve: Cloudflare
  * 301s them via `public/_redirects`, and the routes below cover anyone who
  * reaches them client-side.
@@ -22,10 +27,11 @@ import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { useGameStore } from '@/store/gameStore';
 import { useI18n } from '@/i18n';
-import { DEFAULT_LOCALE, detectLocale, isLocale } from '@/i18n/locales';
+import { detectLocale, isLocale } from '@/i18n/locales';
 import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
 import { BLOG_POSTS } from '@/content/blog';
 import { HomeScreen } from '@/components/screens/HomeScreen';
+import { NotFoundScreen } from '@/components/screens/NotFoundScreen';
 import { GameSkeleton, ScreenLoader } from '@/components/ui/Loaders';
 
 /**
@@ -46,9 +52,15 @@ export default function App() {
   const theme = useGameStore((s) => s.settings.theme);
   const { pathname } = useLocation();
 
-  // Apply the theme class to <html> for every route.
+  // Apply the theme class to <html> for every route. The inline script in
+  // index.html has already done this for the first paint; this keeps it in step
+  // when the reader toggles, and moves the browser chrome with it.
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+    const dark = theme === 'dark';
+    document.documentElement.classList.toggle('dark', dark);
+    document
+      .querySelector('meta[data-theme-color]')
+      ?.setAttribute('content', dark ? '#0c0f1d' : '#eef2f9');
   }, [theme]);
 
   // Scroll to top on navigation.
@@ -97,9 +109,10 @@ export default function App() {
             </Suspense>
           }
         />
+        <Route path="*" element={<NotFoundScreen />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundScreen />} />
     </Routes>
   );
 }
@@ -118,7 +131,7 @@ function LocaleLayout() {
     if (valid && param !== locale) setLocale(param);
   }, [valid, param, locale, setLocale]);
 
-  if (!valid) return <Navigate to="/" replace />;
+  if (!valid) return <NotFoundScreen />;
   return <Outlet />;
 }
 
@@ -136,6 +149,6 @@ function LegacyRedirect({ section }: { section: 'play' | 'blog' }) {
 function LegacyPostRedirect() {
   const { slug } = useParams();
   const post = BLOG_POSTS.find((p) => p.slug === slug);
-  if (!post) return <Navigate to={blogPath(DEFAULT_LOCALE)} replace />;
+  if (!post) return <NotFoundScreen />;
   return <Navigate to={postPath(post.lang, post.slug)} replace />;
 }

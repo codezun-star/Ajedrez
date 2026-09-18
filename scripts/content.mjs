@@ -169,25 +169,88 @@ function faqNode(pairs, lang) {
 /**
  * The static copy of a page's content, written inside `#root`.
  *
- * The app is client-rendered, so what this build has been shipping for every
- * one of the ~730 URLs is a `<head>` full of metadata over a body containing
- * exactly `<div id="root"></div>`. A search engine that runs JavaScript
- * eventually sees the real page; the crawlers behind the answer engines
- * largely don't run any, so for them seventy articles had a title, a
- * description and no text at all — nothing to quote, nothing to answer with.
+ * The app is client-rendered, so what this build shipped for every one of the
+ * URLs is a `<head>` full of metadata over a body containing exactly
+ * `<div id="root"></div>`. A search engine that runs JavaScript eventually sees
+ * the real page; the crawlers behind the answer engines largely don't run any,
+ * so for them seventy articles had a title, a description and no text at all —
+ * nothing to quote, nothing to answer with.
  *
  * `createRoot().render()` empties the container before it mounts, so React
  * wipes this the moment it boots: there is no hydration to mismatch, and no
  * duplicate content in the DOM. It isn't cloaking either — it's the same text
  * the app renders, from the same source. And the visitor gains too: the window
  * that used to show a blank page while the bundle downloaded now shows the
- * article.
+ * article, with working links.
  *
- * Only the parts that are content are emitted — the article, the questions,
- * the intro. Not the header, the footer or the board: they are chrome, and
- * copying their markup here would be two definitions of the same thing waiting
- * to drift.
+ * ## Why the links are here
+ *
+ * Text alone left every page an island. Without JavaScript there was not one
+ * `<a>` anywhere on the site: the blog index listed no articles, the hub linked
+ * to neither the board nor the guides, and no page reached its own
+ * translations. A crawler that doesn't run scripts could read a page it was
+ * handed, and could not discover a second one — the entire site was reachable
+ * only through sitemap.xml, with no internal linking and no anchor text to say
+ * what any of it was about. So every page now carries the same links the
+ * rendered page carries.
+ *
+ * Only content and navigation are emitted, in plain markup — never the header,
+ * footer or board *markup*, which is chrome and would be a second definition
+ * waiting to drift. The labels and paths come from the same translations and
+ * the same route helpers the components use, so there is still one source of
+ * truth for both.
  */
+/** One `<a>`, with the text escaped. */
+function link(href, text, attrs = '') {
+  return `<a href="${href}"${attrs}>${escapeHtml(text)}</a>`;
+}
+
+/**
+ * The site navigation, as the header renders it: hub, board, guides.
+ *
+ * Every page gets it, so a crawler that lands anywhere can reach the other two
+ * sections of that language in one hop.
+ */
+function navMarkup(lang, t) {
+  return [
+    '<nav>',
+    link(`/${lang}`, t.nav.home),
+    link(`/${lang}/play`, t.nav.play),
+    link(`/${lang}/blog`, t.nav.blog),
+    '</nav>',
+  ].join(' ');
+}
+
+/**
+ * The footer's language row.
+ *
+ * `hreflang` on the anchor tells a crawler what it is getting before it follows
+ * the link, and it is what makes the ten trees discoverable from any one of
+ * them rather than only from the `<head>` alternates.
+ */
+function languagesMarkup(locales, t, alternates) {
+  const byLang = new Map(alternates.map((a) => [a.lang, a.path]));
+  const items = locales
+    .filter((l) => byLang.has(l.code))
+    .map((l) =>
+      link(byLang.get(l.code), l.name, ` hreflang="${l.code}" lang="${l.code}"`),
+    );
+  if (!items.length) return '';
+  return `<nav><h2>${escapeHtml(t.lang.label)}</h2>${items.join(' ')}</nav>`;
+}
+
+/** A list of articles, each a real link with its own description. */
+function postListMarkup(posts, lang, heading) {
+  if (!posts.length) return '';
+  const items = posts
+    .map(
+      (p) =>
+        `<li>${link(`/${lang}/blog/${p.slug}`, p.title)}<p>${escapeHtml(p.description)}</p></li>`,
+    )
+    .join('');
+  return `<section>${heading ? `<h2>${escapeHtml(heading)}</h2>` : ''}<ul>${items}</ul></section>`;
+}
+
 function faqMarkup(pairs, title) {
   if (!pairs.length) return '';
   return [
@@ -205,30 +268,57 @@ function escapeHtml(value) {
     .replace(/>/g, '&gt;');
 }
 
-function bodyFor({ section, page, t, post }) {
+function bodyFor({ section, page, t, post, locales, siblings }) {
+  const lang = page.lang;
+  const nav = navMarkup(lang, t);
+  const languages = languagesMarkup(locales, t, page.alternates);
+
   if (section === 'home') {
     return [
+      nav,
       `<h1>${escapeHtml(t.home.h1)}</h1>`,
       `<p>${escapeHtml(t.home.subtitle)}</p>`,
+      `<p>${link(`/${lang}/play`, t.home.ctaPlay)}</p>`,
       faqMarkup(homeFaq(t), t.home.faqTitle),
+      postListMarkup(siblings, lang, t.home.guidesTitle),
+      languages,
     ].join('');
   }
 
   if (section === 'post') {
+    // No `<h1>` or description here: the Markdown opens with its own `# title`,
+    // so adding one gave all 75 articles two competing H1s and a paragraph
+    // repeating the meta description.
     return [
+      nav,
       `<article lang="${post.lang}">`,
-      `<h1>${escapeHtml(post.title)}</h1>`,
-      `<p>${escapeHtml(post.description)}</p>`,
       renderBody(post.body),
       '</article>',
+      `<p>${link(`/${lang}/blog`, t.blog.back)} · ${link(`/${lang}/play`, t.home.ctaPlay)}</p>`,
+      postListMarkup(siblings, lang, t.blog.keepReading),
+      languages,
     ].join('');
   }
 
   if (section === 'blog') {
-    return `<h1>${escapeHtml(t.blog.title)}</h1><p>${escapeHtml(t.blog.subtitle)}</p>`;
+    return [
+      nav,
+      `<h1>${escapeHtml(t.blog.title)}</h1>`,
+      `<p>${escapeHtml(t.blog.subtitle)}</p>`,
+      postListMarkup(siblings, lang, ''),
+      languages,
+    ].join('');
   }
 
-  return `<h1>${escapeHtml(page.title)}</h1><p>${escapeHtml(page.description)}</p>`;
+  // The board. Its H1 is the screen's own, not the `<title>`, so the
+  // prerendered page and the rendered one say the same thing.
+  return [
+    nav,
+    `<h1>${escapeHtml(t.play.h1)}</h1>`,
+    `<p>${escapeHtml(page.description)}</p>`,
+    postListMarkup(siblings, lang, t.home.guidesTitle),
+    languages,
+  ].join('');
 }
 
 /** Stable @id anchors, so every page refers to one site and one publisher. */
@@ -422,6 +512,7 @@ export async function buildPages() {
       description: (t) => t.home.seoDescription,
       changefreq: 'weekly',
       priority: '1.0',
+      datedByPosts: true,
     },
     {
       section: 'play',
@@ -438,24 +529,35 @@ export async function buildPages() {
       description: (t) => t.blog.subtitle,
       changefreq: 'weekly',
       priority: '0.8',
+      datedByPosts: true,
     },
   ];
+
+  /** That language's articles, newest first — the list its pages link to. */
+  const postsIn = (code) =>
+    posts.filter((p) => p.lang === code).sort((a, b) => (a.date < b.date ? 1 : -1));
 
   for (const spec of fixed) {
     const alternates = codes.map((c) => ({ lang: c, path: `/${c}${spec.suffix}` }));
     for (const code of codes) {
       const t = translations[code];
+      const own = postsIn(code);
       const page = {
         path: `/${code}${spec.suffix}`,
         lang: code,
         title: spec.title(t),
         description: spec.description(t),
         alternates,
+        // A page that lists articles is as fresh as its newest one. Without a
+        // lastmod the 30 fixed URLs gave Search nothing to schedule a recrawl
+        // against; the board is the one page no article changes, so it keeps
+        // none rather than claiming a date it doesn't have.
+        lastmod: spec.datedByPosts ? own[0]?.date : undefined,
         changefreq: spec.changefreq,
         priority: spec.priority,
       };
       page.jsonLd = jsonLdFor({ section: spec.section, page, t, codes });
-      page.body = bodyFor({ section: spec.section, page, t });
+      page.body = bodyFor({ section: spec.section, page, t, locales, siblings: own });
       pages.push(page);
     }
   }
@@ -483,7 +585,16 @@ export async function buildPages() {
       codes,
       post,
     });
-    page.body = bodyFor({ section: 'post', page, t: translations[post.lang], post });
+    page.body = bodyFor({
+      section: 'post',
+      page,
+      t: translations[post.lang],
+      post,
+      locales,
+      // "Keep reading" — the other articles in this language, as the article
+      // page itself renders them.
+      siblings: postsIn(post.lang).filter((p) => p.slug !== post.slug),
+    });
     pages.push(page);
   }
 

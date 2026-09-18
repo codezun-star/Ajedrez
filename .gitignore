@@ -29,3 +29,8 @@ coverage
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Emitted by `tsc -b` for tsconfig.node.json — never edit or commit these:
+# Vite loads vite.config.js in preference to vite.config.ts.
+vite.config.js
+vite.config.d.ts

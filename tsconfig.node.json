@@ -5,7 +5,16 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,
+
+    /* `composite` forces an emit, and emitting next to the source wrote
+       vite.config.js / vite.config.d.ts into the repo root. That .js is not a
+       harmless leftover: Vite resolves vite.config.js BEFORE vite.config.ts,
+       so the stale compiled copy was the config actually being used and edits
+       to the .ts did nothing until `tsc -b` ran again. Park the output out of
+       the way instead. */
+    "outDir": "node_modules/.tmp/tsconfig.node",
+    "tsBuildInfoFile": "node_modules/.tmp/tsconfig.node.tsbuildinfo"
   },
   "include": ["vite.config.ts"]
 }

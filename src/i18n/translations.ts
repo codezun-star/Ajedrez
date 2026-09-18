@@ -189,8 +189,14 @@ const en = {
     minRead: 'min read',
   },
   play: {
+    h1: "Play Chess Online Free Against the Computer",
     seoTitle: "Play chess online free · botAgedrez",
     seoDescription: "Start a game against the AI: pick your color, difficulty and time control. Free, no sign-up, straight in your browser.",
+  },
+  notFound: {
+    seoTitle: "Page not found · botAgedrez",
+    title: "Page not found",
+    subtitle: "This URL doesn’t exist — or it no longer does. The board and every guide are still one click away.",
   },
   faq: {
     q1: "Is botAgedrez free to play?",
@@ -389,8 +395,14 @@ const es: Messages = {
     minRead: 'min de lectura',
   },
   play: {
+    h1: "Jugar al ajedrez online gratis contra la máquina",
     seoTitle: "Jugar al ajedrez online gratis · botAgedrez",
     seoDescription: "Empieza una partida de ajedrez contra la IA: elige color, nivel y ritmo de juego. Gratis, sin registro y directo en tu navegador.",
+  },
+  notFound: {
+    seoTitle: "Página no encontrada · botAgedrez",
+    title: "Página no encontrada",
+    subtitle: "Esta dirección no existe, o ha dejado de existir. El tablero y todas las guías siguen a un clic.",
   },
   faq: {
     q1: "¿Es gratis jugar al ajedrez en botAgedrez?",
@@ -587,8 +599,14 @@ const pt: Messages = {
     minRead: 'min de leitura',
   },
   play: {
+    h1: "Jogar xadrez online grátis contra o computador",
     seoTitle: "Jogar xadrez online grátis · botAgedrez",
     seoDescription: "Comece uma partida contra a IA: escolha a cor, o nível e o ritmo de jogo. Grátis, sem cadastro, direto no navegador.",
+  },
+  notFound: {
+    seoTitle: "Página não encontrada · botAgedrez",
+    title: "Página não encontrada",
+    subtitle: "Este endereço não existe — ou deixou de existir. O tabuleiro e todos os guias continuam a um clique.",
   },
   faq: {
     q1: "É grátis jogar no botAgedrez?",
@@ -785,8 +803,14 @@ const fr: Messages = {
     minRead: 'min de lecture',
   },
   play: {
+    h1: "Jouer aux échecs en ligne gratuitement contre l’ordinateur",
     seoTitle: "Jouer aux échecs en ligne gratuitement · botAgedrez",
     seoDescription: "Lancez une partie contre l'IA : choisissez votre couleur, le niveau et la cadence. Gratuit, sans inscription, directement dans votre navigateur.",
+  },
+  notFound: {
+    seoTitle: "Page introuvable · botAgedrez",
+    title: "Page introuvable",
+    subtitle: "Cette adresse n’existe pas, ou n’existe plus. L’échiquier et tous les guides restent à un clic.",
   },
   faq: {
     q1: "botAgedrez est-il gratuit ?",
@@ -983,8 +1007,14 @@ const de: Messages = {
     minRead: 'Min. Lesezeit',
   },
   play: {
+    h1: "Schach online kostenlos gegen den Computer spielen",
     seoTitle: "Schach online kostenlos spielen · botAgedrez",
     seoDescription: "Starte eine Partie gegen die KI: Farbe, Schwierigkeit und Bedenkzeit wählen. Kostenlos, ohne Anmeldung, direkt im Browser.",
+  },
+  notFound: {
+    seoTitle: "Seite nicht gefunden · botAgedrez",
+    title: "Seite nicht gefunden",
+    subtitle: "Diese Adresse gibt es nicht – oder nicht mehr. Das Brett und alle Guides sind weiterhin einen Klick entfernt.",
   },
   faq: {
     q1: "Ist botAgedrez kostenlos?",
@@ -1181,8 +1211,14 @@ const ru: Messages = {
     minRead: 'мин чтения',
   },
   play: {
+    h1: "Играть в шахматы онлайн бесплатно против компьютера",
     seoTitle: "Играть в шахматы онлайн бесплатно · botAgedrez",
     seoDescription: "Начните партию против ИИ: выберите цвет, уровень и контроль времени. Бесплатно, без регистрации, прямо в браузере.",
+  },
+  notFound: {
+    seoTitle: "Страница не найдена · botAgedrez",
+    title: "Страница не найдена",
+    subtitle: "Такого адреса нет — или уже нет. Доска и все руководства по-прежнему в одном клике.",
   },
   faq: {
     q1: "Игра на botAgedrez бесплатная?",
@@ -1379,8 +1415,14 @@ const hi: Messages = {
     minRead: 'मिनट पढ़ें',
   },
   play: {
+    h1: "कंप्यूटर के खिलाफ ऑनलाइन मुफ्त शतरंज खेलें",
     seoTitle: "ऑनलाइन शतरंज मुफ़्त खेलें · botAgedrez",
     seoDescription: "AI के खिलाफ बाज़ी शुरू करें: रंग, कठिनाई और समय चुनें। मुफ़्त, बिना रजिस्ट्रेशन, सीधे ब्राउज़र में।",
+  },
+  notFound: {
+    seoTitle: "पेज नहीं मिला · botAgedrez",
+    title: "पेज नहीं मिला",
+    subtitle: "यह पता मौजूद नहीं है — या अब नहीं रहा। बोर्ड और सभी गाइड अब भी एक क्लिक दूर हैं।",
   },
   faq: {
     q1: "क्या botAgedrez खेलना मुफ़्त है?",
@@ -1576,8 +1618,14 @@ const zh: Messages = {
     minRead: '分钟阅读',
   },
   play: {
+    h1: "免费在线与电脑下国际象棋",
     seoTitle: "免费在线下国际象棋 · botAgedrez",
     seoDescription: "开始与 AI 对局：选择棋色、难度和时间控制。免费、无需注册，直接在浏览器中进行。",
+  },
+  notFound: {
+    seoTitle: "找不到页面 · botAgedrez",
+    title: "找不到页面",
+    subtitle: "这个网址不存在，或者已经失效。棋盘和所有指南仍然只需一次点击。",
   },
   faq: {
     q1: "botAgedrez 是免费的吗？",
@@ -1773,8 +1821,14 @@ const ja: Messages = {
     minRead: '分で読める',
   },
   play: {
+    h1: "オンラインで無料でコンピューターとチェスを指す",
     seoTitle: "無料でオンラインチェスをプレイ · botAgedrez",
     seoDescription: "AIとの対局を開始：手番の色、難易度、持ち時間を選ぶだけ。登録不要、ブラウザでそのまま遊べます。",
+  },
+  notFound: {
+    seoTitle: "ページが見つかりません · botAgedrez",
+    title: "ページが見つかりません",
+    subtitle: "このURLは存在しないか、すでに削除されています。盤面とすべてのガイドはワンクリックで開けます。",
   },
   faq: {
     q1: "botAgedrez は無料ですか？",
@@ -1970,8 +2024,14 @@ const ar: Messages = {
     minRead: 'دقيقة قراءة',
   },
   play: {
+    h1: "العب الشطرنج أونلاين مجانًا ضد الكمبيوتر",
     seoTitle: "العب الشطرنج أونلاين مجانًا · botAgedrez",
     seoDescription: "ابدأ مباراة ضد الذكاء الاصطناعي: اختر لونك ومستوى الصعوبة والتوقيت. مجانًا، بدون تسجيل، مباشرة في متصفحك.",
+  },
+  notFound: {
+    seoTitle: "الصفحة غير موجودة · botAgedrez",
+    title: "الصفحة غير موجودة",
+    subtitle: "هذا العنوان غير موجود، أو لم يعد موجوداً. الرقعة وكل الأدلة ما زالت على بُعد نقرة واحدة.",
   },
   faq: {
     q1: "هل اللعب على botAgedrez مجاني؟",

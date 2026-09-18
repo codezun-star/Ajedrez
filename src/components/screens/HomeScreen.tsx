@@ -2,9 +2,14 @@
  * HomeScreen — the language hub at `/:locale`, the page a market lands on.
  *
  * Hero, feature grid, a three-step "how it works", that language's guides, an
- * FAQ (backed by FAQPage structured data so it can win a rich result) and a
- * closing call to action. Fully translated and SEO-tagged, with hreflang links
- * to its nine siblings.
+ * FAQ and a closing call to action. Fully translated and SEO-tagged, with
+ * hreflang links to its nine siblings.
+ *
+ * The FAQPage / WebApplication structured data lives in the prerendered
+ * `<head>` (see `scripts/prerender.mjs`), anchored to the site's `@id`s.
+ * Emitting a second graph from here only added an `@id`-less copy that
+ * contradicted it — a duplicate `FAQPage` and a `WebApplication` claiming a
+ * different URL from the one Search reads the site name off.
  */
 
 import { Link } from 'react-router-dom';
@@ -25,7 +30,7 @@ import {
   ClockIcon,
 } from 'lucide-react';
 import { useI18n } from '@/i18n';
-import { LOCALES, Locale } from '@/i18n/locales';
+import { LOCALES } from '@/i18n/locales';
 import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
 import { useSeo, SITE_URL } from '@/hooks/useSeo';
 import { postsFor } from '@/content/blog';
@@ -87,7 +92,7 @@ export function HomeScreen() {
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
           {/* The lockup carries the brand name, so the H1 below is free to be
               the keyword-bearing headline. */}
-          <BrandLogo className="h-32 xs:h-40 sm:h-48 lg:h-56" />
+          <BrandLogo className="h-32 xs:h-40 sm:h-48 lg:h-56" priority />
           {/* Keyword-bearing H1 — the brand itself is already above in the badge. */}
           <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight xs:text-4xl sm:text-5xl lg:text-6xl">
             {t('home.h1')}
@@ -251,55 +256,7 @@ export function HomeScreen() {
 
       <SiteFooter />
       <AdAnchor />
-      <HomeJsonLd
-        faq={faq}
-        locale={locale}
-        title={t('home.seoTitle')}
-        description={t('home.seoDescription')}
-      />
     </div>
-  );
-}
-
-/** WebApplication + FAQPage structured data for this language's hub. */
-function HomeJsonLd({
-  faq,
-  locale,
-  title,
-  description,
-}: {
-  faq: { q: string; a: string }[];
-  locale: Locale;
-  title: string;
-  description: string;
-}) {
-  const data = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebApplication',
-        name: 'botAgedrez',
-        url: SITE_URL + homePath(locale),
-        applicationCategory: 'GameApplication',
-        operatingSystem: 'Web',
-        inLanguage: locale,
-        headline: title,
-        description,
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      },
-      {
-        '@type': 'FAQPage',
-        inLanguage: locale,
-        mainEntity: faq.map((f) => ({
-          '@type': 'Question',
-          name: f.q,
-          acceptedAnswer: { '@type': 'Answer', text: f.a },
-        })),
-      },
-    ],
-  };
-  return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   );
 }
 

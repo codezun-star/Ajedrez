@@ -58,17 +58,19 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
 
       {/* Hero */}
       <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0} className="flex flex-col items-center text-center">
-        {/* The lockup already reads as the title, so it *is* the H1. */}
-        <h1 className="mb-3 flex max-w-full justify-center">
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="flex justify-center"
-          >
-            <BrandLogo className="h-32 xs:h-40 sm:h-48 md:h-56" />
-          </motion.div>
-        </h1>
-        <p className="max-w-md text-sm text-slate-400 sm:text-base">{t('home.subtitle')}</p>
+        {/* The lockup used to *be* the H1, with the logo as its only child — so
+            the heading of the page the sitemap ranks highest after the hub read
+            as empty text to anything that doesn't resolve an `alt`. The lockup
+            carries the brand; the H1 below carries the words. */}
+        <motion.div
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="mb-3 flex max-w-full justify-center"
+        >
+          <BrandLogo className="h-32 xs:h-40 sm:h-48 md:h-56" priority />
+        </motion.div>
+        <h1 className="font-display text-xl font-bold sm:text-2xl">{t('play.h1')}</h1>
+        <p className="mt-2 max-w-md text-sm text-slate-400 sm:text-base">{t('home.subtitle')}</p>
       </motion.div>
 
       <AdSlot />

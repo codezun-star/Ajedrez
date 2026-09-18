@@ -5,20 +5,27 @@
  * `/:locale/blog` lists only the articles written in that language (mixing all
  * ten in one feed made every index look like duplicated boilerplate to a
  * crawler and buried the reader's own language). Each article advertises its
- * translations via hreflang and carries BlogPosting + FAQPage structured data.
+ * translations via hreflang.
+ *
+ * Structured data is NOT emitted from here. Every indexable URL is prerendered
+ * with its own `<head>` (see `scripts/prerender.mjs`), including a BlogPosting
+ * or Blog node anchored to the site's `@id`s. Rendering a second graph from
+ * React only added an `@id`-less copy that contradicted it — two `FAQPage`
+ * nodes for one page, and a `WebApplication` claiming a different URL.
  */
 
-import { Fragment, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Fragment, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CalendarIcon, ClockIcon, ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 import { useI18n } from '@/i18n';
-import { LOCALES, Locale } from '@/i18n/locales';
+import { LOCALES } from '@/i18n/locales';
 import { blogPath, playPath, postPath } from '@/i18n/routes';
-import { useSeo, SITE_URL } from '@/hooks/useSeo';
-import { postsFor, getPost, translationsOf, BlogPost } from '@/content/blog';
+import { useSeo } from '@/hooks/useSeo';
+import { postsFor, getPost, loadPostContent, translationsOf, BlogPost } from '@/content/blog';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { NotFoundScreen } from '@/components/screens/NotFoundScreen';
 import { AdAnchor, AdRail, AdSlot, ArticleWithAds, NativeAd } from '@/components/ads';
 
 /** How many article cards go between two ads in the index. */
@@ -110,43 +117,48 @@ export function BlogListScreen() {
       </main>
       <SiteFooter />
       <AdAnchor />
-      <BlogListJsonLd posts={posts} locale={locale} />
     </div>
   );
 }
 
+/**
+ * A dead slug is a dead URL, so it renders the 404 (which marks itself
+ * `noindex`) instead of the old flash-then-redirect. The article itself lives
+ * in `Article` so its hooks never run for a slug that doesn't exist.
+ */
 export function BlogPostScreen() {
   const { slug } = useParams();
-  const { t, locale } = useI18n();
-  const navigate = useNavigate();
+  const { locale } = useI18n();
   const post = slug ? getPost(locale, slug) : undefined;
+  return post ? <Article post={post} /> : <NotFoundScreen />;
+}
+
+function Article({ post }: { post: BlogPost }) {
+  const { t, locale } = useI18n();
 
   useSeo({
-    title: post ? `${post.title} · botAgedrez` : 'botAgedrez',
-    description: post?.description ?? '',
-    path: postPath(locale, slug ?? ''),
+    title: `${post.title} · botAgedrez`,
+    description: post.description,
+    path: postPath(post.lang, post.slug),
     type: 'article',
     locale,
-    alternates: post ? translationsOf(post) : undefined,
+    alternates: translationsOf(post),
   });
 
+  // The body is a chunk of its own, fetched only for the article being read —
+  // see `loadPostContent`. Until it lands the prose is a skeleton; everything
+  // around it (title, dates, links) is already metadata we hold.
+  const [html, setHtml] = useState<string | null>(null);
   useEffect(() => {
-    if (!post) {
-      const id = setTimeout(() => navigate(blogPath(locale), { replace: true }), 1500);
-      return () => clearTimeout(id);
-    }
-  }, [post, navigate, locale]);
-
-  if (!post) {
-    return (
-      <div className="app-aura min-h-screen">
-        <SiteHeader />
-        <main className="mx-auto max-w-3xl px-4 py-20 text-center">
-          <p className="text-slate-400">404 — {t('blog.back')}…</p>
-        </main>
-      </div>
-    );
-  }
+    let live = true;
+    setHtml(null);
+    loadPostContent(post).then((content) => {
+      if (live) setHtml(content.html);
+    });
+    return () => {
+      live = false;
+    };
+  }, [post]);
 
   const others = postsFor(locale).filter((p) => p.slug !== post.slug);
 
@@ -172,7 +184,7 @@ export function BlogPostScreen() {
 
         <AdSlot className="mt-5" />
 
-        <ArticleWithAds html={post.html} lang={post.lang} />
+        {html === null ? <ArticleSkeleton /> : <ArticleWithAds html={html} lang={post.lang} />}
 
         <div className="mt-10 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-5 text-center shadow-glow sm:p-6">
           <p className="text-lg font-semibold text-[#ffffff]">{t('home.ctaTitle')}</p>
@@ -211,64 +223,18 @@ export function BlogPostScreen() {
       <AdRail side="right" />
       <SiteFooter />
       <AdAnchor />
-      <BlogPostJsonLd post={post} />
     </div>
   );
 }
 
-/** BlogPosting (+ FAQPage when the article ends in a Q&A) structured data. */
-function BlogPostJsonLd({ post }: { post: BlogPost }) {
-  const url = SITE_URL + postPath(post.lang, post.slug);
-  const graph: Record<string, unknown>[] = [
-    {
-      '@type': 'BlogPosting',
-      headline: post.title,
-      description: post.description,
-      datePublished: post.date,
-      dateModified: post.date,
-      inLanguage: post.lang,
-      keywords: post.tags.join(', '),
-      wordCount: post.readingMinutes * 200,
-      author: { '@type': 'Organization', name: 'botAgedrez' },
-      publisher: { '@type': 'Organization', name: 'botAgedrez' },
-      mainEntityOfPage: url,
-      url,
-    },
-  ];
-  if (post.faq.length > 0) {
-    graph.push({
-      '@type': 'FAQPage',
-      inLanguage: post.lang,
-      mainEntity: post.faq.map((f) => ({
-        '@type': 'Question',
-        name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
-      })),
-    });
-  }
-  const data = { '@context': 'https://schema.org', '@graph': graph };
+/** Placeholder lines while the article's own chunk is in flight. */
+function ArticleSkeleton() {
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
-  );
-}
-
-function BlogListJsonLd({ posts, locale }: { posts: BlogPost[]; locale: Locale }) {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Blog',
-    name: 'botAgedrez',
-    url: SITE_URL + blogPath(locale),
-    inLanguage: locale,
-    blogPost: posts.map((p) => ({
-      '@type': 'BlogPosting',
-      headline: p.title,
-      description: p.description,
-      datePublished: p.date,
-      inLanguage: p.lang,
-      url: SITE_URL + postPath(p.lang, p.slug),
-    })),
-  };
-  return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <div className="mt-4 animate-pulse space-y-3" aria-hidden="true">
+      <div className="h-7 w-3/4 rounded bg-white/10" />
+      {[...Array(6)].map((_, i) => (
+        <div key={i} className={`h-4 rounded bg-white/5 ${i % 3 === 2 ? 'w-2/3' : 'w-full'}`} />
+      ))}
+    </div>
   );
 }
