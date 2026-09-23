@@ -143,6 +143,7 @@
     <link rel="dns-prefetch" href="https://www.highrevenueformat.com" />
     <link rel="dns-prefetch" href="https://pl31073502.profitableratecpmnetwork.com" />
     <link rel="dns-prefetch" href="https://pl31073503.profitableratecpmnetwork.com" />
+    <link rel="dns-prefetch" href="https://pl31475973.profitableratecpmnetwork.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -162,5 +163,37 @@
       data-cfasync="false"
       src="https://pl31073503.profitableratecpmnetwork.com/81/4a/59/814a59c7bceb52fd9a0e164460d98b84.js"
     ></script>
+
+    <!-- Second document-level unit. Same shape as the bar above — it places
+         itself and has to run once per visit rather than once per route — but
+         it is injected instead of written inline, and only after `load` and on
+         the first idle frame. Two parsed <script async> tags in the body both
+         go out during boot and share the main thread with the engine while the
+         reader is still waiting on the board; deferring this one keeps the
+         first paint and the first move exactly as fast as they are today, and
+         the unit itself loses nothing by arriving a second later.
+         `requestIdleCallback` is absent on Safari < 16.4, hence the timer. -->
+    <script>
+      (function () {
+        var SRC =
+          'https://pl31475973.profitableratecpmnetwork.com/f7/12/2d/f7122dce2908d4049cf8a23b83765b74.js';
+        function inject() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.setAttribute('data-cfasync', 'false');
+          s.src = SRC;
+          document.body.appendChild(s);
+        }
+        function whenIdle() {
+          if (typeof requestIdleCallback === 'function') {
+            requestIdleCallback(inject, { timeout: 5000 });
+          } else {
+            setTimeout(inject, 2500);
+          }
+        }
+        if (document.readyState === 'complete') whenIdle();
+        else addEventListener('load', whenIdle, { once: true });
+      })();
+    </script>
   </body>
 </html>

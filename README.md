@@ -92,8 +92,10 @@ conoce una clave ni una medida. `components/ads/` las sirve:
 - **`ArticleWithAds`** — corta el artículo por sus propios `<h2>` e inserta
   unidades en las pausas entre secciones, nunca dentro de un párrafo.
 
-El *social bar* es de documento, no de ruta: se carga una vez desde
-`index.html`. El sandbox de los iframes concede `allow-same-origin` (sin él las
+Las unidades de documento (*social bar* y la segunda de pop) no son de ruta:
+se cargan una vez por visita desde `index.html`. La segunda no se analiza con
+la página, se inyecta tras el evento `load` y en el primer hueco de inactividad,
+para no competir con el bundle del motor mientras se espera el tablero. El sandbox de los iframes concede `allow-same-origin` (sin él las
 redes tratan la petición como tráfico inválido y dejan de rellenar) pero **no**
 navegación del top, para que ningún creativo pueda sacar al jugador de una
 partida en curso.

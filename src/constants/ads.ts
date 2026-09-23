@@ -11,8 +11,8 @@
  *   - `NATIVE_AD`  a container-based native block that appends itself to a div
  *                  with a fixed id. That id may exist only once per document,
  *                  so `NativeAd` allows a single live instance at a time.
- *   - `SOCIAL_BAR` a document-level script (social bar / pop) loaded once for
- *                  the whole site from `index.html`, not from React.
+ *   - document-level scripts (social bar / pop) loaded once for the whole site
+ *                  from `index.html`, not from React.
  *
  * Sizes are the IAB standards the network was configured with; they are also
  * what lets a slot reserve the right box up front, so a late-arriving ad never
@@ -81,3 +81,12 @@ export const NATIVE_AD = {
 /** Loaded once from `index.html` — kept here so every zone id lives together. */
 export const SOCIAL_BAR_SRC =
   'https://pl31073503.profitableratecpmnetwork.com/81/4a/59/814a59c7bceb52fd9a0e164460d98b84.js';
+
+/**
+ * A second document-level zone, also loaded once per visit from `index.html`.
+ * That one is injected after `load` on an idle frame rather than parsed with
+ * the page, so it never shares the boot with the engine bundle — see the tail
+ * of `index.html`. Kept here so every zone id lives together.
+ */
+export const SECONDARY_DOC_SRC =
+  'https://pl31475973.profitableratecpmnetwork.com/f7/12/2d/f7122dce2908d4049cf8a23b83765b74.js';
