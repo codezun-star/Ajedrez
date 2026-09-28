@@ -32,3 +32,12 @@ export function blogPath(locale: Locale): string {
 export function postPath(locale: Locale, slug: string): string {
   return `/${locale}/blog/${slug}`;
 }
+
+/**
+ * The player's profile — Elo, stats and achievements. Personal and stored in
+ * the browser, so it is `noindex` and absent from the sitemap; it exists as a
+ * URL only so the mobile tab bar can link to it like any other section.
+ */
+export function profilePath(locale: Locale): string {
+  return `/${locale}/profile`;
+}

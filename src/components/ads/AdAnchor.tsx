@@ -14,6 +14,10 @@
  *
  * It is deliberately absent from the game screen: that layout is pinned to the
  * viewport and a bar over the bottom rank would cover the board.
+ *
+ * On a phone it rides on top of the tab bar rather than under it, and flags
+ * `<html>` with `has-ad-anchor` while shown so the setup screen's sticky
+ * "Play" button can stop above it (see `index.css`).
  */
 
 import { useEffect, useState } from 'react';
@@ -41,6 +45,13 @@ export function AdAnchor() {
     const id = setTimeout(() => setVisible(true), APPEAR_DELAY);
     return () => clearTimeout(id);
   }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    const root = document.documentElement;
+    root.classList.add('has-ad-anchor');
+    return () => root.classList.remove('has-ad-anchor');
+  }, [visible]);
 
   const close = () => {
     setVisible(false);

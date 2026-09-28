@@ -9,7 +9,7 @@
 import { Locale } from './locales';
 
 const en = {
-  nav: { play: 'Play', blog: 'Blog', home: 'Home', menu: 'Menu' },
+  nav: { play: 'Play', blog: 'Blog', home: 'Home', menu: 'Menu', profile: 'Profile', settings: 'Settings' },
   home: {
     h1: "Play Chess Online Free Against the Computer",
     seoTitle: "Play Chess Online Free vs Computer · botAgedrez",
@@ -210,12 +210,30 @@ const en = {
   },
   lang: { label: 'Language' },
   ads: { label: 'Advertisement', close: 'Close ad' },
+  app: {
+    settings: 'Settings',
+    appearance: 'Appearance',
+    theme: 'Theme',
+    light: 'Light',
+    dark: 'Dark',
+    sound: 'Sound',
+    soundDesc: 'Moves, captures and checks',
+    install: 'Install the app',
+    installDesc: 'Full screen, straight from your home screen.',
+    installIos: 'Tap Share, then “Add to Home Screen”.',
+    share: 'Share with a friend',
+    shareText: 'Play chess against the AI — free, no sign-up.',
+    back: 'Back',
+    close: 'Close',
+    tabs: 'Main navigation',
+    more: 'More options',
+  },
 };
 
 export type Messages = typeof en;
 
 const es: Messages = {
-  nav: { play: 'Jugar', blog: 'Blog', home: 'Inicio', menu: 'Menú' },
+  nav: { play: 'Jugar', blog: 'Blog', home: 'Inicio', menu: 'Menú', profile: 'Perfil', settings: 'Ajustes' },
   home: {
     h1: "Ajedrez online gratis contra la IA",
     seoTitle: "Ajedrez online gratis contra la IA · botAgedrez",
@@ -416,10 +434,28 @@ const es: Messages = {
   },
   lang: { label: 'Idioma' },
   ads: { label: 'Publicidad', close: 'Cerrar anuncio' },
+  app: {
+    settings: 'Ajustes',
+    appearance: 'Apariencia',
+    theme: 'Tema',
+    light: 'Claro',
+    dark: 'Oscuro',
+    sound: 'Sonido',
+    soundDesc: 'Jugadas, capturas y jaques',
+    install: 'Instalar la app',
+    installDesc: 'A pantalla completa, directo desde tu pantalla de inicio.',
+    installIos: 'Pulsa Compartir y luego «Añadir a pantalla de inicio».',
+    share: 'Compartir con un amigo',
+    shareText: 'Juega al ajedrez contra la IA: gratis y sin registro.',
+    back: 'Atrás',
+    close: 'Cerrar',
+    tabs: 'Navegación principal',
+    more: 'Más opciones',
+  },
 };
 
 const pt: Messages = {
-  nav: { play: 'Jogar', blog: 'Blog', home: 'Início', menu: 'Menu' },
+  nav: { play: 'Jogar', blog: 'Blog', home: 'Início', menu: 'Menu', profile: 'Perfil', settings: 'Ajustes' },
   home: {
     h1: "Xadrez online grátis contra o computador",
     seoTitle: "Xadrez online grátis contra o computador · botAgedrez",
@@ -620,10 +656,28 @@ const pt: Messages = {
   },
   lang: { label: 'Idioma' },
   ads: { label: 'Publicidade', close: 'Fechar anúncio' },
+  app: {
+    settings: 'Ajustes',
+    appearance: 'Aparência',
+    theme: 'Tema',
+    light: 'Claro',
+    dark: 'Escuro',
+    sound: 'Som',
+    soundDesc: 'Lances, capturas e xeques',
+    install: 'Instalar o app',
+    installDesc: 'Em tela cheia, direto da sua tela inicial.',
+    installIos: 'Toque em Compartilhar e depois em “Adicionar à Tela de Início”.',
+    share: 'Compartilhar com um amigo',
+    shareText: 'Jogue xadrez contra a IA — grátis e sem cadastro.',
+    back: 'Voltar',
+    close: 'Fechar',
+    tabs: 'Navegação principal',
+    more: 'Mais opções',
+  },
 };
 
 const fr: Messages = {
-  nav: { play: 'Jouer', blog: 'Blog', home: 'Accueil', menu: 'Menu' },
+  nav: { play: 'Jouer', blog: 'Blog', home: 'Accueil', menu: 'Menu', profile: 'Profil', settings: 'Réglages' },
   home: {
     h1: "Jeu d'échecs en ligne gratuit contre l'ordinateur",
     seoTitle: "Échecs en ligne gratuits contre l'ordinateur · botAgedrez",
@@ -824,10 +878,28 @@ const fr: Messages = {
   },
   lang: { label: 'Langue' },
   ads: { label: 'Publicité', close: 'Fermer la publicité' },
+  app: {
+    settings: 'Réglages',
+    appearance: 'Apparence',
+    theme: 'Thème',
+    light: 'Clair',
+    dark: 'Sombre',
+    sound: 'Son',
+    soundDesc: 'Coups, prises et échecs',
+    install: 'Installer l’app',
+    installDesc: 'En plein écran, depuis votre écran d’accueil.',
+    installIos: 'Touchez Partager, puis « Sur l’écran d’accueil ».',
+    share: 'Partager avec un ami',
+    shareText: 'Jouez aux échecs contre l’IA — gratuit, sans inscription.',
+    back: 'Retour',
+    close: 'Fermer',
+    tabs: 'Navigation principale',
+    more: 'Plus d’options',
+  },
 };
 
 const de: Messages = {
-  nav: { play: 'Spielen', blog: 'Blog', home: 'Start', menu: 'Menü' },
+  nav: { play: 'Spielen', blog: 'Blog', home: 'Start', menu: 'Menü', profile: 'Profil', settings: 'Optionen' },
   home: {
     h1: "Schach online kostenlos gegen den Computer",
     seoTitle: "Schach online kostenlos gegen Computer · botAgedrez",
@@ -1028,10 +1100,28 @@ const de: Messages = {
   },
   lang: { label: 'Sprache' },
   ads: { label: 'Werbung', close: 'Werbung schließen' },
+  app: {
+    settings: 'Einstellungen',
+    appearance: 'Darstellung',
+    theme: 'Design',
+    light: 'Hell',
+    dark: 'Dunkel',
+    sound: 'Ton',
+    soundDesc: 'Züge, Schlagen und Schach',
+    install: 'App installieren',
+    installDesc: 'Im Vollbild, direkt vom Startbildschirm.',
+    installIos: 'Tippe auf Teilen und dann auf „Zum Home-Bildschirm“.',
+    share: 'Mit Freunden teilen',
+    shareText: 'Spiele Schach gegen die KI – kostenlos, ohne Anmeldung.',
+    back: 'Zurück',
+    close: 'Schließen',
+    tabs: 'Hauptnavigation',
+    more: 'Weitere Optionen',
+  },
 };
 
 const ru: Messages = {
-  nav: { play: 'Играть', blog: 'Блог', home: 'Главная', menu: 'Меню' },
+  nav: { play: 'Играть', blog: 'Блог', home: 'Главная', menu: 'Меню', profile: 'Профиль', settings: 'Настройки' },
   home: {
     h1: "Шахматы онлайн бесплатно против компьютера",
     seoTitle: "Шахматы онлайн бесплатно против компьютера · botAgedrez",
@@ -1232,10 +1322,28 @@ const ru: Messages = {
   },
   lang: { label: 'Язык' },
   ads: { label: 'Реклама', close: 'Закрыть рекламу' },
+  app: {
+    settings: 'Настройки',
+    appearance: 'Оформление',
+    theme: 'Тема',
+    light: 'Светлая',
+    dark: 'Тёмная',
+    sound: 'Звук',
+    soundDesc: 'Ходы, взятия и шахи',
+    install: 'Установить приложение',
+    installDesc: 'На весь экран, прямо с главного экрана.',
+    installIos: 'Нажмите «Поделиться», затем «На экран „Домой“».',
+    share: 'Поделиться с другом',
+    shareText: 'Играйте в шахматы против ИИ — бесплатно и без регистрации.',
+    back: 'Назад',
+    close: 'Закрыть',
+    tabs: 'Основная навигация',
+    more: 'Другие параметры',
+  },
 };
 
 const hi: Messages = {
-  nav: { play: 'खेलें', blog: 'ब्लॉग', home: 'होम', menu: 'मेन्यू' },
+  nav: { play: 'खेलें', blog: 'ब्लॉग', home: 'होम', menu: 'मेन्यू', profile: 'प्रोफ़ाइल', settings: 'सेटिंग्स' },
   home: {
     h1: "कंप्यूटर के खिलाफ मुफ़्त ऑनलाइन शतरंज",
     seoTitle: "ऑनलाइन शतरंज मुफ़्त — कंप्यूटर के खिलाफ · botAgedrez",
@@ -1436,10 +1544,28 @@ const hi: Messages = {
   },
   lang: { label: 'भाषा' },
   ads: { label: 'विज्ञापन', close: 'विज्ञापन बंद करें' },
+  app: {
+    settings: 'सेटिंग्स',
+    appearance: 'रूप-रंग',
+    theme: 'थीम',
+    light: 'लाइट',
+    dark: 'डार्क',
+    sound: 'ध्वनि',
+    soundDesc: 'चालें, कैप्चर और शह',
+    install: 'ऐप इंस्टॉल करें',
+    installDesc: 'फ़ुल स्क्रीन में, सीधे आपकी होम स्क्रीन से।',
+    installIos: 'शेयर पर टैप करें, फिर “होम स्क्रीन में जोड़ें” चुनें।',
+    share: 'किसी दोस्त के साथ शेयर करें',
+    shareText: 'AI के ख़िलाफ़ शतरंज खेलें — मुफ़्त, बिना साइन-अप।',
+    back: 'वापस',
+    close: 'बंद करें',
+    tabs: 'मुख्य नेविगेशन',
+    more: 'और विकल्प',
+  },
 };
 
 const zh: Messages = {
-  nav: { play: '开始', blog: '博客', home: '首页', menu: '菜单' },
+  nav: { play: '开始', blog: '博客', home: '首页', menu: '菜单', profile: '我的', settings: '设置' },
   home: {
     h1: "免费在线国际象棋 · 与电脑对战",
     seoTitle: "免费在线国际象棋 — 与电脑对战 · botAgedrez",
@@ -1639,10 +1765,28 @@ const zh: Messages = {
   },
   lang: { label: '语言' },
   ads: { label: '广告', close: '关闭广告' },
+  app: {
+    settings: '设置',
+    appearance: '外观',
+    theme: '主题',
+    light: '浅色',
+    dark: '深色',
+    sound: '声音',
+    soundDesc: '走子、吃子和将军',
+    install: '安装应用',
+    installDesc: '全屏运行，直接从主屏幕打开。',
+    installIos: '点按“分享”，然后选择“添加到主屏幕”。',
+    share: '分享给朋友',
+    shareText: '和 AI 下国际象棋——免费，无需注册。',
+    back: '返回',
+    close: '关闭',
+    tabs: '主导航',
+    more: '更多选项',
+  },
 };
 
 const ja: Messages = {
-  nav: { play: 'プレイ', blog: 'ブログ', home: 'ホーム', menu: 'メニュー' },
+  nav: { play: 'プレイ', blog: 'ブログ', home: 'ホーム', menu: 'メニュー', profile: 'マイページ', settings: '設定' },
   home: {
     h1: "無料オンラインチェス — AIと対戦",
     seoTitle: "無料オンラインチェス AI対戦 · botAgedrez",
@@ -1842,10 +1986,28 @@ const ja: Messages = {
   },
   lang: { label: '言語' },
   ads: { label: '広告', close: '広告を閉じる' },
+  app: {
+    settings: '設定',
+    appearance: '外観',
+    theme: 'テーマ',
+    light: 'ライト',
+    dark: 'ダーク',
+    sound: 'サウンド',
+    soundDesc: '指し手・駒取り・王手',
+    install: 'アプリをインストール',
+    installDesc: 'ホーム画面からフルスクリーンで。',
+    installIos: '共有をタップし、「ホーム画面に追加」を選んでください。',
+    share: '友だちにシェア',
+    shareText: 'AI とチェスで対局 — 無料・登録不要。',
+    back: '戻る',
+    close: '閉じる',
+    tabs: 'メインナビゲーション',
+    more: 'その他のオプション',
+  },
 };
 
 const ar: Messages = {
-  nav: { play: 'العب', blog: 'المدونة', home: 'الرئيسية', menu: 'القائمة' },
+  nav: { play: 'العب', blog: 'المدونة', home: 'الرئيسية', menu: 'القائمة', profile: 'ملفي', settings: 'الإعدادات' },
   home: {
     h1: "شطرنج أونلاين مجاني ضد الكمبيوتر",
     seoTitle: "شطرنج أونلاين مجاني ضد الكمبيوتر · botAgedrez",
@@ -2045,6 +2207,24 @@ const ar: Messages = {
   },
   lang: { label: 'اللغة' },
   ads: { label: 'إعلان', close: 'إغلاق الإعلان' },
+  app: {
+    settings: 'الإعدادات',
+    appearance: 'المظهر',
+    theme: 'السمة',
+    light: 'فاتح',
+    dark: 'داكن',
+    sound: 'الصوت',
+    soundDesc: 'النقلات والأسر والكش',
+    install: 'ثبّت التطبيق',
+    installDesc: 'بملء الشاشة، مباشرةً من شاشتك الرئيسية.',
+    installIos: 'اضغط «مشاركة» ثم «إضافة إلى الشاشة الرئيسية».',
+    share: 'شارك مع صديق',
+    shareText: 'العب الشطرنج ضد الذكاء الاصطناعي — مجانًا ودون تسجيل.',
+    back: 'رجوع',
+    close: 'إغلاق',
+    tabs: 'التنقل الرئيسي',
+    more: 'خيارات أخرى',
+  },
 };
 
 export const translations: Record<Locale, Messages> = { en, es, pt, fr, de, ru, hi, zh, ja, ar };

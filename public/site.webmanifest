@@ -6,6 +6,7 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
   "lang": "es",
   "dir": "ltr",
@@ -53,6 +54,13 @@
       "short_name": "Jugar",
       "description": "Abre el tablero y reta al motor",
       "url": "/play",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Mi perfil y estadísticas",
+      "short_name": "Perfil",
+      "description": "Tu ELO, tus logros y tus últimas partidas",
+      "url": "/profile",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {

@@ -7,7 +7,10 @@
          iOS composites transparent icons over black. -->
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- `viewport-fit=cover` lets the page run under the notch and the home
+         indicator, as a native app does; the app bar, the tab bar and the
+         game screen pad themselves clear of both with `env(safe-area-*)`. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <!-- The browser chrome follows the theme the reader actually picked, which
          the script below has already applied to <html> by this point. A single

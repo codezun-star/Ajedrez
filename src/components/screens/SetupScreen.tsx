@@ -2,6 +2,11 @@
  * SetupScreen — the pre-game configuration: choose your color, the AI's
  * difficulty and a time control, then start. Also the entry point to the stats
  * screen. Everything animates in with a gentle stagger and is fully translated.
+ *
+ * On a phone it is a tab of the app shell: the app bar (drawn by PlayApp)
+ * replaces the top row and the big floating logo, and "Play" rides above the
+ * tab bar while the options scroll, so starting a game never needs a scroll to
+ * the bottom.
  */
 
 import { useState } from 'react';
@@ -13,7 +18,7 @@ import { useGameStore, GameConfig } from '@/store/gameStore';
 import { DIFFICULTY_LIST, Difficulty } from '@/ai/difficulty';
 import { TIME_CONTROL_LIST, TimeControlId } from '@/constants/timeControls';
 import { useI18n } from '@/i18n';
-import { homePath } from '@/i18n/routes';
+import { homePath, profilePath } from '@/i18n/routes';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { eloRankKey } from '@/utils/elo';
 import { ChartIcon } from '@/components/ui/Icons';
@@ -26,7 +31,7 @@ const fadeUp = {
   show: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06 } }),
 };
 
-export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
+export function SetupScreen() {
   const { t, locale } = useI18n();
   const startGame = useGameStore((s) => s.startGame);
   const profile = useGameStore((s) => s.profile);
@@ -46,9 +51,9 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
   };
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 px-4 py-6 sm:gap-8">
-      {/* Top bar */}
-      <div className="flex items-center justify-between gap-2">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-4 pb-6 pt-3 sm:gap-8 md:min-h-screen md:py-6">
+      {/* Top bar — phones get the app bar above instead */}
+      <div className="hidden items-center justify-between gap-2 md:flex">
         <Link to={homePath(locale)} className="btn-ghost text-sm">
           <HomeIcon className="h-4 w-4 shrink-0" />
           <span className="truncate">{t('nav.home')}</span>
@@ -65,7 +70,7 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
         <motion.div
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="mb-3 flex max-w-full justify-center"
+          className="mb-3 hidden max-w-full justify-center md:flex"
         >
           <BrandLogo className="h-32 xs:h-40 sm:h-48 md:h-56" priority />
         </motion.div>
@@ -158,7 +163,7 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
           </div>
         </Section>
 
-        <button onClick={handleStart} className="btn-primary w-full py-3.5 text-lg">
+        <button onClick={handleStart} className="btn-primary sticky-cta w-full py-3.5 text-lg">
           {t('setup.play')}
         </button>
       </motion.div>
@@ -177,10 +182,10 @@ export function SetupScreen({ onOpenStats }: { onOpenStats: () => void }) {
           {t('setup.yourElo')}: <span className="font-mono font-bold text-white">{profile.elo}</span>{' '}
           <span className="text-slate-500">· {t(`ranks.${eloRankKey(profile.elo)}`)}</span>
         </div>
-        <button onClick={onOpenStats} className="btn-ghost shrink-0 text-sm">
+        <Link to={profilePath(locale)} className="btn-ghost shrink-0 text-sm">
           <ChartIcon className="h-4 w-4 shrink-0" />
           <span className="truncate">{t('setup.statsBtn')}</span>
-        </button>
+        </Link>
       </motion.div>
 
       <AdAnchor />

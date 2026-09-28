@@ -2,9 +2,14 @@
  * StatsScreen — the player's profile dashboard: headline ELO & streak, an ELO
  * progression chart, aggregate win/loss numbers, the achievements grid and a
  * list of recent games (each replayable via its stored PGN).
+ *
+ * Served at `/:locale/profile` by {@link ProfileScreen}, so the phone's tab bar
+ * can reach it like any other section. It is the reader's own data, kept in
+ * their browser, so the URL is `noindex`.
  */
 
 import { useMemo } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FlameIcon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
@@ -13,17 +18,47 @@ import { eloRankKey } from '@/utils/elo';
 import { formatDate } from '@/utils/format';
 import { DIFFICULTIES } from '@/ai/difficulty';
 import { useI18n } from '@/i18n';
+import { playPath, profilePath } from '@/i18n/routes';
+import { useSeo } from '@/hooks/useSeo';
 import { PieceGlyph } from '@/components/board/PieceGlyph';
 import { EloChart } from '@/components/stats/EloChart';
 import { AchievementsGrid } from '@/components/stats/AchievementsGrid';
 import { ChevronLeft } from '@/components/ui/Icons';
 import { AdAnchor, AdSlot, NativeAd } from '@/components/ads';
+import { AppBar } from '@/components/app/AppBar';
 
 const OUTCOME_STYLE = {
   win: { label: 'V', className: 'bg-emerald-500/20 text-emerald-300' },
   loss: { label: 'D', className: 'bg-red-500/20 text-red-300' },
   draw: { label: 'T', className: 'bg-slate-500/20 text-slate-300' },
 };
+
+/**
+ * The profile route. Back returns to wherever the reader came from; opened
+ * cold (a bookmark, the installed app's shortcut) it goes to the board.
+ */
+export function ProfileScreen() {
+  const { t, locale } = useI18n();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useSeo({
+    title: `${t('stats.title')} · botAgedrez`,
+    description: t('stats.progression'),
+    path: profilePath(locale),
+    locale,
+    noindex: true,
+  });
+
+  const back = () => (location.key !== 'default' ? navigate(-1) : navigate(playPath(locale)));
+
+  return (
+    <div className="app-aura min-h-screen">
+      <AppBar title={t('stats.title')} />
+      <StatsScreen onBack={back} />
+    </div>
+  );
+}
 
 export function StatsScreen({ onBack }: { onBack: () => void }) {
   const { t, locale } = useI18n();
@@ -38,8 +73,9 @@ export function StatsScreen({ onBack }: { onBack: () => void }) {
   );
 
   return (
-    <div className="mx-auto min-h-screen w-full max-w-5xl px-4 py-6 sm:py-8">
-      <div className="mb-6 flex items-center justify-between gap-3">
+    <div className="mx-auto w-full max-w-5xl px-4 py-4 sm:py-8">
+      {/* Phones get the app bar above instead. */}
+      <div className="mb-6 hidden items-center justify-between gap-3 md:flex">
         <button onClick={onBack} className="btn-ghost shrink-0 text-sm">
           <ChevronLeft className="h-4 w-4 shrink-0" />
           <span className="truncate">{t('stats.back')}</span>

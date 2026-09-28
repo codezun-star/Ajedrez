@@ -47,7 +47,7 @@ export function ScreenLoader({ label = 'Cargando…' }: { label?: string }) {
 export function GameSkeleton() {
   return (
     <div
-      className="mx-auto flex h-[100dvh] w-full max-w-6xl flex-col overflow-hidden px-2 py-2 sm:px-4 sm:py-3"
+      className="game-shell mx-auto flex h-[100dvh] w-full max-w-6xl flex-col overflow-hidden"
       role="status"
       aria-live="polite"
     >

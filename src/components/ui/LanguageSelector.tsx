@@ -4,12 +4,10 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { GlobeIcon, CheckIcon } from 'lucide-react';
 import { useI18n } from '@/i18n';
 import { LOCALES, Locale } from '@/i18n/locales';
-import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
-import { getPost, translatedSlug } from '@/content/blog';
+import { useLocaleSwitch } from '@/hooks/useLocaleSwitch';
 import { FlagIcon } from './FlagIcon';
 
 interface LanguageSelectorProps {
@@ -24,32 +22,15 @@ interface LanguageSelectorProps {
 }
 
 export function LanguageSelector({ compact = false, align = 'end' }: LanguageSelectorProps) {
-  const { locale, setLocale, t } = useI18n();
+  const { locale, t } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const switchTo = useLocaleSwitch();
 
   const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
 
-  /**
-   * The current page's address in another language. Switching language is a
-   * navigation now that the locale lives in the URL — and from an article it
-   * lands on that article's translation rather than dropping you on the index.
-   */
-  const pathIn = (next: Locale): string => {
-    const [, section, slug] = pathname.split('/').filter(Boolean);
-    if (section === 'play') return playPath(next);
-    if (section !== 'blog') return homePath(next);
-    if (!slug) return blogPath(next);
-    const post = getPost(locale, slug);
-    const translated = post && translatedSlug(post, next);
-    return translated ? postPath(next, translated) : blogPath(next);
-  };
-
   const choose = (next: Locale) => {
-    setLocale(next);
-    navigate(pathIn(next));
+    switchTo(next);
     setOpen(false);
   };
 

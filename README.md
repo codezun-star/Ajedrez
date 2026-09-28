@@ -50,6 +50,11 @@ la interfaz.
   ganar, transiciones de pantalla).
 - **Sonidos** sintetizados con la Web Audio API (con botón de silencio).
 - **Modo oscuro/claro**, totalmente **responsive**.
+- **En el móvil se usa como una app nativa**: barra de pestañas inferior
+  (Inicio, Blog, Jugar, Perfil, Ajustes), barra superior compacta con botón
+  atrás, y los ajustes (tema, piezas, sonido, idioma, instalar, compartir) en
+  una hoja deslizable que se cierra arrastrando o con el botón atrás del
+  teléfono. Respeta el notch y el indicador de inicio (`viewport-fit=cover`).
 
 ## 🧱 Stack
 
@@ -64,7 +69,7 @@ src/
 ├── ai/         Evaluación, búsqueda (minimax/alfa-beta), dificultad, worker
 ├── store/      Estado global (Zustand)
 ├── hooks/      useAI, useClock, useSound, usePieceTracking, ...
-├── components/ board · panel · screens · modals · stats · ui · ads
+├── components/ board · panel · screens · modals · stats · ui · ads · app
 ├── utils/      elo, storage, achievements, stats, material, format
 └── constants/  Geometría del tablero, ritmos de tiempo, inventario de anuncios
 ```

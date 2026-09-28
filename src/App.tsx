@@ -9,6 +9,7 @@
  *   /:locale/play         → the interactive game
  *   /:locale/blog         → article index for that language
  *   /:locale/blog/:slug   → a single article
+ *   /:locale/profile      → the player's stats (personal, so `noindex`)
  *
  * Anything else renders {@link NotFoundScreen}, which marks itself `noindex`.
  * It used to `Navigate` to `/` instead: the reader was moved somewhere they
@@ -23,16 +24,17 @@
  * deep-link correctly.
  */
 
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { useGameStore } from '@/store/gameStore';
 import { useI18n } from '@/i18n';
 import { detectLocale, isLocale } from '@/i18n/locales';
-import { blogPath, homePath, playPath, postPath } from '@/i18n/routes';
+import { blogPath, homePath, playPath, postPath, profilePath } from '@/i18n/routes';
 import { BLOG_POSTS } from '@/content/blog';
 import { HomeScreen } from '@/components/screens/HomeScreen';
 import { NotFoundScreen } from '@/components/screens/NotFoundScreen';
 import { GameSkeleton, ScreenLoader } from '@/components/ui/Loaders';
+import { MobileTabBar } from '@/components/app/MobileTabBar';
 
 /**
  * The game (engine, AI worker, board) and the blog are split out of the main
@@ -47,6 +49,11 @@ const BlogListScreen = lazy(() =>
 const BlogPostScreen = lazy(() =>
   import('@/components/screens/BlogScreen').then((m) => ({ default: m.BlogPostScreen })),
 );
+const ProfileScreen = lazy(() =>
+  import('@/components/screens/StatsScreen').then((m) => ({ default: m.ProfileScreen })),
+);
+const loadSettingsSheet = () => import('@/components/app/SettingsSheet');
+const SettingsSheet = lazy(() => loadSettingsSheet().then((m) => ({ default: m.SettingsSheet })));
 
 export default function App() {
   const theme = useGameStore((s) => s.settings.theme);
@@ -69,51 +76,64 @@ export default function App() {
   }, [pathname]);
 
   return (
-    <Routes>
-      <Route path="/" element={<RootRedirect />} />
+    <>
+      <Routes>
+        <Route path="/" element={<RootRedirect />} />
 
-      {/* Language-neutral entry point for the installed app's "Jugar"
-          shortcut: a manifest holds one URL, but the visitor may be on any of
-          the ten languages, so resolve it the same way `/` does. */}
-      <Route path="/play" element={<LegacyRedirect section="play" />} />
+        {/* Language-neutral entry points for the installed app's "Jugar" and
+            "Perfil" shortcuts: a manifest holds one URL, but the visitor may
+            be on any of the ten languages, so resolve it the way `/` does. */}
+        <Route path="/play" element={<LegacyRedirect section="play" />} />
+        <Route path="/profile" element={<LegacyRedirect section="profile" />} />
 
-      {/* Legacy, pre-i18n URLs — kept alive so existing links and any indexed
-          pages land on the right language instead of a 404. */}
-      <Route path="/jugar" element={<LegacyRedirect section="play" />} />
-      <Route path="/blog" element={<LegacyRedirect section="blog" />} />
-      <Route path="/blog/:slug" element={<LegacyPostRedirect />} />
+        {/* Legacy, pre-i18n URLs — kept alive so existing links and any
+            indexed pages land on the right language instead of a 404. */}
+        <Route path="/jugar" element={<LegacyRedirect section="play" />} />
+        <Route path="/blog" element={<LegacyRedirect section="blog" />} />
+        <Route path="/blog/:slug" element={<LegacyPostRedirect />} />
 
-      <Route path="/:locale" element={<LocaleLayout />}>
-        <Route index element={<HomeScreen />} />
-        <Route
-          path="play"
-          element={
-            <Suspense fallback={<GameSkeleton />}>
-              <PlayApp />
-            </Suspense>
-          }
-        />
-        <Route
-          path="blog"
-          element={
-            <Suspense fallback={<ScreenLoader />}>
-              <BlogListScreen />
-            </Suspense>
-          }
-        />
-        <Route
-          path="blog/:slug"
-          element={
-            <Suspense fallback={<ScreenLoader />}>
-              <BlogPostScreen />
-            </Suspense>
-          }
-        />
+        <Route path="/:locale" element={<LocaleLayout />}>
+          <Route index element={<HomeScreen />} />
+          <Route
+            path="play"
+            element={
+              <Suspense fallback={<GameSkeleton />}>
+                <PlayApp />
+              </Suspense>
+            }
+          />
+          <Route
+            path="blog"
+            element={
+              <Suspense fallback={<ScreenLoader />}>
+                <BlogListScreen />
+              </Suspense>
+            }
+          />
+          <Route
+            path="blog/:slug"
+            element={
+              <Suspense fallback={<ScreenLoader />}>
+                <BlogPostScreen />
+              </Suspense>
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <Suspense fallback={<ScreenLoader />}>
+                <ProfileScreen />
+              </Suspense>
+            }
+          />
+          <Route path="*" element={<NotFoundScreen />} />
+        </Route>
+
         <Route path="*" element={<NotFoundScreen />} />
-      </Route>
+      </Routes>
 
-      <Route path="*" element={<NotFoundScreen />} />
-    </Routes>
+      <SettingsHost />
+    </>
   );
 }
 
@@ -132,7 +152,47 @@ function LocaleLayout() {
   }, [valid, param, locale, setLocale]);
 
   if (!valid) return <NotFoundScreen />;
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <MobileTabBar />
+    </>
+  );
+}
+
+/**
+ * One settings sheet for the whole app; any screen opens it through history
+ * state (see `useSheet`), so it survives route changes underneath.
+ *
+ * It is only ever needed after a tap, so its code stays out of the entry
+ * bundle: fetched once the page is idle, mounted the first time it is asked
+ * for, and kept mounted after that so its closing animation can play.
+ */
+function SettingsHost() {
+  const location = useLocation();
+  const requested = (location.state as { sheet?: string } | null)?.sheet === 'settings';
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (requested) setMounted(true);
+  }, [requested]);
+
+  useEffect(() => {
+    const warm = () => void loadSettingsSheet();
+    if (typeof requestIdleCallback === 'function') {
+      const id = requestIdleCallback(warm, { timeout: 6000 });
+      return () => cancelIdleCallback(id);
+    }
+    const id = setTimeout(warm, 3000);
+    return () => clearTimeout(id);
+  }, []);
+
+  if (!mounted) return null;
+  return (
+    <Suspense fallback={null}>
+      <SettingsSheet />
+    </Suspense>
+  );
 }
 
 /** `/` — send visitors to their own language. */
@@ -140,9 +200,10 @@ function RootRedirect() {
   return <Navigate to={homePath(detectLocale())} replace />;
 }
 
-function LegacyRedirect({ section }: { section: 'play' | 'blog' }) {
-  const target = detectLocale();
-  return <Navigate to={section === 'play' ? playPath(target) : blogPath(target)} replace />;
+const SECTION_PATH = { play: playPath, blog: blogPath, profile: profilePath };
+
+function LegacyRedirect({ section }: { section: keyof typeof SECTION_PATH }) {
+  return <Navigate to={SECTION_PATH[section](detectLocale())} replace />;
 }
 
 /** An old `/blog/:slug` link resolves to whichever language wrote that slug. */

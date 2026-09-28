@@ -1,10 +1,11 @@
 /**
- * PlayApp — the interactive game at `/jugar`. Wires the AI worker, clock and
- * sound hooks, and switches between the setup, game and stats views (driven by
- * the store). The marketing pages (home, blog) live in separate routes.
+ * PlayApp — the interactive game at `/:locale/play`. Wires the AI worker, clock
+ * and sound hooks, and switches between the setup and game views (driven by the
+ * store). Stats live at their own route, `/:locale/profile`, so the phone's tab
+ * bar can reach them.
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useGameStore } from '@/store/gameStore';
 import { useI18n } from '@/i18n';
@@ -17,10 +18,8 @@ import { useGameSounds } from '@/hooks/useGameSounds';
 import { useSound } from '@/hooks/useSound';
 import { SetupScreen } from '@/components/screens/SetupScreen';
 import { GameScreen } from '@/components/screens/GameScreen';
-import { StatsScreen } from '@/components/screens/StatsScreen';
 import { GameOverModal } from '@/components/modals/GameOverModal';
-
-type View = 'app' | 'stats';
+import { AppBar } from '@/components/app/AppBar';
 
 /** Every language's game page — the hreflang set shared by all of them. */
 const PLAY_ALTERNATES = LOCALES.map((l) => ({ locale: l.code, path: playPath(l.code) }));
@@ -28,7 +27,6 @@ const PLAY_ALTERNATES = LOCALES.map((l) => ({ locale: l.code, path: playPath(l.c
 export default function PlayApp() {
   const { t, locale } = useI18n();
   const screen = useGameStore((s) => s.screen);
-  const [view, setView] = useState<View>('app');
 
   useSeo({
     title: t('play.seoTitle'),
@@ -48,18 +46,15 @@ export default function PlayApp() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screen]);
 
-  const showStats = view === 'stats' && screen === 'setup';
-
   return (
     <div className="app-aura min-h-screen">
+      {/* The phone's app bar belongs to setup only: the game screen is pinned
+          to the viewport and draws its own compact header. */}
+      {screen === 'setup' && <AppBar title={t('nav.play')} />}
       <AnimatePresence mode="wait">
-        {showStats ? (
-          <motion.div key="stats" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }}>
-            <StatsScreen onBack={() => setView('app')} />
-          </motion.div>
-        ) : screen === 'setup' ? (
+        {screen === 'setup' ? (
           <motion.div key="setup" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
-            <SetupScreen onOpenStats={() => setView('stats')} />
+            <SetupScreen />
           </motion.div>
         ) : (
           <motion.div key="game" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>

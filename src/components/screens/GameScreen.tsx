@@ -22,10 +22,17 @@
  * is wide, and a single 320×50 strip along the bottom edge in portrait — which
  * the board's height cap below accounts for. Short landscape gets none at all:
  * that layout already drops the header to find room for the board.
+ *
+ * On a phone (portrait, or any short landscape) the header keeps only the
+ * sound toggle and a settings button that opens the app's settings sheet —
+ * language, theme and piece style live there — so the row stays one line and
+ * reads like an app's toolbar rather than a website's. The shell pads itself
+ * clear of the notch and the home indicator when installed full-screen.
  */
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Settings2Icon } from 'lucide-react';
 import { useGameStore } from '@/store/gameStore';
 import { opposite } from '@/engine/constants';
 import { useIsWide, useIsShort } from '@/hooks/useIsWide';
@@ -40,6 +47,7 @@ import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { SunIcon, MoonIcon, VolumeIcon, MuteIcon } from '@/components/ui/Icons';
 import { BrandLogo } from '@/components/ui/BrandLogo';
 import { AdSlot } from '@/components/ads';
+import { useSheet } from '@/hooks/useSheet';
 
 export function GameScreen() {
   const { t, locale } = useI18n();
@@ -49,6 +57,7 @@ export function GameScreen() {
   const toggleMute = useGameStore((s) => s.toggleMute);
   const wide = useIsWide();
   const short = useIsShort();
+  const settingsSheet = useSheet('settings');
 
   // A phone on its side: wide layout, but almost no vertical room to spend.
   const compactLandscape = wide && short;
@@ -57,20 +66,34 @@ export function GameScreen() {
   const topColor = opposite(orientation);
   const bottomColor = orientation;
 
-  const chrome = (
+  // Phones — upright, or on their side — get the toolbar form of the header.
+  const phoneChrome = !wide || short;
+
+  const muteButton = (
+    <IconButton label={t('app.sound')} onClick={toggleMute} aria-pressed={!settings.muted}>
+      {settings.muted ? <MuteIcon className="h-5 w-5" /> : <VolumeIcon className="h-5 w-5" />}
+    </IconButton>
+  );
+
+  const chrome = phoneChrome ? (
+    <>
+      {muteButton}
+      <IconButton label={t('app.settings')} onClick={settingsSheet.show} aria-haspopup="dialog">
+        <Settings2Icon className="h-5 w-5" />
+      </IconButton>
+    </>
+  ) : (
     <>
       <LanguageSelector compact />
-      <IconButton label={t('nav.play')} onClick={toggleMute}>
-        {settings.muted ? <MuteIcon className="h-5 w-5" /> : <VolumeIcon className="h-5 w-5" />}
-      </IconButton>
-      <IconButton label={t('nav.play')} onClick={toggleTheme}>
+      {muteButton}
+      <IconButton label={t('app.theme')} onClick={toggleTheme}>
         {settings.theme === 'dark' ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
       </IconButton>
     </>
   );
 
   return (
-    <div className="mx-auto flex h-[100dvh] w-full max-w-6xl flex-col overflow-hidden px-2 py-2 sm:px-4 sm:py-3">
+    <div className="game-shell mx-auto flex h-[100dvh] w-full max-w-6xl flex-col overflow-hidden">
       {/* Header — dropped in short landscape; its controls move into the panel */}
       {!compactLandscape && (
         <header className="mb-2 flex shrink-0 items-center justify-between gap-2">

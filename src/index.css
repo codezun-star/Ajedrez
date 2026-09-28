@@ -4,6 +4,15 @@
 
 :root {
   color-scheme: light;
+
+  /* ── Phone app shell ─────────────────────────────────────────────────────
+     The bottom tab bar's height, and how far fixed chrome reaches up from the
+     bottom edge. Both offsets are 0 until the matching element is on screen
+     (it flags <html>) and the viewport is phone-sized — see the block at the
+     end of this file. */
+  --tabbar-h: 4rem;
+  --tabbar-offset: 0px;
+  --anchor-h: 0px;
 }
 
 :root.dark {
@@ -26,12 +35,36 @@ body {
   overflow-x: clip;
 }
 
+/* Behave like an app, not a document: no double-tap zoom delay on controls
+   (pinch zoom still works), no font inflation on rotation, and no text
+   selection or iOS long-press callout on buttons and navigation. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+button,
+[role='button'],
+[role='switch'],
+.tab-item,
+.app-bar,
+.tabbar {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 body {
   @apply bg-surface-950 text-slate-100 font-sans antialiased;
   margin: 0;
   overscroll-behavior-y: none;
   overscroll-behavior-x: none;
   -webkit-tap-highlight-color: transparent;
+  /* The viewport reaches under the notch (`viewport-fit=cover`); in
+     landscape the sides need to clear it. Top and bottom are handled by the
+     app bar, the tab bar and the game shell, which own those edges. */
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
   /* Long unbroken strings (URLs, SAN chains, compound German words) wrap
      instead of forcing the layout wider than the screen. */
   overflow-wrap: break-word;
@@ -353,4 +386,177 @@ body {
 :root:not(.dark) .ad-anchor {
   background-color: rgba(255, 255, 255, 0.9);
   border-color: rgba(15, 23, 42, 0.1);
+}
+
+/* ── Phone app shell ───────────────────────────────────────────────────────
+   On a phone the site is presented as an app: a compact top bar, a bottom tab
+   bar and bottom sheets for menus. See `components/app/`. */
+
+/* Top app bar — pinned under the status bar, translucent, with a hairline
+   that only appears once content is scrolling beneath it. */
+.app-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding-top: env(safe-area-inset-top, 0px);
+  background-color: rgba(12, 15, 29, 0.72);
+  -webkit-backdrop-filter: saturate(160%) blur(20px);
+  backdrop-filter: saturate(160%) blur(20px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+.app-bar[data-scrolled] {
+  background-color: rgba(12, 15, 29, 0.94);
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+:root:not(.dark) .app-bar {
+  background-color: rgba(255, 255, 255, 0.72);
+}
+:root:not(.dark) .app-bar[data-scrolled] {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+.app-bar-btn {
+  @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-slate-200
+         transition-colors active:bg-white/10 focus-visible:outline-none focus-visible:ring-2
+         focus-visible:ring-brand-400/60;
+}
+:root:not(.dark) .app-bar-btn {
+  color: #1e293b;
+}
+:root:not(.dark) .app-bar-btn:active {
+  background-color: rgba(15, 23, 42, 0.06);
+}
+
+/* Bottom tab bar. The spacer keeps the end of the page clear of it. */
+.tabbar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 45;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background-color: rgba(12, 15, 29, 0.94);
+  -webkit-backdrop-filter: saturate(160%) blur(20px);
+  backdrop-filter: saturate(160%) blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+:root:not(.dark) .tabbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+.tabbar-spacer {
+  height: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px));
+}
+.tab-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  color: #94a3b8;
+  transition: color 0.15s ease;
+}
+.tab-item > span:first-child {
+  transition: transform 0.12s ease;
+}
+.tab-item:active > span:first-child {
+  transform: scale(0.9);
+}
+.tab-item[data-active] {
+  color: #f08888;
+}
+.tab-item:focus-visible {
+  outline: 2px solid rgba(236, 100, 101, 0.6);
+  outline-offset: -4px;
+  border-radius: 0.75rem;
+}
+:root:not(.dark) .tab-item {
+  color: #64748b;
+}
+:root:not(.dark) .tab-item[data-active] {
+  color: #c5191a;
+}
+.tab-label {
+  max-width: 100%;
+  overflow: hidden;
+  padding-inline: 2px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Bottom sheet — grouped rows, like a native settings page. */
+.sheet-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0;
+  border-radius: 1.5rem 1.5rem 0 0;
+  background-color: #12172b;
+  box-shadow: 0 -24px 60px -12px rgba(0, 0, 0, 0.55);
+}
+:root:not(.dark) .sheet-panel {
+  border-color: rgba(15, 23, 42, 0.08);
+  background-color: #f1f5f9;
+}
+.settings-group {
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.settings-group > * + * {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+:root:not(.dark) .settings-group {
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.05);
+}
+:root:not(.dark) .settings-group > * + * {
+  border-top-color: rgba(15, 23, 42, 0.07);
+}
+.settings-row {
+  display: flex;
+  min-height: 3.25rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+}
+
+/* The game fills the viewport exactly, so it pads itself clear of the notch
+   and the home indicator when the app runs full-screen. */
+.game-shell {
+  padding: max(0.5rem, env(safe-area-inset-top, 0px)) 0.5rem
+    max(0.5rem, env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 640px) {
+  .game-shell {
+    padding: max(0.75rem, env(safe-area-inset-top, 0px)) 1rem
+      max(0.75rem, env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Phone-only offsets. The tab bar and the anchored ad each flag <html> while
+   they are on screen; the ad bar then sits on top of the tab bar instead of
+   under it, and the setup screen's "Play" button sticks above both. */
+@media (max-width: 767px) {
+  :root.has-tabbar {
+    --tabbar-offset: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px));
+  }
+  :root.has-ad-anchor {
+    --anchor-h: 62px;
+  }
+  :root.has-tabbar .ad-anchor {
+    bottom: var(--tabbar-offset);
+    padding-bottom: 0;
+  }
+  .sticky-cta {
+    position: sticky;
+    bottom: calc(var(--tabbar-offset) + var(--anchor-h) + 0.75rem);
+    z-index: 10;
+  }
 }
